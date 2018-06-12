@@ -1,0 +1,14 @@
+{
+    "name": "jim/tim-sdk",
+    "description": "IM Sdk for Tencent Instant Messaging",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "JimChen",
+            "email": "18219111672@163.com"
+        }
+    ],
+    "require": {
+    }
+}
