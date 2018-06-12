@@ -10,5 +10,6 @@
         }
     ],
     "require": {
+        "guzzlehttp/guzzle": "^6.3"
     }
 }
