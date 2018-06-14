@@ -2,7 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="19796397-712c-48c0-834f-b8cdd7138189" name="Default" comment="">
+      <change beforePath="" afterPath="$PROJECT_DIR$/phpunit.xml" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/Core/Exception.php" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/Core/Exceptions/HttpException.php" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/Core/Http.php" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/Foundation/ServiceProviders/ServiceProvider.php" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/Support/Arr.php" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/Support/Collection.php" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/Support/Log.php" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/Support/helpers.php" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/tests/Core/HttpTest.php" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/tests/Foundation/ApplicationTest.php" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/tests/Support/ArrTest.php" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/tests/Support/CollectionTest.php" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/tests/Support/HelpersTest.php" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/tests/TestCase.php" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/tests/bootstrap.php" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/composer.json" afterPath="$PROJECT_DIR$/composer.json" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" afterPath="$PROJECT_DIR$/composer.lock" />
+      <change beforePath="$PROJECT_DIR$/src/Foundation/Application.php" afterPath="$PROJECT_DIR$/src/Foundation/Application.php" />
+      <change beforePath="$PROJECT_DIR$/src/Foundation/Config.php" afterPath="$PROJECT_DIR$/src/Foundation/Config.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,28 +42,88 @@
     <fileColor scope="Non-Project Files (Material Oceanic)" color="2E3C43" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="composer.json" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/composer.json">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="HttpTest.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/Core/HttpTest.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="303">
-              <caret line="27" column="19" lean-forward="false" selection-start-line="27" selection-start-column="19" selection-end-line="27" selection-end-column="19" />
-              <folding />
+            <state relative-caret-position="241">
+              <caret line="15" column="32" lean-forward="false" selection-start-line="15" selection-start-column="32" selection-end-line="15" selection-end-column="32" />
+              <folding>
+                <element signature="e#120#141#0#PHP" expanded="true" />
+                <element signature="e#245#380#0#PHP" expanded="false" />
+                <element signature="e#386#792#0#PHP" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
+      <file leaf-file-name="Application.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Foundation/Application.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-              <folding />
+            <state relative-caret-position="202">
+              <caret line="112" column="7" lean-forward="false" selection-start-line="112" selection-start-column="7" selection-end-line="112" selection-end-column="7" />
+              <folding>
+                <element signature="e#122#143#0#PHP" expanded="true" />
+                <element signature="e#493#546#0#PHP" expanded="false" />
+                <element signature="e#581#669#0#PHP" expanded="false" />
+                <element signature="e#723#741#0#PHP" expanded="false" />
+                <element signature="e#775#793#0#PHP" expanded="false" />
+                <element signature="e#800#1162#0#PHP" expanded="false" />
+                <element signature="e#869#946#1#PHP" expanded="false" />
+                <element signature="e#1168#1198#0#PHP" expanded="false" />
+                <element signature="e#1203#1337#0#PHP" expanded="false" />
+                <element signature="e#1343#1436#0#PHP" expanded="false" />
+                <element signature="e#1441#1621#0#PHP" expanded="false" />
+                <element signature="e#1627#1666#0#PHP" expanded="false" />
+                <element signature="e#1671#1832#0#PHP" expanded="false" />
+                <element signature="e#1724#1826#0#PHP" expanded="false" />
+                <element signature="e#1838#1910#0#PHP" expanded="false" />
+                <element signature="e#1915#2242#0#PHP" expanded="false" />
+                <element signature="e#2055#2176#0#PHP" expanded="false" />
+                <element signature="e#2248#2440#0#PHP" expanded="false" />
+                <element signature="e#2445#2735#0#PHP" expanded="false" />
+                <element signature="e#2526#2604#0#PHP" expanded="false" />
+                <element signature="e#2614#2702#0#PHP" expanded="false" />
+                <element signature="e#2741#2816#0#PHP" expanded="false" />
+                <element signature="e#2821#3004#0#PHP" expanded="false" />
+                <element signature="e#2887#2998#0#PHP" expanded="false" />
+                <element signature="e#3010#3100#0#PHP" expanded="false" />
+                <element signature="e#3105#3174#0#PHP" expanded="false" />
+                <element signature="e#3180#3301#0#PHP" expanded="false" />
+                <element signature="e#3306#3430#0#PHP" expanded="false" />
+                <element signature="e#3436#3554#0#PHP" expanded="false" />
+                <element signature="e#3559#3600#0#PHP" expanded="false" />
+                <element signature="e#3606#3715#0#PHP" expanded="false" />
+                <element signature="e#3720#3770#0#PHP" expanded="false" />
+                <element signature="e#3776#3863#0#PHP" expanded="false" />
+                <element signature="e#3868#3925#0#PHP" expanded="false" />
+                <element signature="e#3931#4081#0#PHP" expanded="false" />
+                <element signature="e#4086#4166#0#PHP" expanded="false" />
+                <element signature="e#4172#4259#0#PHP" expanded="false" />
+                <element signature="e#4264#4298#0#PHP" expanded="false" />
+                <element signature="e#4304#4410#0#PHP" expanded="false" />
+                <element signature="e#4415#4461#0#PHP" expanded="false" />
+                <element signature="e#4467#4577#0#PHP" expanded="false" />
+                <element signature="e#4582#4627#0#PHP" expanded="false" />
+                <element signature="e#4633#4728#0#PHP" expanded="false" />
+                <element signature="e#4733#4783#0#PHP" expanded="false" />
+                <element signature="e#4789#4883#0#PHP" expanded="false" />
+                <element signature="e#4888#4939#0#PHP" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>Log</find>
+      <find>value(</find>
+      <find>getArrayableItems</find>
+      <find>GetArrayableItems</find>
+      <find>ServiceProvider</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -52,7 +132,33 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/src/Core/Exception/HttpException.php" />
+        <option value="$PROJECT_DIR$/src/Core/Exceptions/HttpException.php" />
+        <option value="$PROJECT_DIR$/src/Core/Exception.php" />
+        <option value="$PROJECT_DIR$/phpunit.xml" />
+        <option value="$PROJECT_DIR$/vendor/paragonie/random_compat/other/ide_stubs/Test.php" />
+        <option value="$PROJECT_DIR$/tests/TestCase.php" />
+        <option value="$PROJECT_DIR$/tests/bootstrap.php" />
+        <option value="$PROJECT_DIR$/src/Foundation/Kernel.php" />
+        <option value="$PROJECT_DIR$/src/Foundation/ServiceProviders/LogServiceProvider.php" />
+        <option value="$PROJECT_DIR$/src/Foundation/Bootstrap/RegisterFacades.php" />
+        <option value="$PROJECT_DIR$/src/Support/Log.php" />
+        <option value="$PROJECT_DIR$/tests/Foundation/ApplicationTest.php" />
+        <option value="$PROJECT_DIR$/src/Foundation/Config.php" />
+        <option value="$PROJECT_DIR$/vendor/phpunit/phpunit/tests/_files/SampleArrayAccess.php" />
+        <option value="$PROJECT_DIR$/tests/_files/SampleArrayAccess.php" />
+        <option value="$PROJECT_DIR$/tests/Support/ArrTest.php" />
         <option value="$PROJECT_DIR$/composer.json" />
+        <option value="$PROJECT_DIR$/src/Support/Arr.php" />
+        <option value="$PROJECT_DIR$/src/Support/XmlParse.php" />
+        <option value="$PROJECT_DIR$/tests/Support/HelpersTest.php" />
+        <option value="$PROJECT_DIR$/src/Support/Collection.php" />
+        <option value="$PROJECT_DIR$/src/Support/helpers.php" />
+        <option value="$PROJECT_DIR$/tests/Support/CollectionTest.php" />
+        <option value="$PROJECT_DIR$/src/Core/Http.php" />
+        <option value="$PROJECT_DIR$/tests/Core/HttpTest.php" />
+        <option value="$PROJECT_DIR$/src/Foundation/Application.php" />
+        <option value="$PROJECT_DIR$/src/Foundation/ServiceProviders/ServiceProvider.php" />
       </list>
     </option>
   </component>
@@ -70,10 +176,10 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" interpreter_name="PHP 7.1" />
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="337" />
-    <option name="y" value="-8" />
-    <option name="width" value="782" />
-    <option name="height" value="735" />
+    <option name="x" value="-137" />
+    <option name="y" value="-11" />
+    <option name="width" value="1382" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -110,6 +216,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -117,17 +224,23 @@
               <item name="TimSDK" type="b2602c69:ProjectViewProjectNode" />
               <item name="TimSDK" type="2a2b976b:PhpTreeStructureProvider$1" />
             </path>
+            <path>
+              <item name="TimSDK" type="b2602c69:ProjectViewProjectNode" />
+              <item name="TimSDK" type="2a2b976b:PhpTreeStructureProvider$1" />
+              <item name="src" type="2a2b976b:PhpTreeStructureProvider$1" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="settings.editor.selected.configurable" value="web-ide.project.structure" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="com.jetbrains.php.phpunit.codeGeneration.PhpNewTestDialog.defaultLibrary" value="PHPUnit" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -154,26 +267,29 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1528815470302</updated>
-      <workItem from="1528815471888" duration="2592000" />
+      <workItem from="1528815471888" duration="6991000" />
+      <workItem from="1528852337458" duration="86000" />
+      <workItem from="1528890959633" duration="17795000" />
+      <workItem from="1528938338566" duration="4457000" />
+      <workItem from="1528951853017" duration="3165000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2592000" />
+    <option name="totallyTimeSpent" value="32494000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2322239" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2473525" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294893" sideWeight="0.4969743" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.5030257" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3277027" sideWeight="0.5030257" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.69686985" sideWeight="0.4969743" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293919" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32894737" sideWeight="0.4969743" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.7601351" sideWeight="0.4969743" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3970346" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -185,6 +301,27 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
+    <layout-to-restore>
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294893" sideWeight="0.4969743" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="PHP-CGI Server" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.3294893" sideWeight="0.4969743" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3277027" sideWeight="0.5030257" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.69686985" sideWeight="0.4969743" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3293919" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.7601351" sideWeight="0.4969743" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2397882" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3970346" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -193,11 +330,420 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager />
+    <breakpoint-manager>
+      <option name="time" value="4" />
+    </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/vendor/autoload.php">
+    <entry file="file://$PROJECT_DIR$/vendor/illuminate/contracts/Container/Container.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="6" column="10" lean-forward="false" selection-start-line="6" selection-start-column="10" selection-end-line="6" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/illuminate/support/Facades/Log.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="7" column="20" lean-forward="false" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/illuminate/contracts/Foundation/Application.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="52" column="69" lean-forward="false" selection-start-line="52" selection-start-column="40" selection-end-line="52" selection-end-column="69" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/illuminate/container/Container.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="399" column="20" lean-forward="false" selection-start-line="399" selection-start-column="20" selection-end-line="399" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Foundation/Bootstrap/RegisterFacades.php" />
+    <entry file="file://$PROJECT_DIR$/vendor/illuminate/support/Facades/Facade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="8" column="21" lean-forward="true" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/illuminate/log/composer.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-270">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/Core/Core_c.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="20" column="10" lean-forward="false" selection-start-line="20" selection-start-column="10" selection-end-line="20" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/illuminate/support/Collection.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="15" column="108" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="108" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/standard/standard_9.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="722" column="9" lean-forward="false" selection-start-line="722" selection-start-column="9" selection-end-line="722" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/standard/standard_4.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="185" column="9" lean-forward="false" selection-start-line="185" selection-start-column="9" selection-end-line="185" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/composer/autoload_files.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/phpunit.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="18" column="10" lean-forward="false" selection-start-line="18" selection-start-column="10" selection-end-line="18" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/phpunit/phpunit-mock-objects/src/Framework/MockObject/Matcher/AnyInvokedCount.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="16" column="6" lean-forward="false" selection-start-line="16" selection-start-column="6" selection-end-line="16" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/TestCase.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="12" column="1" lean-forward="false" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/phpunit/phpunit/tests/bootstrap.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/phpunit/phpunit/tests/_files/SampleClass.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/phpunit/phpunit/tests/_files/CoveredFunction.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/phpunit/phpunit/tests/Framework/AssertTest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="10110">
+          <caret line="383" column="28" lean-forward="false" selection-start-line="383" selection-start-column="28" selection-end-line="383" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/bootstrap.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/phpunit/phpunit/phpunit.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-180">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/phpunit/phpunit/composer.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="56" column="9" lean-forward="true" selection-start-line="56" selection-start-column="9" selection-end-line="56" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/phpunit/phpunit/tests/_files/SampleArrayAccess.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="5" lean-forward="true" selection-start-line="0" selection-start-column="5" selection-end-line="6" selection-end-column="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/_files/ArrayAccessExample.php" />
+    <entry file="file://$PROJECT_DIR$/vendor/phpunit/phpunit/src/Framework/TestCase.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="1335" column="20" lean-forward="false" selection-start-line="1335" selection-start-column="20" selection-end-line="1335" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/illuminate/support/helpers.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="764" column="4" lean-forward="false" selection-start-line="764" selection-start-column="4" selection-end-line="769" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Support/Arr.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="152" column="27" lean-forward="false" selection-start-line="152" selection-start-column="27" selection-end-line="152" selection-end-column="27" />
+          <folding>
+            <element signature="e#153#282#0#PHP" expanded="false" />
+            <element signature="e#287#406#0#PHP" expanded="false" />
+            <element signature="e#412#588#0#PHP" expanded="false" />
+            <element signature="e#804#1079#0#PHP" expanded="false" />
+            <element signature="e#1148#1214#0#PHP" expanded="false" />
+            <element signature="e#1828#2013#0#PHP" expanded="false" />
+            <element signature="e#2018#2494#0#PHP" expanded="false" />
+            <element signature="e#2090#2147#0#PHP" expanded="false" />
+            <element signature="e#2157#2226#0#PHP" expanded="false" />
+            <element signature="e#2236#2464#0#PHP" expanded="false" />
+            <element signature="e#2291#2415#0#PHP" expanded="false" />
+            <element signature="e#2674#3446#0#PHP" expanded="false" />
+            <element signature="e#2730#2787#0#PHP" expanded="false" />
+            <element signature="e#2829#2880#0#PHP" expanded="false" />
+            <element signature="e#2890#2945#0#PHP" expanded="false" />
+            <element signature="e#3177#3394#0#PHP" expanded="false" />
+            <element signature="e#3336#3394#0#PHP" expanded="false" />
+            <element signature="e#3452#3616#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/illuminate/contracts/Support/Arrayable.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="4" column="10" lean-forward="false" selection-start-line="4" selection-start-column="10" selection-end-line="4" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/illuminate/contracts/Support/Jsonable.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="4" column="10" lean-forward="false" selection-start-line="4" selection-start-column="10" selection-end-line="4" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/stubs/xml/xml.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="810">
+          <caret line="362" column="9" lean-forward="false" selection-start-line="362" selection-start-column="9" selection-end-line="362" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Support/XmlParse.php" />
+    <entry file="file://$PROJECT_DIR$/src/Support/helpers.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="5" lean-forward="false" selection-start-line="0" selection-start-column="5" selection-end-line="0" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/phpunit/phpunit-mock-objects/tests/_fixture/Mockable.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="30">
+          <caret line="1" column="6" lean-forward="false" selection-start-line="1" selection-start-column="6" selection-end-line="1" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/Support/HelpersTest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="20" column="5" lean-forward="false" selection-start-line="20" selection-start-column="5" selection-end-line="20" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Foundation/Config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/Support/CollectionTest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="211">
+          <caret line="16" column="37" lean-forward="false" selection-start-line="16" selection-start-column="37" selection-end-line="16" selection-end-column="37" />
+          <folding>
+            <element signature="e#124#140#0#PHP" expanded="true" />
+            <element signature="e#243#4213#0#PHP" expanded="false" />
+            <element signature="e#287#827#0#PHP" expanded="false" />
+            <element signature="e#833#1253#0#PHP" expanded="false" />
+            <element signature="e#1259#1509#0#PHP" expanded="false" />
+            <element signature="e#1515#1722#0#PHP" expanded="false" />
+            <element signature="e#1728#1982#0#PHP" expanded="false" />
+            <element signature="e#1988#2159#0#PHP" expanded="false" />
+            <element signature="e#2165#2836#0#PHP" expanded="false" />
+            <element signature="e#2842#2965#0#PHP" expanded="false" />
+            <element signature="e#2971#3193#0#PHP" expanded="false" />
+            <element signature="e#3199#3912#0#PHP" expanded="false" />
+            <element signature="e#3918#4211#0#PHP" expanded="false" />
+            <element signature="e#4215#4742#0#PHP" expanded="false" />
+            <element signature="e#4744#4886#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/functions.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="299" column="16" lean-forward="true" selection-start-line="299" selection-start-column="16" selection-end-line="299" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/Foundation/ApplicationTest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="351">
+          <caret line="39" column="29" lean-forward="false" selection-start-line="39" selection-start-column="29" selection-end-line="39" selection-end-column="29" />
+          <folding>
+            <element signature="e#338#516#0#PHP" expanded="false" />
+            <element signature="e#522#825#0#PHP" expanded="false" />
+            <element signature="e#831#1055#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/Support/ArrTest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="15" column="30" lean-forward="true" selection-start-line="15" selection-start-column="30" selection-end-line="15" selection-end-column="30" />
+          <folding>
+            <element signature="e#259#768#0#PHP" expanded="false" />
+            <element signature="e#774#1341#0#PHP" expanded="false" />
+            <element signature="e#1347#2990#0#PHP" expanded="false" />
+            <element signature="e#2996#3233#0#PHP" expanded="false" />
+            <element signature="e#3239#3564#0#PHP" expanded="false" />
+            <element signature="e#3449#3557#0#PHP" expanded="false" />
+            <element signature="e#3477#3556#0#PHP" expanded="false" />
+            <element signature="e#3505#3555#1#PHP" expanded="false" />
+            <element signature="e#3570#3930#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Support/Collection.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1323">
+          <caret line="184" column="7" lean-forward="false" selection-start-line="184" selection-start-column="7" selection-end-line="184" selection-end-column="7" />
+          <folding>
+            <element signature="e#119#135#0#PHP" expanded="true" />
+            <element signature="e#342#406#0#PHP" expanded="false" />
+            <element signature="e#439#576#0#PHP" expanded="false" />
+            <element signature="e#582#646#0#PHP" expanded="false" />
+            <element signature="e#651#713#0#PHP" expanded="false" />
+            <element signature="e#719#821#0#PHP" expanded="false" />
+            <element signature="e#826#1190#0#PHP" expanded="false" />
+            <element signature="e#868#964#0#PHP" expanded="false" />
+            <element signature="e#996#1160#0#PHP" expanded="false" />
+            <element signature="e#1073#1150#0#PHP" expanded="false" />
+            <element signature="e#1196#1295#0#PHP" expanded="false" />
+            <element signature="e#1300#1488#0#PHP" expanded="false" />
+            <element signature="e#1494#1634#0#PHP" expanded="false" />
+            <element signature="e#1639#1748#0#PHP" expanded="false" />
+            <element signature="e#1754#1875#0#PHP" expanded="false" />
+            <element signature="e#1880#1962#0#PHP" expanded="false" />
+            <element signature="e#1968#2055#0#PHP" expanded="false" />
+            <element signature="e#2060#2143#0#PHP" expanded="false" />
+            <element signature="e#2149#2211#0#PHP" expanded="false" />
+            <element signature="e#2216#2282#0#PHP" expanded="false" />
+            <element signature="e#2288#2383#0#PHP" expanded="false" />
+            <element signature="e#2388#2507#0#PHP" expanded="false" />
+            <element signature="e#2513#2759#0#PHP" expanded="false" />
+            <element signature="e#2764#2835#0#PHP" expanded="false" />
+            <element signature="e#2841#3037#0#PHP" expanded="false" />
+            <element signature="e#3042#3131#0#PHP" expanded="false" />
+            <element signature="e#3137#3429#0#PHP" expanded="false" />
+            <element signature="e#3434#3506#0#PHP" expanded="false" />
+            <element signature="e#3512#3718#0#PHP" expanded="false" />
+            <element signature="e#3723#3802#0#PHP" expanded="false" />
+            <element signature="e#3808#4105#0#PHP" expanded="false" />
+            <element signature="e#4224#4282#0#PHP" expanded="false" />
+            <element signature="e#4287#4359#0#PHP" expanded="false" />
+            <element signature="e#4365#4483#0#PHP" expanded="false" />
+            <element signature="e#4488#4569#0#PHP" expanded="false" />
+            <element signature="e#4575#4673#0#PHP" expanded="false" />
+            <element signature="e#4678#4750#0#PHP" expanded="false" />
+            <element signature="e#4756#4872#0#PHP" expanded="false" />
+            <element signature="e#4877#4951#0#PHP" expanded="false" />
+            <element signature="e#4957#5031#0#PHP" expanded="false" />
+            <element signature="e#5036#5106#0#PHP" expanded="false" />
+            <element signature="e#5112#5170#0#PHP" expanded="false" />
+            <element signature="e#5175#5245#0#PHP" expanded="false" />
+            <element signature="e#5251#5678#0#PHP" expanded="false" />
+            <element signature="e#5683#5768#0#PHP" expanded="false" />
+            <element signature="e#5774#6034#0#PHP" expanded="false" />
+            <element signature="e#6039#6177#0#PHP" expanded="false" />
+            <element signature="e#6090#6171#0#PHP" expanded="false" />
+            <element signature="e#6183#6502#0#PHP" expanded="false" />
+            <element signature="e#6507#6627#0#PHP" expanded="false" />
+            <element signature="e#6633#7014#0#PHP" expanded="false" />
+            <element signature="e#7019#7110#0#PHP" expanded="false" />
+            <element signature="e#7116#7244#0#PHP" expanded="false" />
+            <element signature="e#7249#7519#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/guzzlehttp/guzzle/src/Client.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="127" column="20" lean-forward="false" selection-start-line="127" selection-start-column="20" selection-end-line="127" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/composer.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="19" column="24" lean-forward="false" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/phpunit/phpunit/src/Framework/Assert.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="1371" column="72" lean-forward="false" selection-start-line="1371" selection-start-column="66" selection-end-line="1371" selection-end-column="72" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Core/Exceptions/HttpException.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -205,19 +751,142 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
+    <entry file="file://$PROJECT_DIR$/src/Foundation/ServiceProviders/LogServiceProvider.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+        <state relative-caret-position="-149">
+          <caret line="13" column="40" lean-forward="true" selection-start-line="13" selection-start-column="40" selection-end-line="13" selection-end-column="40" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/composer.json">
+    <entry file="file://$PROJECT_DIR$/src/Foundation/ServiceProviders/ServiceProvider.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="303">
-          <caret line="27" column="19" lean-forward="false" selection-start-line="27" selection-start-column="19" selection-end-line="27" selection-end-column="19" />
+        <state relative-caret-position="120">
+          <caret line="9" column="15" lean-forward="false" selection-start-line="9" selection-start-column="15" selection-end-line="9" selection-end-column="15" />
+          <folding>
+            <element signature="e#174#282#0#PHP" expanded="false" />
+            <element signature="e#308#459#0#PHP" expanded="false" />
+            <element signature="e#464#536#0#PHP" expanded="false" />
+            <element signature="e#542#618#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/illuminate/support/ServiceProvider.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="52" column="40" lean-forward="true" selection-start-line="47" selection-start-column="4" selection-end-line="52" selection-end-column="40" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tests/Core/HttpTest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="241">
+          <caret line="15" column="32" lean-forward="false" selection-start-line="15" selection-start-column="32" selection-end-line="15" selection-end-column="32" />
+          <folding>
+            <element signature="e#120#141#0#PHP" expanded="true" />
+            <element signature="e#245#380#0#PHP" expanded="false" />
+            <element signature="e#386#792#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Support/Log.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-421">
+          <caret line="44" column="29" lean-forward="false" selection-start-line="44" selection-start-column="29" selection-end-line="44" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Core/Http.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="15" column="10" lean-forward="true" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="10" />
+          <folding>
+            <element signature="e#116#152#0#PHP" expanded="true" />
+            <element signature="e#277#311#0#PHP" expanded="false" />
+            <element signature="e#340#369#0#PHP" expanded="false" />
+            <element signature="e#402#492#0#PHP" expanded="false" />
+            <element signature="e#422#485#1#PHP" expanded="false" />
+            <element signature="e#499#528#0#PHP" expanded="false" />
+            <element signature="e#571#722#0#PHP" expanded="false" />
+            <element signature="e#727#903#0#PHP" expanded="false" />
+            <element signature="e#909#995#0#PHP" expanded="false" />
+            <element signature="e#1000#1086#0#PHP" expanded="false" />
+            <element signature="e#1092#1176#0#PHP" expanded="false" />
+            <element signature="e#1181#1310#0#PHP" expanded="false" />
+            <element signature="e#1316#1391#0#PHP" expanded="false" />
+            <element signature="e#1396#1576#0#PHP" expanded="false" />
+            <element signature="e#1438#1539#0#PHP" expanded="false" />
+            <element signature="e#1582#1676#0#PHP" expanded="false" />
+            <element signature="e#1681#1794#0#PHP" expanded="false" />
+            <element signature="e#1800#1983#0#PHP" expanded="false" />
+            <element signature="e#1988#2598#0#PHP" expanded="false" />
+            <element signature="e#2316#2564#0#PHP" expanded="false" />
+            <element signature="e#2344#2563#0#PHP" expanded="false" />
+            <element signature="e#2604#2722#0#PHP" expanded="false" />
+            <element signature="e#2727#3224#0#PHP" expanded="false" />
+            <element signature="e#2774#2863#0#PHP" expanded="false" />
+            <element signature="e#2873#2928#0#PHP" expanded="false" />
+            <element signature="e#3052#3191#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Foundation/Application.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="202">
+          <caret line="112" column="7" lean-forward="false" selection-start-line="112" selection-start-column="7" selection-end-line="112" selection-end-column="7" />
+          <folding>
+            <element signature="e#122#143#0#PHP" expanded="true" />
+            <element signature="e#493#546#0#PHP" expanded="false" />
+            <element signature="e#581#669#0#PHP" expanded="false" />
+            <element signature="e#723#741#0#PHP" expanded="false" />
+            <element signature="e#775#793#0#PHP" expanded="false" />
+            <element signature="e#800#1162#0#PHP" expanded="false" />
+            <element signature="e#869#946#1#PHP" expanded="false" />
+            <element signature="e#1168#1198#0#PHP" expanded="false" />
+            <element signature="e#1203#1337#0#PHP" expanded="false" />
+            <element signature="e#1343#1436#0#PHP" expanded="false" />
+            <element signature="e#1441#1621#0#PHP" expanded="false" />
+            <element signature="e#1627#1666#0#PHP" expanded="false" />
+            <element signature="e#1671#1832#0#PHP" expanded="false" />
+            <element signature="e#1724#1826#0#PHP" expanded="false" />
+            <element signature="e#1838#1910#0#PHP" expanded="false" />
+            <element signature="e#1915#2242#0#PHP" expanded="false" />
+            <element signature="e#2055#2176#0#PHP" expanded="false" />
+            <element signature="e#2248#2440#0#PHP" expanded="false" />
+            <element signature="e#2445#2735#0#PHP" expanded="false" />
+            <element signature="e#2526#2604#0#PHP" expanded="false" />
+            <element signature="e#2614#2702#0#PHP" expanded="false" />
+            <element signature="e#2741#2816#0#PHP" expanded="false" />
+            <element signature="e#2821#3004#0#PHP" expanded="false" />
+            <element signature="e#2887#2998#0#PHP" expanded="false" />
+            <element signature="e#3010#3100#0#PHP" expanded="false" />
+            <element signature="e#3105#3174#0#PHP" expanded="false" />
+            <element signature="e#3180#3301#0#PHP" expanded="false" />
+            <element signature="e#3306#3430#0#PHP" expanded="false" />
+            <element signature="e#3436#3554#0#PHP" expanded="false" />
+            <element signature="e#3559#3600#0#PHP" expanded="false" />
+            <element signature="e#3606#3715#0#PHP" expanded="false" />
+            <element signature="e#3720#3770#0#PHP" expanded="false" />
+            <element signature="e#3776#3863#0#PHP" expanded="false" />
+            <element signature="e#3868#3925#0#PHP" expanded="false" />
+            <element signature="e#3931#4081#0#PHP" expanded="false" />
+            <element signature="e#4086#4166#0#PHP" expanded="false" />
+            <element signature="e#4172#4259#0#PHP" expanded="false" />
+            <element signature="e#4264#4298#0#PHP" expanded="false" />
+            <element signature="e#4304#4410#0#PHP" expanded="false" />
+            <element signature="e#4415#4461#0#PHP" expanded="false" />
+            <element signature="e#4467#4577#0#PHP" expanded="false" />
+            <element signature="e#4582#4627#0#PHP" expanded="false" />
+            <element signature="e#4633#4728#0#PHP" expanded="false" />
+            <element signature="e#4733#4783#0#PHP" expanded="false" />
+            <element signature="e#4789#4883#0#PHP" expanded="false" />
+            <element signature="e#4888#4939#0#PHP" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
