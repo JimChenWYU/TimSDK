@@ -6,10 +6,10 @@
  * Time: 12:01 AM
  */
 
-namespace TimSDK\Foundation\Application;
+namespace TimSDK\Foundation;
 
+use TimSDK\Support\Collection;
 
-class Config
+class Config extends Collection
 {
-
 }
