@@ -3,3 +3,5 @@
 
 /vendor/*
 
+.phpstorm.meta.php
+
