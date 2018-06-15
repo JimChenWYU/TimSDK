@@ -103,4 +103,15 @@ class ArrTest extends TestCase
         $this->assertFalse(Arr::has($array, 'products.foo'));
         $this->assertFalse(Arr::has($array, 'products.desk.foo'));
     }
+
+    public function testOnly()
+    {
+        $array = ['name' => 'Desk', 'price' => 100, 'orders' => 10];
+
+        $array = Arr::only($array, ['name', 'price']);
+        $this->assertEquals(['name' => 'Desk', 'price' => 100], $array);
+
+        $array = Arr::only($array, 'name,price');
+        $this->assertEquals(['name' => 'Desk', 'price' => 100], $array);
+    }
 }
