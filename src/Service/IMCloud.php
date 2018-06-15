@@ -9,7 +9,7 @@
 namespace TimSDK\Service;
 
 use Psr\Http\Message\ResponseInterface;
-use TimSDK\Core\AbstractTimSDKAPI;
+use TimSDK\Core\AbstractIMCloud;
 use TimSDK\Core\Exceptions\HttpException;
 use TimSDK\Core\Exceptions\MissingArgumentsException;
 use TimSDK\Support\Arr;
@@ -18,7 +18,7 @@ use TimSDK\Support\Json;
 use TimSDK\Support\Log;
 use TimSDK\Support\Str;
 
-class IMCloud extends AbstractTimSDKAPI
+class IMCloud extends AbstractIMCloud
 {
     /**
      * @var Collection

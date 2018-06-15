@@ -12,7 +12,7 @@ use GuzzleHttp\Client;
 use TimSDK\Container\ServiceContainer;
 use TimSDK\Foundation\Application;
 
-abstract class AbstractTimSDKAPI
+abstract class AbstractIMCloud
 {
     /**
      * @var Application
