@@ -40,6 +40,22 @@ class Arr
     }
 
     /**
+     * Get a subset of the items from the given array.
+     *
+     * @param  array  $array
+     * @param  array|string  $keys
+     * @return array
+     */
+    public static function only($array, $keys)
+    {
+        if (is_string($keys)) {
+            $keys = explode(',', str_replace(' ', '', $keys));
+        }
+
+        return array_intersect_key($array, array_flip((array) $keys));
+    }
+    
+    /**
      * Set an array item to a given value using "dot" notation.
      *
      * If no key is given to the method, the entire array will be replaced.
