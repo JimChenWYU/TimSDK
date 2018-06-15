@@ -11,6 +11,7 @@ namespace TimSDK\Foundation;
 use TimSDK\Service\API;
 use TimSDK\Support\Log;
 use TimSDK\Container\ServiceContainer;
+use TimSDK\Container\ApplicationInterface as ContractContainer;
 
 /**
  * Class Application
@@ -18,7 +19,7 @@ use TimSDK\Container\ServiceContainer;
  * @property \TimSDK\Foundation\Config $config
  * @property \GuzzleHttp\Client $httpClient
  */
-class Application extends ServiceContainer
+class Application extends ServiceContainer implements ContractContainer
 {
     /**
      * version.
