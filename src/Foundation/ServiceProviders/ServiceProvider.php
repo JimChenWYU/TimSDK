@@ -7,30 +7,8 @@
  */
 namespace TimSDK\Foundation\ServiceProviders;
 
-abstract class ServiceProvider
+use Pimple\ServiceProviderInterface;
+
+abstract class ServiceProvider implements ServiceProviderInterface
 {
-    /**
-     * The application instance.
-     *
-     * @var \Illuminate\Contracts\Foundation\Application
-     */
-    protected $app;
-
-    /**
-     * Create a new service provider instance.
-     *
-     * @param  \Illuminate\Contracts\Foundation\Application  $app
-     * @return void
-     */
-    public function __construct($app)
-    {
-        $this->app = $app;
-    }
-
-    /**
-     * Register the service provider.
-     *
-     * @return void
-     */
-    abstract public function register();
 }

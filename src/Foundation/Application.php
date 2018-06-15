@@ -8,18 +8,17 @@
 
 namespace TimSDK\Foundation;
 
-use TimSDK\Core\Http;
-use Illuminate\Container\Container;
-use TimSDK\Foundation\ServiceProviders\ServiceProvider;
-use Illuminate\Contracts\Foundation\Application as ApplicationContract;
+use TimSDK\Service\API;
 use TimSDK\Support\Log;
+use TimSDK\Container\ServiceContainer;
 
 /**
  * Class Application
  * @package TimSDK\Foundation
- * @property Config $config
+ * @property \TimSDK\Foundation\Config $config
+ * @property \GuzzleHttp\Client $httpClient
  */
-class Application extends Container implements ApplicationContract
+class Application extends ServiceContainer
 {
     /**
      * version.
@@ -29,118 +28,33 @@ class Application extends Container implements ApplicationContract
     const VERSION = '0.0.1';
 
     /**
-     * The base path for the Laravel installation.
-     *
-     * @var string
+     * @var array
      */
-    protected $basePath;
+    protected $defaultConfig = [];
 
+    /**
+     * @var array
+     */
+    protected $userConfig = [];
+
+    /**
+     * @var array
+     */
     protected $providers = [
         //
     ];
 
-    protected $bootstrappers = [
-        //
-    ];
-
-    public function __construct($config)
+    public function __construct(array $config = [], array $prepends = [])
     {
-        $this['config'] = function () use ($config) {
-            return new Config($config);
-        };
+        $this->userConfig = $config;
 
         $this->registerBaseBindings();
 
         $this->registerProviders();
 
-        $this->bootstrapWith($this->bootstrappers);
+        $this->logConfiguration();
 
-        $this->initializeGuzzle();
-
-        $this->logConfiguration($config);
-    }
-
-    /**
-     * Init Guzzle
-     */
-    protected function initializeGuzzle()
-    {
-        Http::setDefaultOptions($this['config']->get('guzzle', ['timeout' => 5.0]));
-    }
-
-    /**
-     * Register the basic bindings into the container.
-     *
-     * @return void
-     */
-    protected function registerBaseBindings()
-    {
-        static::setInstance($this);
-
-        $this->instance('app', $this);
-
-        $this->instance(Container::class, $this);
-    }
-
-    /**
-     * Register all service
-     */
-    protected function registerProviders()
-    {
-        foreach ($this->providers as $provider) {
-            $this->register(new $provider($this));
-        }
-    }
-
-    /**
-     * Log configuration.
-     *
-     * @param array $config
-     */
-    public function logConfiguration($config)
-    {
-        $config = new Config($config);
-
-        $keys = ['appid', 'account_type'];
-
-        foreach ($keys as $key) {
-            !$config->has($key) || $config[$key] = '***' . substr($config[$key], -5);
-        }
-
-        Log::debug('Current config:', $config->toArray());
-    }
-
-    /**
-     * Register a service provider with the application.
-     *
-     * @param       $provider
-     * @param array $options
-     * @param bool  $force
-     * @return ServiceProvider
-     */
-    public function register($provider, $options = [], $force = false)
-    {
-        if (is_string($provider)) {
-            $provider = new $provider();
-        }
-
-        if (method_exists($provider, 'register')) {
-            $provider->register();
-        }
-
-        return $provider;
-    }
-
-    /**
-     * Boot a service
-     *
-     * @param array $bootstrappers
-     */
-    public function bootstrapWith(array $bootstrappers)
-    {
-        foreach ($bootstrappers as $bootstrapper) {
-            $this->make($bootstrapper)->bootstrap($this);
-        }
+        parent::__construct($prepends);
     }
 
     /**
@@ -154,99 +68,79 @@ class Application extends Container implements ApplicationContract
     }
 
     /**
-     * Get the base path of the Laravel installation.
-     *
-     * @param string $path
-     * @return string
+     * @return array
      */
-    public function basePath($path = '')
+    public function getConfig()
     {
-        return $this->basePath.($path ? DIRECTORY_SEPARATOR.$path : $path);
+        $base = [
+            // http://docs.guzzlephp.org/en/stable/request-options.html
+            'http' => [
+                'timeout' => 5.0,
+                'base_uri' => API::BASE_URL,
+            ],
+        ];
+
+        return array_replace_recursive($base, $this->defaultConfig, $this->userConfig);
     }
 
     /**
-     * Get or check the current application environment.
-     *
-     * @param  mixed
-     * @return string
+     * Register all service
      */
-    public function environment()
+    protected function registerProviders()
     {
+        foreach ($this->getProviders() as $provider) {
+            $this->register(new $provider());
+        }
     }
 
     /**
-     * Determine if the application is currently down for maintenance.
+     * Get all providers
      *
-     * @return bool
+     * @return array
      */
-    public function isDownForMaintenance()
+    public function getProviders()
     {
+        return array_merge([
+            \TimSDK\Foundation\ServiceProviders\LogServiceProvider::class,
+            \TimSDK\Foundation\ServiceProviders\ConfigServiceProvider::class,
+            \TimSDK\Foundation\ServiceProviders\HttpClientServiceProvider::class,
+        ], $this->providers);
     }
 
     /**
-     * Register all of the configured providers.
+     * @param ServiceContainer $instance
+     * @return ServiceContainer
+     */
+    public static function setInstance(ServiceContainer $instance = null)
+    {
+        return self::$instance = $instance;
+    }
+
+    /**
+     * Register the basic bindings into the container.
      *
      * @return void
      */
-    public function registerConfiguredProviders()
+    public function registerBaseBindings()
     {
+        self::setInstance($this);
+
+        $this->instance(ServiceContainer::class, $this);
+
+        $this->instance('app', $this);
     }
 
     /**
-     * Register a deferred provider and service.
-     *
-     * @param  string $provider
-     * @param  string $service
-     * @return void
+     * Log Configuration
      */
-    public function registerDeferredProvider($provider, $service = null)
+    protected function logConfiguration()
     {
-    }
+        $config = new Config($this->getConfig());
 
-    /**
-     * Boot the application's service providers.
-     *
-     * @return void
-     */
-    public function boot()
-    {
-    }
+        foreach (['sdkappid', 'account_type'] as $item) {
+            $config->has($item) && $config->set($item, substr($config->get($item), 0, 5) . '...');
+        }
 
-    /**
-     * Register a new boot listener.
-     *
-     * @param  mixed $callback
-     * @return void
-     */
-    public function booting($callback)
-    {
-    }
-
-    /**
-     * Register a new "booted" listener.
-     *
-     * @param  mixed $callback
-     * @return void
-     */
-    public function booted($callback)
-    {
-    }
-
-    /**
-     * Get the path to the cached "compiled.php" file.
-     *
-     * @return string
-     */
-    public function getCachedCompilePath()
-    {
-    }
-
-    /**
-     * Get the path to the cached services.json file.
-     *
-     * @return string
-     */
-    public function getCachedServicesPath()
-    {
+        Log::debug('Current config:', $config->toArray());
     }
 }

@@ -9,39 +9,90 @@
 namespace TimSDK\Tests\Foundation;
 
 use Monolog\Logger;
-use Psr\Log\LoggerInterface;
-use TimSDK\Foundation\Application;
-use TimSDK\Foundation\Config;
+use Pimple\Container;
+use TimSDK\Container\ServiceContainer;
 use TimSDK\Support\Log;
 use TimSDK\Tests\TestCase;
+use Psr\Log\LoggerInterface;
+use TimSDK\Foundation\Application;
+use TimSDK\Foundation\ServiceProviders\ServiceProvider;
 
 class ApplicationTest extends TestCase
 {
-    public function testContainer()
+    public function testContainerBinding()
     {
         $app = new Application([
-            'foo' => 'bar'
+            'foo' => 'bar',
+        ], [
+            'bar' => function () {
+                return new \stdClass();
+            },
+            'name' => 'TimSDK',
+            'foo'  => 'Jim'
         ]);
 
-        $this->assertEquals('bar', $app->config->get('foo'));
+        $app['foo'] = function () {
+            return 'bar';
+        };
+
+        $this->assertEquals('bar', $app['foo']);
+        $this->assertEquals('TimSDK', $app['name']);
+        $this->assertInstanceOf(\stdClass::class, $app['bar']);
+        $this->assertSame($app['bar'], $app['bar']);
     }
 
-    public function testConfig()
+    public function testContainerServiceProvider()
     {
-        $config = new Config([
-            'foo' => 1,
-            'bar' => 2
+        $app = new SampleApplication();
+
+        $this->assertEquals('foo', $app['bar']);
+        $this->assertInstanceOf(\stdClass::class, $app['foo']);
+        $this->assertSame($app['foo'], $app['foo']);
+    }
+
+    public function testContainerConfig()
+    {
+        $app = new Application([
+            'foo' => 'bar',
         ]);
 
-        $this->assertEquals(1, $config->get('foo'), 'Config Collection has not foo');
-        $this->assertEquals(2, $config->get('bar'), 'Config Collection has not bar');
+        $this->assertEquals('bar', $app['config']->get('foo'));
     }
 
-    public function testLog()
+    public function testGetContainerSelf()
     {
-        $this->assertInstanceOf(LoggerInterface::class, Log::getLogger());
+        $app = new Application();
 
-        $logger = Log::setLogger(new Logger('PHPUnit'));
-        $this->assertSame(Log::getLogger(), $logger);
+        $this->assertInstanceOf(ServiceContainer::class, $app['app']);
+        $this->assertInstanceOf(ServiceContainer::class, $app[ServiceContainer::class]);
+    }
+
+    public function testGetLogService()
+    {
+        $app = new Application();
+
+        $this->assertInstanceOf(Logger::class, $app['log']);
+        $this->assertInstanceOf(Logger::class, $app['logger']);
+    }
+}
+
+class SampleApplication extends Application
+{
+    protected $providers = [
+        SampleServiceProvider::class
+    ];
+}
+
+class SampleServiceProvider extends ServiceProvider
+{
+    public function register(Container $pimple)
+    {
+        $pimple['bar'] = function () {
+            return 'foo';
+        };
+
+        $pimple['foo'] = function () {
+            return new \stdClass();
+        };
     }
 }
