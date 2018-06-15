@@ -21,6 +21,9 @@ class CollectionTest extends TestCase
         $collection = new Collection('foo');
         $this->assertSame(['foo'], $collection->all());
 
+        $collection = new Collection('{"foo": "bar"}');
+        $this->assertSame(['foo' => 'bar'], $collection->all());
+
         $collection = new Collection(2);
         $this->assertSame([2], $collection->all());
 

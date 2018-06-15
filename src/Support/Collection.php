@@ -14,6 +14,7 @@ use Countable;
 use IteratorAggregate;
 use JsonSerializable;
 use Serializable;
+use TimSDK\Core\Exceptions\JsonParseException;
 
 class Collection implements ArrayAccess, Countable, IteratorAggregate, JsonSerializable, Serializable
 {
@@ -26,7 +27,7 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate, JsonSeria
 
     public function __construct($items = [])
     {
-        $this->items = is_array($items) ? $items : $this->getArrayableItems($items);
+        $this->items = $this->getArrayableItems($items);
     }
 
     /**
@@ -188,7 +189,7 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate, JsonSeria
      * @param string $serialized <p>
      *                           The string representation of the object.
      *                           </p>
-     * @return void
+     * @return array
      * @since 5.1.0
      */
     public function unserialize($serialized)
@@ -343,6 +344,11 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate, JsonSeria
             return $items->all();
         } elseif ($items instanceof JsonSerializable) {
             return $items->jsonSerialize();
+        } elseif (is_string($items)) {
+            try {
+                return Json::decode($items, true);
+            } catch (JsonParseException $e) {
+            }
         }
 
         return (array) $items;
