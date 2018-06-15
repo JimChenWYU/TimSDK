@@ -24,7 +24,7 @@ class HttpClientServiceProvider extends ServiceProvider
      */
     public function register(Container $pimple)
     {
-        $pimple['httpClient'] = function ($app) {
+        $pimple['httpClient'] = $pimple[Client::class] = function ($app) {
             return new Client($app['config']->get('http', []));
         };
     }
