@@ -6,7 +6,7 @@
  * Time: 7:23 PM
  */
 
-namespace TimSDK\Service;
+namespace TimSDK\Core;
 
 interface API
 {

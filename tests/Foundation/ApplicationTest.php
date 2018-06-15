@@ -11,11 +11,9 @@ namespace TimSDK\Tests\Foundation;
 use Monolog\Logger;
 use Pimple\Container;
 use TimSDK\Container\ServiceContainer;
-use TimSDK\Support\Log;
-use TimSDK\Tests\TestCase;
-use Psr\Log\LoggerInterface;
 use TimSDK\Foundation\Application;
 use TimSDK\Foundation\ServiceProviders\ServiceProvider;
+use TimSDK\Tests\TestCase;
 
 class ApplicationTest extends TestCase
 {

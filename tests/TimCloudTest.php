@@ -8,7 +8,7 @@
 
 namespace TimSDK\Tests;
 
-use TimSDK\Service\API;
+use TimSDK\Core\API;
 use TimSDK\TimCloud;
 
 class TimCloudTest extends TestCase

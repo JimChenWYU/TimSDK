@@ -8,7 +8,7 @@
 
 namespace TimSDK\Foundation;
 
-use TimSDK\Service\API;
+use TimSDK\Core\API;
 use TimSDK\Support\Log;
 use TimSDK\Container\ServiceContainer;
 use TimSDK\Container\ApplicationInterface as ContractContainer;

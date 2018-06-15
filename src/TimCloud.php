@@ -9,7 +9,6 @@
 namespace TimSDK;
 
 use TimSDK\Foundation\Application;
-use TimSDK\Service\IMCloud;
 use TimSDK\Support\Arr;
 use TimSDK\Support\Collection;
 use TimSDK\Support\Str;
@@ -17,7 +16,7 @@ use TimSDK\Support\Str;
 /**
  * Class TimCloud
  * @package TimSDK
- * @property IMCloud $im
+ * @property \TimSDK\Core\IMCloud $im
  */
 class TimCloud extends Application
 {

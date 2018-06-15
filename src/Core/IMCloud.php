@@ -6,7 +6,7 @@
  * Time: 8:08 PM
  */
 
-namespace TimSDK\Service;
+namespace TimSDK\Core;
 
 use Psr\Http\Message\ResponseInterface;
 use TimSDK\Core\AbstractIMCloud;
@@ -160,7 +160,7 @@ class IMCloud extends AbstractIMCloud
     /**
      * TLSSigApi
      *
-     * @return TLSSigApi
+     * @return TLSSig
      */
     protected function getTLSSigApi()
     {

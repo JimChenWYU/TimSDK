@@ -6,7 +6,7 @@
  * Time: 10:31 AM
  */
 
-namespace TimSDK\Service;
+namespace TimSDK\Core;
 
 use TimSDK\Core\Exceptions\UserSigException;
 use TimSDK\Core\Exceptions\OpensslException;
@@ -15,7 +15,7 @@ use TimSDK\Core\Exceptions\OpensslException;
  * Class TLSSigApi
  * @package TimSDK\Service
  */
-class TLSSigApi
+class TLSSig
 {
     private $private_key = false;
     private $public_key = false;

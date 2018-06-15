@@ -9,8 +9,8 @@
 namespace TimSDK\Core\ServiceProviders;
 
 use Pimple\Container;
-use TimSDK\Service\IMCloud;
-use TimSDK\Service\TLSSigApi;
+use TimSDK\Core\IMCloud;
+use TimSDK\Core\TLSSig;
 use TimSDK\Foundation\ServiceProviders\ServiceProvider;
 
 class IMCloudServiceProvider extends ServiceProvider
@@ -29,8 +29,8 @@ class IMCloudServiceProvider extends ServiceProvider
             return new IMCloud($app);
         };
 
-        $pimple[TLSSigApi::class] = $pimple['TLSSig'] = function ($app) {
-            $api = new TLSSigApi();
+        $pimple[TLSSig::class] = $pimple['TLSSig'] = function ($app) {
+            $api = new TLSSig();
             $api->setAppid($app['config']->get('sdkappid'));
             $api->setPrivateKey($app['config']->get('prikey'));
             $api->setPublicKey($app['config']->get('pubkey'));
