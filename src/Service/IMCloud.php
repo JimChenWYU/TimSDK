@@ -8,9 +8,10 @@
 
 namespace TimSDK\Service;
 
+use Psr\Http\Message\ResponseInterface;
 use TimSDK\Core\AbstractTimSDKAPI;
+use TimSDK\Core\Exceptions\HttpException;
 use TimSDK\Core\Exceptions\MissingArgumentsException;
-use TimSDK\Foundation\Application;
 use TimSDK\Support\Arr;
 use TimSDK\Support\Collection;
 use TimSDK\Support\Json;
@@ -67,7 +68,7 @@ class IMCloud extends AbstractTimSDKAPI
     public function getQuery($force = false)
     {
         if ($this->needRefresh || $force) {
-            $this->query = $this->getQueryStringArrayData();
+            $this->query->setAll($this->getQueryStringArrayData());
             $this->needRefresh = false;
         }
 
@@ -75,7 +76,7 @@ class IMCloud extends AbstractTimSDKAPI
     }
 
     /**
-     * Api Call Method
+     * Request api
      *
      * @param       $uri
      * @param       $body
@@ -86,15 +87,24 @@ class IMCloud extends AbstractTimSDKAPI
      * @throws \TimSDK\Core\Exceptions\JsonParseException
      * @throws \TimSDK\Core\Exceptions\UserSigException
      */
-    public function apiCall($uri, $body, $options = [])
+    public function request($uri, $body, $options = [])
     {
-        return $this->parseJSON(self::POST, [
+        /**
+         * @var ResponseInterface $response
+         */
+        $response = call_user_func_array([$this->httpClient, self::POST], [
             $this->getFullApiUrl($uri),
             array_merge([
                 'body'  => $this->getRequestBody($body),
-                'query' => $this->getQuery(),
+                'query' => $this->getQuery()->all(),
             ], $options),
         ]);
+
+        $contents = $this->resolveResponse($response);
+
+        $this->checkAndThrow($contents);
+
+        return new Collection($contents);
     }
 
     /**
@@ -182,5 +192,38 @@ class IMCloud extends AbstractTimSDKAPI
     protected function getFullApiUrl($uri)
     {
         return Str::startsWith($uri, ['http', 'https']) ? $uri : API::BASE_URL . $uri;
+    }
+
+    /**
+     * Resolve Guzzle Response
+     *
+     * @param $response
+     * @return array
+     * @throws \TimSDK\Core\Exceptions\JsonParseException
+     */
+    protected function resolveResponse($response)
+    {
+        if ($response instanceof ResponseInterface) {
+            $response = $response->getBody();
+        }
+
+        return Json::decode($response, true);
+    }
+
+    /**
+     * Check the array data errors, and Throw exception when the contents contains error.
+     *
+     * @param array $contents
+     *
+     * @throws HttpException
+     */
+    protected function checkAndThrow(array $contents)
+    {
+        if (isset($contents['ErrorCode']) && 0 !== $contents['ErrorCode']) {
+            if (empty($contents['ErrorInfo'])) {
+                $contents['ErrorInfo'] = 'Unknown';
+            }
+            throw new HttpException($contents['ErrorInfo'], $contents['ErrorCode']);
+        }
     }
 }

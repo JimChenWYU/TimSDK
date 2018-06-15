@@ -64,6 +64,16 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate, JsonSeria
     }
 
     /**
+     * Replace the items
+     *
+     * @param $items
+     */
+    public function setAll($items)
+    {
+        $this->items = $this->getArrayableItems($items);
+    }
+
+    /**
      * Set the item value.
      *
      * @param string $key

@@ -8,6 +8,7 @@
 
 namespace TimSDK\Tests;
 
+use TimSDK\Service\API;
 use TimSDK\TimCloud;
 
 class TimCloudTest extends TestCase
@@ -44,6 +45,14 @@ class TimCloudTest extends TestCase
 
         $this->assertTrue(is_resource($prikeyResource));
         $this->assertTrue(is_resource($pubkeyResource));
+    }
+
+    public function testRequestApi()
+    {
+        $t = $this->timCloud();
+        $c = $t->request(API::DIRTY_WORDS_GET);
+
+        $this->assertSame('OK', $c->get('ActionStatus'));
     }
 
     public function timCloud()
