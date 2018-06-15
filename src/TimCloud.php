@@ -11,6 +11,7 @@ namespace TimSDK;
 use TimSDK\Foundation\Application;
 use TimSDK\Service\IMCloud;
 use TimSDK\Support\Arr;
+use TimSDK\Support\Collection;
 use TimSDK\Support\Str;
 
 /**
@@ -37,6 +38,8 @@ class TimCloud extends Application
         }
 
         parent::__construct($config, $prepends);
+
+        $this->setBasePath(__DIR__);
     }
 
     public function setSdkAppid($appid)
@@ -89,6 +92,19 @@ class TimCloud extends Application
         return "-----BEGIN $keyType KEY-----" . PHP_EOL .
             wordwrap(str_replace(["\r", "\n"], '', $key), 64, PHP_EOL, true) .
             PHP_EOL . "-----END $keyType KEY-----";
+    }
+
+    /**
+     * Send a request
+     *
+     * @param        $uri
+     * @param string $body
+     * @param array  $options
+     * @return Collection
+     */
+    public function request($uri, $body = '', $options = [])
+    {
+        return $this['im']->request($uri, $body, $options);
     }
 
     protected function setConfig($key, $value)

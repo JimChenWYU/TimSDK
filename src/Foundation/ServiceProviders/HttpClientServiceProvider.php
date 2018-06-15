@@ -25,7 +25,9 @@ class HttpClientServiceProvider extends ServiceProvider
     public function register(Container $pimple)
     {
         $pimple['httpClient'] = $pimple[Client::class] = function ($app) {
-            return new Client($app['config']->get('http', []));
+            return new Client(array_merge($app['config']->get('http', []), [
+                'verify' => realpath($app->basePath('Cert/cacert.pem'))
+            ]));
         };
     }
 }

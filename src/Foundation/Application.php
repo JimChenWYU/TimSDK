@@ -28,6 +28,8 @@ class Application extends ServiceContainer implements ContractContainer
      */
     const VERSION = '0.0.1';
 
+    protected $basePath;
+
     /**
      * @var array
      */
@@ -56,6 +58,25 @@ class Application extends ServiceContainer implements ContractContainer
         $this->logConfiguration();
 
         parent::__construct($prepends);
+    }
+
+    /**
+     * @param mixed $basePath
+     */
+    public function setBasePath($basePath)
+    {
+        $this->basePath = rtrim($basePath, '\/');
+    }
+
+    /**
+     * Get the base path
+     *
+     * @param  string  $path Optionally, a path to append to the base path
+     * @return string
+     */
+    public function basePath($path = '')
+    {
+        return $this->basePath.($path ? DIRECTORY_SEPARATOR.$path : $path);
     }
 
     /**
