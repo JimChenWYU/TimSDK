@@ -66,7 +66,7 @@ class IMCloud extends BaseIMCloud
      * @throws \TimSDK\Core\Exceptions\HttpException
      * @throws \TimSDK\Core\Exceptions\MissingArgumentsException
      */
-    public function callTimCloudRestApi($uri, $data = [], $options = [])
+    public function handle($uri, $data = [], $options = [])
     {
         if (empty($data)) {
             $data = '{}';

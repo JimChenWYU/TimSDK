@@ -103,7 +103,7 @@ class TimCloud extends Application
      */
     public function request($uri, $body = '', $options = [])
     {
-        return $this['im']->callTimCloudRestApi($uri, $body, $options);
+        return $this['im']->handle($uri, $body, $options);
     }
 
     protected function setConfig($key, $value)
