@@ -10,3 +10,5 @@ phpunit.xml
 .php_cs.cache
 
 .phplint-cache
+
+composer.lock
