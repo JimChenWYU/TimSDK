@@ -21,7 +21,7 @@ use TimSDK\Foundation\ResponseBag;
 class TimCloud extends Application
 {
     protected $providers = [
-        \TimSDK\Core\ServiceProviders\IMCloudServiceProvider::class
+        \TimSDK\Core\ServiceProviders\IMCloudServiceProvider::class,
     ];
 
     public function __construct(array $config = [], array $prepends = [])
@@ -108,7 +108,7 @@ class TimCloud extends Application
 
     protected function setConfig($key, $value)
     {
-        if (! empty($value)) {
+        if (!empty($value)) {
             $oldVal = $this['config']->get($key, null);
             if ($value !== $oldVal) {
                 $this['config']->set($key, $value);
