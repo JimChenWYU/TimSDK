@@ -32,5 +32,10 @@
         "psr-4": {
             "TimSDK\\Tests\\": "tests/"
         }
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "@php -r \"file_exists('phpunit.xml.dist') || copy('phpunit.xml.dist', 'phpunit.xml');\""
+        ]
     }
 }
