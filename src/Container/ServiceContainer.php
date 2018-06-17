@@ -8,6 +8,7 @@
 namespace TimSDK\Container;
 
 use Pimple\Container;
+use Pimple\Exception\UnknownIdentifierException;
 
 class ServiceContainer extends Container
 {
@@ -26,6 +27,7 @@ class ServiceContainer extends Container
      *
      * @param string $id
      * @return mixed|null
+     * @throws UnknownIdentifierException
      */
     public function __get($id)
     {
@@ -41,6 +43,15 @@ class ServiceContainer extends Container
     public function __set($id, $value)
     {
         $this->offsetSet($id, $value);
+    }
+
+    /**
+     * @param ServiceContainer $instance
+     * @return ServiceContainer
+     */
+    public static function setInstance(ServiceContainer $instance = null)
+    {
+        return self::$instance = $instance;
     }
 
     /**

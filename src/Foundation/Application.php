@@ -66,6 +66,9 @@ class Application extends ServiceContainer implements ContractContainer
     public function setBasePath($basePath)
     {
         $this->basePath = rtrim($basePath, '\/');
+
+        $this->instance('path.base', $this->basePath());
+        $this->instance('path.cert', $this->basePath('Cert'));
     }
 
     /**
@@ -127,15 +130,6 @@ class Application extends ServiceContainer implements ContractContainer
             \TimSDK\Foundation\ServiceProviders\ConfigServiceProvider::class,
             \TimSDK\Foundation\ServiceProviders\HttpClientServiceProvider::class,
         ], $this->providers);
-    }
-
-    /**
-     * @param ServiceContainer $instance
-     * @return ServiceContainer
-     */
-    public static function setInstance(ServiceContainer $instance = null)
-    {
-        return self::$instance = $instance;
     }
 
     /**

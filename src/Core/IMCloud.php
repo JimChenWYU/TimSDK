@@ -8,17 +8,14 @@
 
 namespace TimSDK\Core;
 
-use Psr\Http\Message\ResponseInterface;
-use TimSDK\Core\AbstractIMCloud;
-use TimSDK\Core\Exceptions\HttpException;
-use TimSDK\Core\Exceptions\MissingArgumentsException;
+use TimSDK\Support\Str;
+use TimSDK\Support\Log;
 use TimSDK\Support\Arr;
 use TimSDK\Support\Collection;
-use TimSDK\Support\Json;
-use TimSDK\Support\Log;
-use TimSDK\Support\Str;
+use TimSDK\Core\Exceptions\HttpException;
+use TimSDK\Core\Exceptions\MissingArgumentsException;
 
-class IMCloud extends AbstractIMCloud
+class IMCloud extends BaseIMCloud
 {
     /**
      * @var Collection
@@ -54,67 +51,101 @@ class IMCloud extends AbstractIMCloud
      */
     public function initialize()
     {
-        $this->query = new Collection($this->getQueryStringArrayData());
-    }
-
-    /**
-     * Query Getter
-     *
-     * @param bool $force
-     * @return Collection
-     * @throws MissingArgumentsException
-     * @throws \TimSDK\Core\Exceptions\UserSigException
-     */
-    public function getQuery($force = false)
-    {
-        if ($this->needRefresh || $force) {
-            $this->query->setAll($this->getQueryStringArrayData());
-            $this->needRefresh = false;
-        }
-
-        return $this->query;
+        $this->getRefreshedQueryStringCollection(true);
     }
 
     /**
      * Request api
      *
      * @param       $uri
-     * @param       $body
+     * @param array $data
      * @param array $options
-     * @return \TimSDK\Support\Collection
-     * @throws MissingArgumentsException
-     * @throws \TimSDK\Core\Exceptions\HttpException
+     * @return \TimSDK\Foundation\ResponseBag
      * @throws \TimSDK\Core\Exceptions\JsonParseException
      * @throws \TimSDK\Core\Exceptions\UserSigException
+     * @throws \TimSDK\Core\Exceptions\HttpException
+     * @throws \TimSDK\Core\Exceptions\MissingArgumentsException
      */
-    public function request($uri, $body, $options = [])
+    public function callTimCloudRestApi($uri, $data = [], $options = [])
     {
-        /**
-         * @var ResponseInterface $response
-         */
-        $response = call_user_func_array([$this->httpClient, self::POST], [
-            $this->getFullApiUrl($uri),
-            array_merge([
-                'body'  => $this->getRequestBody($body),
-                'query' => $this->getQuery()->all(),
-            ], $options),
-        ]);
+        if (empty($data)) {
+            $data = '{}';
+        }
 
-        $contents = $this->resolveResponse($response);
+        $response = $this->httpPostJson($uri, $data, array_merge($options, [
+            'query' => $this->getRefreshedQueryStringArray()
+        ]));
 
-        $this->checkAndThrow($contents);
+        $this->checkAndThrow($response->getContents());
 
-        return new Collection($contents);
+        return $response;
     }
 
     /**
-     * Get the rrl query string array
+     * Generate sig
      *
-     * @return array
-     * @throws MissingArgumentsException
+     * @param $identifier
+     * @return string
      * @throws \TimSDK\Core\Exceptions\UserSigException
      */
-    protected function getQueryStringArrayData()
+    public function generateSig($identifier)
+    {
+        return $this->app['TLSSig']->genSig($identifier);
+    }
+
+    /**
+     * Refresh query string
+     *
+     * @param bool $force
+     * @return Collection
+     * @throws Exceptions\UserSigException
+     * @throws MissingArgumentsException
+     */
+    public function getRefreshedQueryStringCollection($force = false)
+    {
+        if ($this->needRefresh || $force) {
+            $this->needRefresh = false;
+            $this->query = $this->getQueryStringCollection();
+            $this->query->setAll($this->getLatestQueryStringArray());
+        }
+
+        return $this->query;
+    }
+
+    /**
+     * Get the refreshed query string
+     *
+     * @return array
+     * @throws Exceptions\UserSigException
+     * @throws MissingArgumentsException
+     */
+    public function getRefreshedQueryStringArray()
+    {
+        return $this->getRefreshedQueryStringCollection()->toArray();
+    }
+
+    /**
+     * Query Getter
+     *
+     * @return Collection
+     */
+    public function getQueryStringCollection()
+    {
+        if (!$this->query instanceof Collection) {
+            $this->query = new Collection();
+        }
+
+        return $this->query;
+    }
+
+    /**
+     * Get the latest query string array
+     *
+     * @return array
+     * @throws Exceptions\UserSigException
+     * @throws MissingArgumentsException
+     */
+    public function getLatestQueryStringArray()
     {
         $data = Arr::only($this->app['config']->all(), [
             'sdkappid',
@@ -130,7 +161,7 @@ class IMCloud extends AbstractIMCloud
         }
 
         if (!isset($data['contenttype'])) {
-            $data['contenttype'] = self::JSON;
+            $data['contenttype'] = 'json';
         }
 
         foreach (['sdkappid', 'identifier', 'prikey', 'pubkey'] as $item) {
@@ -146,44 +177,6 @@ class IMCloud extends AbstractIMCloud
     }
 
     /**
-     * Generate sig
-     *
-     * @param $identifier
-     * @return string
-     * @throws \TimSDK\Core\Exceptions\UserSigException
-     */
-    public function generateSig($identifier)
-    {
-        return $this->getTLSSigApi()->genSig($identifier);
-    }
-
-    /**
-     * TLSSigApi
-     *
-     * @return TLSSig
-     */
-    protected function getTLSSigApi()
-    {
-        return $this->app['TLSSig'];
-    }
-
-    /**
-     * Reset request body
-     *
-     * @param $body
-     * @return string
-     * @throws \TimSDK\Core\Exceptions\JsonParseException
-     */
-    protected function getRequestBody($body = '')
-    {
-        if (empty($body)) {
-            $body = '{}';
-        }
-
-        return is_string($body) ? $body : Json::encode($body);
-    }
-
-    /**
      * Get a full url
      *
      * @param $uri
@@ -195,30 +188,18 @@ class IMCloud extends AbstractIMCloud
     }
 
     /**
-     * Resolve Guzzle Response
-     *
-     * @param $response
-     * @return array
-     * @throws \TimSDK\Core\Exceptions\JsonParseException
-     */
-    protected function resolveResponse($response)
-    {
-        if ($response instanceof ResponseInterface) {
-            $response = $response->getBody();
-        }
-
-        return Json::decode($response, true);
-    }
-
-    /**
      * Check the array data errors, and Throw exception when the contents contains error.
      *
-     * @param array $contents
+     * @param array|Collection $contents
      *
      * @throws HttpException
      */
-    protected function checkAndThrow(array $contents)
+    protected function checkAndThrow($contents)
     {
+        if ($contents instanceof Collection) {
+            $contents = $contents->toArray();
+        }
+
         if (isset($contents['ErrorCode']) && 0 !== $contents['ErrorCode']) {
             if (empty($contents['ErrorInfo'])) {
                 $contents['ErrorInfo'] = 'Unknown';
