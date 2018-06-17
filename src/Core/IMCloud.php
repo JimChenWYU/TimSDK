@@ -80,7 +80,9 @@ class IMCloud extends BaseIMCloud
         }
 
         $response = $this->httpPostJson($uri, $data, array_merge($options, [
-            'query' => $this->getRefreshedQueryStringArray()
+            'query' => $this->getRefreshedQueryStringArray([
+                'sdkappid', 'usersig', 'identifier', 'random', 'contenttype'
+            ])
         ]));
 
         $this->checkAndThrow($response->getContents());
@@ -122,13 +124,19 @@ class IMCloud extends BaseIMCloud
     /**
      * Get the refreshed query string
      *
+     * @param array $fields
      * @return array
      * @throws Exceptions\UserSigException
      * @throws MissingArgumentsException
      */
-    public function getRefreshedQueryStringArray()
+    public function getRefreshedQueryStringArray($fields = [])
     {
-        return $this->getRefreshedQueryStringCollection()->toArray();
+        $queryStringArray = $this->getRefreshedQueryStringCollection()->toArray();
+        if (empty($fields)) {
+            return $queryStringArray;
+        }
+
+        return Arr::only($queryStringArray, $fields);
     }
 
     /**
@@ -179,6 +187,7 @@ class IMCloud extends BaseIMCloud
         }
 
         $data['usersig'] = $this->generateSig($data['identifier']);
+        $data['sdkappid'] = $data['app_id'];
 
         return $data;
     }
