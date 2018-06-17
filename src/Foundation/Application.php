@@ -21,6 +21,19 @@ use TimSDK\Container\ApplicationInterface as ContractContainer;
  */
 class Application extends ServiceContainer implements ContractContainer
 {
+    /**
+     * Application version
+     *
+     * @var string
+     */
+    const VERSION = '1.0.0';
+
+
+    /**
+     * Base path
+     *
+     * @var string
+     */
     protected $basePath;
 
     /**

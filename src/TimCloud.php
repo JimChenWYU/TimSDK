@@ -20,6 +20,13 @@ use TimSDK\Foundation\ResponseBag;
  */
 class TimCloud extends Application
 {
+    /**
+     * TimCloud version
+     *
+     * @var string
+     */
+    const VERSION = '0.1.2';
+
     protected $providers = [
         \TimSDK\Core\ServiceProviders\IMCloudServiceProvider::class,
     ];
