@@ -31,9 +31,9 @@ class IMCloudServiceProvider extends ServiceProvider
 
         $pimple[TLSSig::class] = $pimple['TLSSig'] = function ($app) {
             $api = new TLSSig();
-            $api->setAppid($app['config']->get('sdkappid'));
-            $api->setPrivateKey($app['config']->get('prikey'));
-            $api->setPublicKey($app['config']->get('pubkey'));
+            $api->setAppid($app['config']->get('app_id'));
+            $api->setPrivateKey($app['config']->get('private_key'));
+            $api->setPublicKey($app['config']->get('public_key'));
 
             return $api;
         };

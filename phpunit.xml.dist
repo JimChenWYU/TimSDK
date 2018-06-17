@@ -16,7 +16,7 @@
     </testsuites>
     <php>
         <const name="PHPUNIT_RUNNING" value="true" />
-        <const name="SDK_APPID" value="" />
+        <const name="APP_ID" value="" />
         <const name="IDENTIFIER" value="" />
         <const name="PRIVATE_KEY" value="" />
         <const name="PUBLIC_KEY" value="" />

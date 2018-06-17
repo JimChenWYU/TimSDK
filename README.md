@@ -12,10 +12,10 @@ use TimSDK;
 use TimSDK\Core\API;
 
 $options = [
-    'sdkappid'    => '14000xxxx',
+    'app_id'    => '14000xxxx',
     'identifier'  => 'admin',
-    'prikey'      => 'Your private key',
-    'pubkey'      => 'Your public key',
+    'private_key'      => 'Your private key',
+    'public_key'      => 'Your public key',
     'http' => [
         'timeout'  => 5,
         'base_uri' => 'Your base url'
