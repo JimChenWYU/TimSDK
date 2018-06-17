@@ -20,6 +20,13 @@ class TimCloudTest extends TestCase
         $this->assertTrue(phpunit_env('phpunit_running'));
     }
 
+    public function testGetVersion()
+    {
+        $timCloud = $this->timCloud();
+
+        $this->assertSame(TimCloud::VERSION, $timCloud->version());
+    }
+    
     public function testCertPemExist()
     {
         $t = $this->timCloud();
