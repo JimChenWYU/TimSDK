@@ -18,6 +18,13 @@ class TimCloudTest extends TestCase
         $this->assertTrue(phpunit_env('phpunit_running'));
     }
 
+    public function testCertPemExist()
+    {
+        $t = $this->timCloud();
+
+        $this->assertTrue(file_exists($t['path.cert'] . '/cacert.pem'));
+    }
+
     public function testRefreshConfiguration()
     {
         $timCloud = $this->timCloud();
