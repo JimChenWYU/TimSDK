@@ -28,7 +28,7 @@ class TimCloudTest extends TestCase
 
         $this->assertTrue($timCloud->im->isNeedRefresh());
 
-        $query = $timCloud->im->getQuery();
+        $query = $timCloud->im->getRefreshedQueryStringArray();
 
         $this->assertSame('admin', $query['identifier']);
     }
@@ -51,8 +51,7 @@ class TimCloudTest extends TestCase
     {
         $t = $this->timCloud();
         $c = $t->request(API::DIRTY_WORDS_GET);
-
-        $this->assertSame('OK', $c->get('ActionStatus'));
+        $this->assertSame('OK', $c->getContent('ActionStatus'));
     }
 
     public function timCloud()

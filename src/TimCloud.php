@@ -8,10 +8,10 @@
 
 namespace TimSDK;
 
-use TimSDK\Foundation\Application;
 use TimSDK\Support\Arr;
-use TimSDK\Support\Collection;
 use TimSDK\Support\Str;
+use TimSDK\Foundation\Application;
+use TimSDK\Foundation\ResponseBag;
 
 /**
  * Class TimCloud
@@ -27,18 +27,13 @@ class TimCloud extends Application
     public function __construct(array $config = [], array $prepends = [])
     {
         if (Arr::has($config, ['prikey', 'pubkey'])) {
-            if (!Str::startsWith($config['prikey'], '-----BEGIN')) {
-                $config['prikey'] = $this->formatKey($config['prikey'], 'private');
-            }
-
-            if (!Str::startsWith($config['pubkey'], '-----BEGIN')) {
-                $config['pubkey'] = $this->formatKey($config['pubkey'], 'public');
-            }
+            $config['prikey'] = $this->formatKey($config['prikey'], 'private');
+            $config['pubkey'] = $this->formatKey($config['pubkey'], 'public');
         }
 
-        parent::__construct($config, $prepends);
-
         $this->setBasePath(__DIR__);
+
+        parent::__construct($config, $prepends);
     }
 
     public function setSdkAppid($appid)
@@ -88,6 +83,11 @@ class TimCloud extends Application
     public function formatKey($key, $keyType)
     {
         $keyType = strtoupper($keyType);
+
+        if (Str::startsWith($key, "-----BEGIN $keyType KEY-----")) {
+            return $key;
+        }
+
         return "-----BEGIN $keyType KEY-----" . PHP_EOL .
             wordwrap(str_replace(["\r", "\n"], '', $key), 64, PHP_EOL, true) .
             PHP_EOL . "-----END $keyType KEY-----";
@@ -96,14 +96,14 @@ class TimCloud extends Application
     /**
      * Send a request
      *
-     * @param        $uri
+     * @param string $uri
      * @param string $body
      * @param array  $options
-     * @return Collection
+     * @return ResponseBag
      */
     public function request($uri, $body = '', $options = [])
     {
-        return $this['im']->request($uri, $body, $options);
+        return $this['im']->callTimCloudRestApi($uri, $body, $options);
     }
 
     protected function setConfig($key, $value)
