@@ -8,7 +8,9 @@
 
 namespace TimSDK\Tests;
 
+use Mockery;
 use TimSDK\Core\API;
+use TimSDK\Foundation\ResponseBag;
 use TimSDK\TimCloud;
 
 class TimCloudTest extends TestCase
@@ -44,19 +46,45 @@ class TimCloudTest extends TestCase
     {
         $timCloud = $this->timCloud();
 
-        $prikey = $timCloud->formatKey(phpunit_env('private_key'), 'private');
-        $pubkey = $timCloud->formatKey(phpunit_env('public_key'), 'public');
+        $priKeyContent = 'MIGqAgEAAiEAsHYdyE9VvL9gwVBXVQrUFSWiWRTD+A+bgyMizSN8uqcCAwEAAQIg
+B1LfqZChXlQTD/LlrQHmC2j+E5Fm1+55V/AcT39xGgECEQDauiGoffbvSGVcMPej
+Qy+5AhEAzogp60smRdoK0RYDE76tXwIRAMl/xbgqa02fHTmkJs6x+4kCEEouJ/hG
+FqoSJb5xjItj+jsCEBxm38VmLmQgIHwKP3ids9U=';
+        $pubKeyContent = 'MDwwDQYJKoZIhvcNAQEBBQADKwAwKAIhALB2HchPVby/YMFQV1UK1BUlolkUw/gP
+m4MjIs0jfLqnAgMBAAE=';
 
-        $prikeyResource = openssl_pkey_get_private($prikey);
-        $pubkeyResource = openssl_pkey_get_public($pubkey);
+        $openSSLPrivateKey = "-----BEGIN PRIVATE KEY-----
+$priKeyContent
+-----END PRIVATE KEY-----";
+        $openSSLPublicKey = "-----BEGIN PUBLIC KEY-----
+$pubKeyContent
+-----END PUBLIC KEY-----";
 
-        $this->assertTrue(is_resource($prikeyResource));
-        $this->assertTrue(is_resource($pubkeyResource));
+        $prikey1 = $timCloud->formatKey($priKeyContent, 'private');
+        $pubkey1 = $timCloud->formatKey($pubKeyContent, 'public');
+
+        $prikey2 = $timCloud->formatKey($openSSLPrivateKey, 'private');
+        $pubkey2 = $timCloud->formatKey($openSSLPublicKey, 'public');
+
+        $this->assertSame($openSSLPrivateKey, $prikey1);
+        $this->assertSame($openSSLPublicKey, $pubkey1);
+        $this->assertSame($openSSLPrivateKey, $prikey2);
+        $this->assertSame($openSSLPublicKey, $pubkey2);
     }
 
     public function testRequestApi()
     {
         $t = $this->timCloud();
+        $t->offsetSet('im', function ()  {
+            $m = Mockery::mock('im');
+            $m->shouldReceive('handle')->withAnyArgs()->andReturn(new ResponseBag([
+                'ActionStatus' => 'OK'
+            ], [
+                'content-type' => 'application/json'
+            ]));
+            return $m;
+        });
+
         $c = $t->request(API::DIRTY_WORDS_GET);
         $this->assertSame('OK', $c->getContent('ActionStatus'));
     }
@@ -64,10 +92,21 @@ class TimCloudTest extends TestCase
     public function timCloud()
     {
         return new TimCloud([
-            'sdkappid'   => phpunit_env('sdk_appid'),
-            'identifier' => phpunit_env('identifier'),
-            'prikey'     => phpunit_env('private_key'),
-            'pubkey'     => phpunit_env('public_key'),
+            'sdkappid'   => phpunit_env('sdk_appid', '1400xxxxxx'),
+            'identifier' => phpunit_env('identifier', 'common_user'),
+            'prikey'     => phpunit_env('private_key', 'openssl_private_key'),
+            'pubkey'     => phpunit_env('public_key', 'openssl_public_key'),
+        ], [
+            'TLSSig' => function () {
+                $m = Mockery::mock('TLSSig');
+                $m->shouldReceive('genSig')->withAnyArgs()->andReturn('test usersig');
+                return $m;
+            },
         ]);
+    }
+
+    public function tearDown()
+    {
+        Mockery::close();
     }
 }
