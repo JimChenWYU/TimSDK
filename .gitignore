@@ -6,3 +6,7 @@
 .phpstorm.meta.php
 
 phpunit.xml
+
+.php_cs.cache
+
+.phplint-cache
