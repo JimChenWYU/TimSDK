@@ -4,6 +4,12 @@
 2. **[Composer](https://getcomposer.org/)**
 3. openssl 拓展
 
+## Installation
+
+```bash
+$ composer require jimchen/tim-sdk -vvv
+```
+
 ## Usage
 基本使用:
 
