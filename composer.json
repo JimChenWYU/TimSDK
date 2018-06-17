@@ -1,5 +1,5 @@
 {
-    "name": "jim/tim-sdk",
+    "name": "jimchen/tim-sdk",
     "description": "IM Sdk for Tencent Instant Messaging",
     "type": "library",
     "license": "MIT",
