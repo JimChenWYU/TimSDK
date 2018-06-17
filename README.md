@@ -28,7 +28,7 @@ $response = $app->request(API::DIRTY_WORDS_GET);
 var_dump($response);
 ```
 
-更多请参考API常量请看 [API常量](https://github.com/JimChenWYU/TimSDK/blob/master/src/Core/API.php)
+更多API常量请看 [API常量](https://github.com/JimChenWYU/TimSDK/blob/master/src/Core/API.php)
 
 ## Documentation
 
