@@ -12,7 +12,6 @@
     "require": {
         "php": ">=5.5.9",
         "guzzlehttp/guzzle": "^6.3",
-        "illuminate/container": "^5.1",
         "monolog/monolog": "^1.0",
         "pimple/pimple": "^3.0"
     },
