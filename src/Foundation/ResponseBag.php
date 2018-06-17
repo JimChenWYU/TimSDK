@@ -43,6 +43,14 @@ class ResponseBag
     }
 
     /**
+     * @return int
+     */
+    public function getStatusCode()
+    {
+        return $this->statusCode;
+    }
+
+    /**
      * @return Collection
      */
     public function getHeaders()
