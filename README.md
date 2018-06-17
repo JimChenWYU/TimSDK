@@ -12,14 +12,14 @@ use TimSDK;
 use TimSDK\Core\API;
 
 $options = [
-    'app_id'    => '14000xxxx',
-    'identifier'  => 'admin',
-    'private_key'      => 'Your private key',
-    'public_key'      => 'Your public key',
-    'http' => [
-        'timeout'  => 5,
-        'base_uri' => 'Your base url'
-    ],
+	'app_id'      => '14000xxxx',
+	'identifier'  => 'admin',
+	'private_key' => 'Your private key',
+	'public_key'  => 'Your public key',
+	'http'        => [
+		'timeout'  => 5,
+		'base_uri' => 'Your base url',
+	],
 ];
 
 $app = new TimCloud($options);
