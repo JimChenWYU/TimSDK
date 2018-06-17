@@ -30,16 +30,46 @@ class TimCloudTest extends TestCase
     public function testRefreshConfiguration()
     {
         $timCloud = $this->timCloud();
-
         $this->assertFalse($timCloud->im->isNeedRefresh());
 
         $timCloud->setIdentifier('admin');
-
         $this->assertTrue($timCloud->im->isNeedRefresh());
 
         $query = $timCloud->im->getRefreshedQueryStringArray();
-
         $this->assertSame('admin', $query['identifier']);
+
+        $timCloud->setAppId('1404xxxxx');
+        $timCloud->setPublicKey('public_key_xxxxxx');
+        $timCloud->setPrivateKey('private_key_xxxxxx');
+        $query = $timCloud->im->getRefreshedQueryStringArray();
+
+        $this->assertSame('1404xxxxx', $query['app_id']);
+        $this->assertSame('-----BEGIN PRIVATE KEY-----
+private_key_xxxxxx
+-----END PRIVATE KEY-----', $query['private_key']);
+        $this->assertSame('-----BEGIN PUBLIC KEY-----
+public_key_xxxxxx
+-----END PUBLIC KEY-----', $query['public_key']);
+    }
+
+    public function testSetter()
+    {
+        $timCloud = $this->timCloud();
+
+        $timCloud->setAppId('1404xxxxx');
+        $timCloud->setIdentifier('TimSDK');
+        $timCloud->setPublicKey('public_key_xxxxxx');
+        $timCloud->setPrivateKey('private_key_xxxxxx');
+        $query = $timCloud->im->getRefreshedQueryStringArray();
+
+        $this->assertSame('1404xxxxx', $query['app_id']);
+        $this->assertSame('TimSDK', $query['identifier']);
+        $this->assertSame('-----BEGIN PRIVATE KEY-----
+private_key_xxxxxx
+-----END PRIVATE KEY-----', $query['private_key']);
+        $this->assertSame('-----BEGIN PUBLIC KEY-----
+public_key_xxxxxx
+-----END PUBLIC KEY-----', $query['public_key']);
     }
 
     public function testFormatKey()
@@ -92,10 +122,10 @@ $pubKeyContent
     public function timCloud()
     {
         return new TimCloud([
-            'sdkappid'   => phpunit_env('sdk_appid', '1400xxxxxx'),
+            'app_id'   => phpunit_env('app_id', '1400xxxxxx'),
             'identifier' => phpunit_env('identifier', 'common_user'),
-            'prikey'     => phpunit_env('private_key', 'openssl_private_key'),
-            'pubkey'     => phpunit_env('public_key', 'openssl_public_key'),
+            'private_key'     => phpunit_env('private_key', 'openssl_private_key'),
+            'public_key'     => phpunit_env('public_key', 'openssl_public_key'),
         ], [
             'TLSSig' => function () {
                 $m = Mockery::mock('TLSSig');

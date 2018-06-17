@@ -26,9 +26,9 @@ class TimCloud extends Application
 
     public function __construct(array $config = [], array $prepends = [])
     {
-        if (Arr::has($config, ['prikey', 'pubkey'])) {
-            $config['prikey'] = $this->formatKey($config['prikey'], 'private');
-            $config['pubkey'] = $this->formatKey($config['pubkey'], 'public');
+        if (Arr::has($config, ['private_key', 'public_key'])) {
+            $config['private_key'] = $this->formatKey($config['private_key'], 'private');
+            $config['public_key'] = $this->formatKey($config['public_key'], 'public');
         }
 
         $this->setBasePath(__DIR__);
@@ -36,9 +36,9 @@ class TimCloud extends Application
         parent::__construct($config, $prepends);
     }
 
-    public function setSdkAppid($appid)
+    public function setAppId($appid)
     {
-        $this->setConfig('sdkappid', $appid);
+        $this->setConfig('app_id', $appid);
 
         return $this;
     }
@@ -61,7 +61,7 @@ class TimCloud extends Application
         }
 
         if (!empty($prikey)) {
-            $this->setConfig('prikey', $prikey);
+            $this->setConfig('private_key', $prikey);
         }
 
         return $this;
@@ -75,7 +75,7 @@ class TimCloud extends Application
             $pubkey = $this->formatKey($pubkey, 'public');
         }
 
-        $this->setConfig('pubkey', $pubkey);
+        $this->setConfig('public_key', $pubkey);
 
         return $this;
     }

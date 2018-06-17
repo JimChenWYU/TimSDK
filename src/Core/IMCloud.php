@@ -148,10 +148,10 @@ class IMCloud extends BaseIMCloud
     public function getLatestQueryStringArray()
     {
         $data = Arr::only($this->app['config']->all(), [
-            'sdkappid',
+            'app_id',
             'identifier',
-            'prikey',
-            'pubkey',
+            'private_key',
+            'public_key',
             'random',
             'contenttype',
         ]);
@@ -164,7 +164,7 @@ class IMCloud extends BaseIMCloud
             $data['contenttype'] = 'json';
         }
 
-        foreach (['sdkappid', 'identifier', 'prikey', 'pubkey'] as $item) {
+        foreach (['app_id', 'identifier', 'public_key', 'private_key'] as $item) {
             if (!isset($data[$item])) {
                 Log::debug('IMCloud Query: ', $data);
                 throw new MissingArgumentsException('Missing ' . $item);

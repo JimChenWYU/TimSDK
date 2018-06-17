@@ -153,7 +153,7 @@ class Application extends ServiceContainer implements ContractContainer
     {
         $config = new Config($this->getConfig());
 
-        foreach (['sdkappid', 'account_type'] as $item) {
+        foreach (['app_id', 'account_type'] as $item) {
             $config->has($item) && $config->set($item, substr($config->get($item), 0, 5) . '...');
         }
 
