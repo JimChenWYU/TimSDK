@@ -23,7 +23,7 @@ class ConfigServiceProvider extends ServiceProvider
      */
     public function register(Container $pimple)
     {
-        $pimple['config'] = $pimple[Config::class] = $pimple['config'] = function ($app) {
+        $pimple['config'] = $pimple[Config::class] = function ($app) {
             return new Config($app->getConfig());
         };
     }
