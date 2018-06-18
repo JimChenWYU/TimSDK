@@ -145,6 +145,14 @@ class CollectionTest extends TestCase
         $c->unserialize($serialize);
         $this->assertSame(['foo' => 'bar'], $c->all());
     }
+
+    public function testMerge()
+    {
+        $c = new Collection(['foo' => 'bar']);
+        $c->merge(['key' => 'value']);
+
+        $this->assertSame(['foo' => 'bar', 'key' => 'value'], $c->all());
+    }
 }
 
 class TestArrayAccessImplementation implements ArrayAccess
