@@ -8,7 +8,6 @@
 
 namespace TimSDK\Tests\Foundation;
 
-use Monolog\Logger;
 use Pimple\Container;
 use TimSDK\Container\ServiceContainer;
 use TimSDK\Foundation\Application;
@@ -63,14 +62,6 @@ class ApplicationTest extends TestCase
 
         $this->assertInstanceOf(ServiceContainer::class, $app['app']);
         $this->assertInstanceOf(ServiceContainer::class, $app[ServiceContainer::class]);
-    }
-
-    public function testGetLogService()
-    {
-        $app = new Application();
-
-        $this->assertInstanceOf(Logger::class, $app['log']);
-        $this->assertInstanceOf(Logger::class, $app['logger']);
     }
 }
 
