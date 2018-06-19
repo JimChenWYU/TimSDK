@@ -123,6 +123,24 @@ class Collection implements ArrayAccess, Countable, IteratorAggregate, JsonSeria
     }
 
     /**
+     * Merge data.
+     *
+     * @param Collection|array $items
+     *
+     * @return \TimSDK\Support\Collection
+     */
+    public function merge($items)
+    {
+        $items = $this->getArrayableItems($items);
+
+        foreach ($items as $key => $value) {
+            $this->set($key, $value);
+        }
+
+        return new static($this->all());
+    }
+
+    /**
      * Build to array.
      *
      * @return array

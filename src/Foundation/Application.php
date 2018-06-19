@@ -61,8 +61,6 @@ class Application extends ServiceContainer implements ContractContainer
 
         $this->registerProviders();
 
-        $this->logConfiguration();
-
         parent::__construct($prepends);
     }
 
@@ -132,8 +130,8 @@ class Application extends ServiceContainer implements ContractContainer
     public function getProviders()
     {
         return array_merge([
-            \TimSDK\Foundation\ServiceProviders\LogServiceProvider::class,
             \TimSDK\Foundation\ServiceProviders\ConfigServiceProvider::class,
+            \TimSDK\Foundation\ServiceProviders\LogServiceProvider::class,
             \TimSDK\Foundation\ServiceProviders\HttpClientServiceProvider::class,
         ], $this->providers);
     }
@@ -150,19 +148,5 @@ class Application extends ServiceContainer implements ContractContainer
         $this->instance(ServiceContainer::class, $this);
 
         $this->instance('app', $this);
-    }
-
-    /**
-     * Log Configuration
-     */
-    protected function logConfiguration()
-    {
-        $config = new Config($this->getConfig());
-
-        foreach (['app_id', 'account_type'] as $item) {
-            $config->has($item) && $config->set($item, substr($config->get($item), 0, 5) . '...');
-        }
-
-        Log::debug('Current config:', $config->toArray());
     }
 }
