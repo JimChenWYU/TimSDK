@@ -35,51 +35,6 @@ class TimCloudTest extends TestCase
         $this->assertTrue(file_exists($t['path.cert'] . '/cacert.pem'));
     }
 
-    public function testRefreshConfiguration()
-    {
-        $timCloud = $this->timCloud();
-        $this->assertFalse($timCloud->im->isNeedRefresh());
-
-        $timCloud->setIdentifier('admin');
-        $this->assertTrue($timCloud->im->isNeedRefresh());
-
-        $query = $timCloud->im->getRefreshedQueryStringArray();
-        $this->assertSame('admin', $query['identifier']);
-
-        $timCloud->setAppId('1404xxxxx');
-        $timCloud->setPublicKey('public_key_xxxxxx');
-        $timCloud->setPrivateKey('private_key_xxxxxx');
-        $query = $timCloud->im->getRefreshedQueryStringArray();
-
-        $this->assertSame('1404xxxxx', $query['app_id']);
-        $this->assertSame('-----BEGIN PRIVATE KEY-----
-private_key_xxxxxx
------END PRIVATE KEY-----', $query['private_key']);
-        $this->assertSame('-----BEGIN PUBLIC KEY-----
-public_key_xxxxxx
------END PUBLIC KEY-----', $query['public_key']);
-    }
-
-    public function testSetter()
-    {
-        $timCloud = $this->timCloud();
-
-        $timCloud->setAppId('1404xxxxx');
-        $timCloud->setIdentifier('TimSDK');
-        $timCloud->setPublicKey('public_key_xxxxxx');
-        $timCloud->setPrivateKey('private_key_xxxxxx');
-        $query = $timCloud->im->getRefreshedQueryStringArray();
-
-        $this->assertSame('1404xxxxx', $query['app_id']);
-        $this->assertSame('TimSDK', $query['identifier']);
-        $this->assertSame('-----BEGIN PRIVATE KEY-----
-private_key_xxxxxx
------END PRIVATE KEY-----', $query['private_key']);
-        $this->assertSame('-----BEGIN PUBLIC KEY-----
-public_key_xxxxxx
------END PUBLIC KEY-----', $query['public_key']);
-    }
-
     public function testFormatKey()
     {
         $timCloud = $this->timCloud();
@@ -110,16 +65,134 @@ $pubKeyContent
         $this->assertSame($openSSLPublicKey, $pubkey2);
     }
 
-    public function testRequestApi()
+    public function testSetter()
+    {
+        $timCloud = $this->timCloud();
+
+        $timCloud->setAppId('1404xxxxx');
+        $timCloud->setIdentifier('TimSDK');
+        $timCloud->setPublicKey('public_key_xxxxxx');
+        $timCloud->setPrivateKey('private_key_xxxxxx');
+        $query = $timCloud->im->getLatestQueryString();
+
+        $this->assertSame('1404xxxxx', $query['app_id']);
+        $this->assertSame('TimSDK', $query['identifier']);
+        $this->assertSame('-----BEGIN PRIVATE KEY-----
+private_key_xxxxxx
+-----END PRIVATE KEY-----', $query['private_key']);
+        $this->assertSame('-----BEGIN PUBLIC KEY-----
+public_key_xxxxxx
+-----END PUBLIC KEY-----', $query['public_key']);
+    }
+
+    public function testRefreshConfiguration()
+    {
+        $timCloud = $this->timCloud();
+        $this->assertFalse($timCloud->im->isNeedRefresh());
+
+        $timCloud->setIdentifier('admin');
+        $this->assertTrue($timCloud->im->isNeedRefresh());
+
+        $query = $timCloud->im->getLatestQueryString();
+        $this->assertSame('admin', $query['identifier']);
+        $this->assertFalse($timCloud->im->isNeedRefresh());
+
+        $timCloud->setAppId('1404xxxxx');
+        $timCloud->setIdentifier('common_user');
+        $timCloud->setPublicKey('public_key_xxxxxx');
+        $timCloud->setPrivateKey('private_key_xxxxxx');
+        $query = $timCloud->im->getLatestQueryString();
+
+        $this->assertSame([
+            'sdkappid'    => '1404xxxxx',
+            'identifier'  => 'common_user',
+            'contenttype' => 'json',
+        ], $timCloud->im->getLatestQueryString([
+            'sdkappid',
+            'identifier',
+            'contenttype',
+        ]));
+        $this->assertArrayHasKey('random', $timCloud->im->getLatestQueryString());
+        $this->assertArrayHasKey('usersig', $timCloud->im->getLatestQueryString());
+        $this->assertSame('-----BEGIN PRIVATE KEY-----
+private_key_xxxxxx
+-----END PRIVATE KEY-----', $query['private_key']);
+        $this->assertSame('-----BEGIN PUBLIC KEY-----
+public_key_xxxxxx
+-----END PUBLIC KEY-----', $query['public_key']);
+    }
+
+    /**
+     * @expectedException \TimSDK\Core\Exceptions\MissingArgumentsException
+     * @expectedExceptionMessage Missing app_id.
+     */
+    public function testMissAppId()
+    {
+        $timCloud = new TimCloud([
+            'identifier'  => phpunit_env('identifier', 'common_user'),
+            'private_key' => phpunit_env('private_key', 'openssl_private_key'),
+            'public_key'  => phpunit_env('public_key', 'openssl_public_key'),
+        ]);
+
+        $timCloud['im'];
+    }
+
+    /**
+     * @expectedException \TimSDK\Core\Exceptions\MissingArgumentsException
+     * @expectedExceptionMessage Missing identifier.
+     */
+    public function testMissIdentifier()
+    {
+        $timCloud = new TimCloud([
+            'app_id'      => phpunit_env('app_id', '1400xxxxxx'),
+            'private_key' => phpunit_env('private_key', 'openssl_private_key'),
+            'public_key'  => phpunit_env('public_key', 'openssl_public_key'),
+        ]);
+
+        $timCloud['im'];
+    }
+
+    /**
+     * @expectedException \TimSDK\Core\Exceptions\MissingArgumentsException
+     * @expectedExceptionMessage Missing private_key.
+     */
+    public function testMissPrivateKey()
+    {
+        $timCloud = new TimCloud([
+            'app_id'      => phpunit_env('app_id', '1400xxxxxx'),
+            'identifier'  => phpunit_env('identifier', 'common_user'),
+            'public_key'  => phpunit_env('public_key', 'openssl_public_key'),
+        ]);
+
+        $timCloud['im'];
+    }
+
+    /**
+     * @expectedException \TimSDK\Core\Exceptions\MissingArgumentsException
+     * @expectedExceptionMessage Missing public_key.
+     */
+    public function testMissPublicKey()
+    {
+        $timCloud = new TimCloud([
+            'app_id'      => phpunit_env('app_id', '1400xxxxxx'),
+            'identifier'  => phpunit_env('identifier', 'common_user'),
+            'private_key' => phpunit_env('private_key', 'openssl_private_key'),
+        ]);
+
+        $timCloud['im'];
+    }
+
+    public function testRequestApiSuccess()
     {
         $t = $this->timCloud();
-        $t->offsetSet('im', function ()  {
+        $t->offsetSet('im', function () {
             $m = Mockery::mock('im');
             $m->shouldReceive('handle')->withAnyArgs()->andReturn(new ResponseBag([
-                'ActionStatus' => 'OK'
+                'ActionStatus' => 'OK',
             ], [
-                'content-type' => 'application/json'
+                'content-type' => 'application/json',
             ]));
+
             return $m;
         });
 
@@ -138,18 +211,18 @@ $pubKeyContent
                 $m = Mockery::mock(IMCloud::class);
                 $return = new ResponseBag([
                     'ErrorCode' => 80002,
-                    'ErrorInfo' => 'HTTP Parse Error.'
+                    'ErrorInfo' => 'HTTP Parse Error.',
                 ], [
-                    'content-type' => 'application/json'
+                    'content-type' => 'application/json',
                 ]);
 
                 $m->shouldAllowMockingMethod('handle')->shouldDeferMissing();
 
-                $m->shouldReceive('getRefreshedQueryStringArray')->withAnyArgs()->andReturn([]);
+                $m->shouldReceive('getLatestQueryString')->withAnyArgs()->andReturn([]);
                 $m->shouldReceive('httpPostJson')->withAnyArgs()->andReturn($return);
 
                 return $m;
-            }
+            },
         ]);
 
         $t->request(API::DIRTY_WORDS_GET);
@@ -158,13 +231,10 @@ $pubKeyContent
     public function timCloud($prepends = [])
     {
         return new TimCloud([
-            'app_id'   => phpunit_env('app_id', '1400xxxxxx'),
-            'identifier' => phpunit_env('identifier', 'common_user'),
-            'private_key'     => phpunit_env('private_key', 'openssl_private_key'),
-            'public_key'     => phpunit_env('public_key', 'openssl_public_key'),
-            'log' => [
-                'cli_on' => true
-            ]
+            'app_id'      => phpunit_env('app_id', '1400xxxxxx'),
+            'identifier'  => phpunit_env('identifier', 'common_user'),
+            'private_key' => phpunit_env('private_key', 'openssl_private_key'),
+            'public_key'  => phpunit_env('public_key', 'openssl_public_key'),
         ], array_merge([
             'TLSSig' => function () {
                 $m = Mockery::mock('TLSSig');
