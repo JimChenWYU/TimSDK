@@ -114,7 +114,9 @@ class LogManager implements LoggerInterface
     {
         try {
             return Arr::get($this->channels, $name, $this->channels[$name] = $this->resolve($name));
-        } catch (\Throwable $e) {
+        }
+        // 兼容低于PHP7.0，不使用\Throwable
+        catch (\InvalidArgumentException $e) {
             $logger = $this->createEmergencyLogger();
             $logger->emergency('Unable to create configured logger. Using emergency logger.', [
                 'exception' => $e,
