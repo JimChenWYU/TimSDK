@@ -8,8 +8,8 @@
 
 namespace TimSDK\Tests\Support;
 
-use Monolog\Logger;
 use TimSDK\Foundation\Application;
+use TimSDK\Support\Collection;
 use TimSDK\Tests\TestCase;
 
 class HelpersTest extends TestCase
@@ -25,6 +25,6 @@ class HelpersTest extends TestCase
     public function testApp()
     {
         $this->assertInstanceOf(Application::class, timsdk_app());
-        $this->assertInstanceOf(Logger::class, timsdk_app('log'));
+        $this->assertInstanceOf(Collection::class, timsdk_app('config'));
     }
 }

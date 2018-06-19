@@ -1,6 +1,7 @@
 <?php
 
 use TimSDK\Container\ServiceContainer;
+use TimSDK\Support\Dumper;
 
 /**
  * Return the default value of the given value.
@@ -26,4 +27,23 @@ function timsdk_app($abstract = null)
     }
 
     return ServiceContainer::getInstance()->offsetGet($abstract);
+}
+
+/**
+ * Dump the passed variables and end the script.
+ */
+function timsdk_dd()
+{
+    foreach (func_get_args() as $arg) {
+        (new Dumper)->dump($arg);
+    }
+
+    die(1);
+}
+
+function timsdk_d()
+{
+    foreach (func_get_args() as $arg) {
+        (new Dumper)->dump($arg);
+    }
 }
