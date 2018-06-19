@@ -51,7 +51,7 @@ class IMCloud extends BaseIMCloud
      */
     public function initialize()
     {
-        $this->getRefreshedQueryStringCollection(true);
+        $this->initializeQuery();
     }
 
     /**
@@ -73,7 +73,7 @@ class IMCloud extends BaseIMCloud
         }
 
         $response = $this->httpPostJson($uri, $data, array_merge($options, [
-            'query' => $this->getRefreshedQueryStringArray([
+            'query' => $this->getLatestQueryString([
                 'sdkappid', 'usersig', 'identifier', 'random', 'contenttype'
             ])
         ]));
@@ -96,64 +96,13 @@ class IMCloud extends BaseIMCloud
     }
 
     /**
-     * Refresh query string
-     *
-     * @param bool $force
-     * @return Collection
-     * @throws Exceptions\UserSigException
-     * @throws MissingArgumentsException
-     */
-    public function getRefreshedQueryStringCollection($force = false)
-    {
-        if ($this->needRefresh || $force) {
-            $this->needRefresh = false;
-            $this->query = $this->getQueryStringCollection();
-            $this->query->setAll($this->getLatestQueryStringArray());
-        }
-
-        return $this->query;
-    }
-
-    /**
-     * Get the refreshed query string
-     *
-     * @param array $fields
-     * @return array
-     * @throws Exceptions\UserSigException
-     * @throws MissingArgumentsException
-     */
-    public function getRefreshedQueryStringArray($fields = [])
-    {
-        $queryStringArray = $this->getRefreshedQueryStringCollection()->toArray();
-        if (empty($fields)) {
-            return $queryStringArray;
-        }
-
-        return Arr::only($queryStringArray, $fields);
-    }
-
-    /**
-     * Query Getter
-     *
-     * @return Collection
-     */
-    public function getQueryStringCollection()
-    {
-        if (!$this->query instanceof Collection) {
-            $this->query = new Collection();
-        }
-
-        return $this->query;
-    }
-
-    /**
-     * Get the latest query string array
+     * Get the latest config parameters array
      *
      * @return array
      * @throws Exceptions\UserSigException
      * @throws MissingArgumentsException
      */
-    public function getLatestQueryStringArray()
+    public function getLatestConfigParameters()
     {
         $data = Arr::only($this->app['config']->all(), [
             'app_id',
@@ -173,9 +122,9 @@ class IMCloud extends BaseIMCloud
         }
 
         foreach (['app_id', 'identifier', 'public_key', 'private_key'] as $item) {
-            if (!isset($data[$item])) {
+            if (empty(Arr::get($data, $item, null))) {
                 Log::debug('IMCloud Query: ', $data);
-                throw new MissingArgumentsException('Missing ' . $item);
+                throw new MissingArgumentsException("Missing $item.");
             }
         }
 
@@ -183,6 +132,30 @@ class IMCloud extends BaseIMCloud
         $data['sdkappid'] = $data['app_id'];
 
         return $data;
+    }
+
+    /**
+     * Get query string array
+     *
+     * @param array $fields
+     * @return array
+     * @throws Exceptions\UserSigException
+     * @throws MissingArgumentsException
+     */
+    public function getLatestQueryString(array $fields = ['*'])
+    {
+        $this->initializeQuery();
+
+        if ($this->needRefresh) {
+            $this->needRefresh = false;
+            $this->query->setAll($this->getLatestConfigParameters());
+        }
+
+        if (count($fields) == 1 && $fields[0] === '*') {
+            return $this->query->toArray();
+        }
+
+        return $this->query->only($fields);
     }
 
     /**
@@ -215,5 +188,22 @@ class IMCloud extends BaseIMCloud
             }
             throw new HttpException($contents['ErrorInfo'], $contents['ErrorCode']);
         }
+    }
+
+    /**
+     * Initialize query
+     *
+     * @param array $items
+     * @return Collection
+     * @throws Exceptions\UserSigException
+     * @throws MissingArgumentsException
+     */
+    protected function initializeQuery(array $items = [])
+    {
+        if (!$this->query instanceof Collection) {
+            $this->query = new Collection($items ?: $this->getLatestConfigParameters());
+        }
+
+        return $this->query;
     }
 }
