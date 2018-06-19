@@ -8,9 +8,7 @@
 
 namespace TimSDK\Core;
 
-use GuzzleHttp\Client;
 use TimSDK\Support\Json;
-use TimSDK\Foundation\Application;
 use TimSDK\Foundation\ResponseBag;
 use TimSDK\Container\ServiceContainer;
 use Psr\Http\Message\ResponseInterface;
@@ -18,7 +16,7 @@ use Psr\Http\Message\ResponseInterface;
 class BaseIMCloud
 {
     /**
-     * @var Application
+     * @var ServiceContainer
      */
     protected $app;
 
