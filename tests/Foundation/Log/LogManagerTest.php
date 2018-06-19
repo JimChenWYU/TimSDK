@@ -11,8 +11,8 @@ namespace TimSDK\Foundation\Log;
 use Monolog\Logger;
 use TimSDK\Tests\TestCase;
 use TimSDK\Foundation\Config;
-use TimSDK\Foundation\Application as ServiceContainer;
 use Monolog\Handler\ErrorLogHandler;
+use TimSDK\Container\ServiceContainer;
 
 class LogManagerTest extends TestCase
 {
