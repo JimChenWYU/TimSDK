@@ -10,8 +10,8 @@ namespace TimSDK\Tests;
 
 use Mockery;
 use TimSDK\Core\API;
+use TimSDK\Core\IMCloud;
 use TimSDK\Foundation\ResponseBag;
-use TimSDK\Support\Log;
 use TimSDK\TimCloud;
 
 class TimCloudTest extends TestCase
@@ -127,7 +127,35 @@ $pubKeyContent
         $this->assertSame('OK', $c->getContent('ActionStatus'));
     }
 
-    public function timCloud()
+    /**
+     * @expectedException \TimSDK\Core\Exceptions\HttpException
+     * @expectedExceptionMessage HTTP Parse Error.
+     */
+    public function testRequestApiError()
+    {
+        $t = $this->timCloud([
+            'im' => function () {
+                $m = Mockery::mock(IMCloud::class);
+                $return = new ResponseBag([
+                    'ErrorCode' => 80002,
+                    'ErrorInfo' => 'HTTP Parse Error.'
+                ], [
+                    'content-type' => 'application/json'
+                ]);
+
+                $m->shouldAllowMockingMethod('handle')->shouldDeferMissing();
+
+                $m->shouldReceive('getRefreshedQueryStringArray')->withAnyArgs()->andReturn([]);
+                $m->shouldReceive('httpPostJson')->withAnyArgs()->andReturn($return);
+
+                return $m;
+            }
+        ]);
+
+        $t->request(API::DIRTY_WORDS_GET);
+    }
+
+    public function timCloud($prepends = [])
     {
         return new TimCloud([
             'app_id'   => phpunit_env('app_id', '1400xxxxxx'),
@@ -137,12 +165,12 @@ $pubKeyContent
             'log' => [
                 'cli_on' => true
             ]
-        ], [
+        ], array_merge([
             'TLSSig' => function () {
                 $m = Mockery::mock('TLSSig');
                 $m->shouldReceive('genSig')->withAnyArgs()->andReturn('test usersig');
                 return $m;
             },
-        ]);
+        ], $prepends));
     }
 }

@@ -18,7 +18,7 @@ function timsdk_value($value)
  * Get the available container instance.
  *
  * @param string $abstract
- * @return mixed|static
+ * @return mixed
  */
 function timsdk_app($abstract = null)
 {

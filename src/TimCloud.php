@@ -10,15 +10,15 @@ namespace TimSDK;
 
 use TimSDK\Support\Arr;
 use TimSDK\Support\Str;
-use TimSDK\Foundation\Application;
 use TimSDK\Foundation\ResponseBag;
+use TimSDK\Container\ServiceContainer;
 
 /**
  * Class TimCloud
  * @package TimSDK
  * @property \TimSDK\Core\IMCloud $im
  */
-class TimCloud extends Application
+class TimCloud extends ServiceContainer
 {
     /**
      * TimCloud version
@@ -37,8 +37,6 @@ class TimCloud extends Application
             $config['private_key'] = $this->formatKey($config['private_key'], 'private');
             $config['public_key'] = $this->formatKey($config['public_key'], 'public');
         }
-
-        $this->setBasePath(__DIR__);
 
         parent::__construct($config, $prepends);
     }
@@ -111,6 +109,16 @@ class TimCloud extends Application
     public function request($uri, $body = '', $options = [])
     {
         return $this['im']->handle($uri, $body, $options);
+    }
+
+    /**
+     * Get the version number of the application.
+     *
+     * @return string
+     */
+    public function version()
+    {
+        return static::VERSION;
     }
 
     protected function setConfig($key, $value)
