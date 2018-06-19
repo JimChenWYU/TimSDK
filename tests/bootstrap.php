@@ -12,6 +12,13 @@ function phpunit_env($name, $default = null)
 if (! function_exists('dd')) {
     function dd()
     {
-        var_dump(func_get_args());
+        call_user_func_array('timsdk_dd', func_get_args());
+    }
+}
+
+if (!function_exists('d')) {
+    function d()
+    {
+        call_user_func_array('timsdk_d', func_get_args());
     }
 }
