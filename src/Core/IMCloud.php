@@ -18,13 +18,6 @@ use TimSDK\Core\Exceptions\MissingArgumentsException;
 class IMCloud extends BaseIMCloud
 {
     /**
-     * version.
-     *
-     * @var string
-     */
-    const VERSION = '0.1.0';
-
-    /**
      * @var Collection
      */
     protected $query;

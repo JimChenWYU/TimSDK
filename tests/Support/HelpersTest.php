@@ -8,6 +8,7 @@
 
 namespace TimSDK\Tests\Support;
 
+use TimSDK\Container\ServiceContainer;
 use TimSDK\Foundation\Application;
 use TimSDK\Support\Collection;
 use TimSDK\Tests\TestCase;
@@ -24,7 +25,7 @@ class HelpersTest extends TestCase
 
     public function testApp()
     {
-        $this->assertInstanceOf(Application::class, timsdk_app());
+        $this->assertInstanceOf(ServiceContainer::class, timsdk_app());
         $this->assertInstanceOf(Collection::class, timsdk_app('config'));
     }
 }
