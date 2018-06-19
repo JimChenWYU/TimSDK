@@ -11,6 +11,7 @@ namespace TimSDK\Tests;
 use Mockery;
 use TimSDK\Core\API;
 use TimSDK\Foundation\ResponseBag;
+use TimSDK\Support\Log;
 use TimSDK\TimCloud;
 
 class TimCloudTest extends TestCase
@@ -133,6 +134,9 @@ $pubKeyContent
             'identifier' => phpunit_env('identifier', 'common_user'),
             'private_key'     => phpunit_env('private_key', 'openssl_private_key'),
             'public_key'     => phpunit_env('public_key', 'openssl_public_key'),
+            'log' => [
+                'cli_on' => true
+            ]
         ], [
             'TLSSig' => function () {
                 $m = Mockery::mock('TLSSig');
@@ -140,10 +144,5 @@ $pubKeyContent
                 return $m;
             },
         ]);
-    }
-
-    public function tearDown()
-    {
-        Mockery::close();
     }
 }
