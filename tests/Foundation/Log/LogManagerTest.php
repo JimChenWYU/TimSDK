@@ -213,6 +213,40 @@ class LogManagerTest extends TestCase
         $this->assertSame('single', $log->getDefaultDriver());
     }
 
+    /**
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage Invalid log file path.
+     */
+    public function testInvalidSingleLogPath()
+    {
+        $app = new ServiceContainer([]);
+
+        $log = \Mockery::mock(LogManager::class, [$app])
+            ->shouldAllowMockingProtectedMethods()
+            ->shouldDeferMissing();
+
+        $log->createSingleDriver([
+            'path' => null,
+        ]);
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage Invalid log file path.
+     */
+    public function testInvalidDailyLogPath()
+    {
+        $app = new ServiceContainer([]);
+
+        $log = \Mockery::mock(LogManager::class, [$app])
+            ->shouldAllowMockingProtectedMethods()
+            ->shouldDeferMissing();
+
+        $log->createDailyDriver([
+            'path' => null,
+        ]);
+    }
+
     public function testDriverCreators()
     {
         $app = new ServiceContainer([], [
@@ -221,6 +255,7 @@ class LogManagerTest extends TestCase
                     'channels' => [
                         'single' => [
                             'driver' => 'single',
+                            'path'   => '/path/to/file.log'
                         ],
                     ],
                 ],
@@ -231,7 +266,7 @@ class LogManagerTest extends TestCase
             ->shouldDeferMissing();
 
         $this->assertInstanceOf(Logger::class, $log->createStackDriver(['channels' => ['single']]));
-        $this->assertInstanceOf(Logger::class, $log->createSlackDriver(['url' => 'https://easywechat.com']));
+        $this->assertInstanceOf(Logger::class, $log->createSlackDriver(['url' => 'https://baidu.com']));
         $this->assertInstanceOf(Logger::class, $log->createDailyDriver(['path' => '/path/to/file.log']));
         $this->assertInstanceOf(Logger::class, $log->createSyslogDriver([]));
         $this->assertInstanceOf(Logger::class, $log->createErrorlogDriver([]));

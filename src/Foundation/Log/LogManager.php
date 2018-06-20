@@ -200,9 +200,15 @@ class LogManager implements LoggerInterface
      * @param array $config
      *
      * @return \Psr\Log\LoggerInterface
+     *
+     * @throws \InvalidArgumentException
      */
     protected function createSingleDriver(array $config)
     {
+        if (!isset($config['path'])) {
+            throw new \InvalidArgumentException('Invalid log file path.');
+        }
+
         return new Monolog($this->parseChannel($config), [
             $this->prepareHandler(
                 new StreamHandler($config['path'], $this->level($config))
@@ -216,9 +222,15 @@ class LogManager implements LoggerInterface
      * @param array $config
      *
      * @return \Psr\Log\LoggerInterface
+     *
+     * @throws \InvalidArgumentException
      */
     protected function createDailyDriver(array $config)
     {
+        if (!isset($config['path'])) {
+            throw new \InvalidArgumentException('Invalid log file path.');
+        }
+
         return new Monolog($this->parseChannel($config), [
             $this->prepareHandler(new RotatingFileHandler(
                 $config['path'], Arr::get($config, 'days', 7), $this->level($config)
