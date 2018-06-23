@@ -196,8 +196,13 @@ public_key_xxxxxx
             return $m;
         });
 
-        $c = $t->request(API::DIRTY_WORDS_GET);
-        $this->assertSame('OK', $c->getContent('ActionStatus'));
+        $c1 = $t->request(API::DIRTY_WORDS_GET);
+        $this->assertSame('OK', $c1->getContent('ActionStatus'));
+
+        $c2 = $t->requestDirtyWordsAdd([
+            'DirtyWordsList' => ['foo', 'bar']
+        ]);
+        $this->assertSame('OK', $c2->getContent('ActionStatus'));
     }
 
     /**
