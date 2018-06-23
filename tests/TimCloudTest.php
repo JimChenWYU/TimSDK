@@ -228,6 +228,15 @@ public_key_xxxxxx
         $t->request(API::DIRTY_WORDS_GET);
     }
 
+    public function testGetApiAlias()
+    {
+        $cloud = $this->timCloud();
+
+        $this->assertSame('foo', $cloud['apiAlias']['foo']);
+        $this->assertSame(API::BASE_URL, $cloud['apiAlias']['BASE_URL']);
+
+    }
+
     public function timCloud($prepends = [])
     {
         return new TimCloud([
