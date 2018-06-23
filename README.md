@@ -2,7 +2,7 @@
 
 1. PHP >= 5.5.9
 2. **[Composer](https://getcomposer.org/)**
-3. openssl 拓展
+3. Openssl Extension
 
 ## Installation
 
@@ -11,7 +11,7 @@ $ composer require jimchen/tim-sdk -vvv
 ```
 
 ## Usage
-基本使用:
+Basic Usage:
 
 ```php
 use TimSDK;
@@ -29,14 +29,28 @@ $options = [
 ];
 
 $app = new TimCloud($options);
+
+/**
+ * Call api uri
+ */
 $response = $app->request(API::DIRTY_WORDS_GET);
+
+/**
+ * or call api alias
+ */
+$response = $app->request('DIRTY_WORDS_GET');
+
+/**
+ * or call a magic function
+ */
+$response = $app->requestDirtyWordsGet();
 
 var_dump($response);
 ```
 
-更多[API常量](https://github.com/JimChenWYU/TimSDK/blob/master/src/Core/API.php)
+more [API Constants](https://github.com/JimChenWYU/TimSDK/blob/master/src/Core/API.php)
 
-更多详细demo可以关注此[repo](https://github.com/JimChenWYU/TimSDK-example)
+more details focus on this [demo](https://github.com/JimChenWYU/TimSDK-example)
 
 ## Documentation
 
