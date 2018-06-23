@@ -45,4 +45,4 @@ $options = json_encode([
 ]);
 ```
 
-更多可查看 [这里](https://github.com/JimChenWYU/TimSDK/blob/master/src/Support/Collection.php#L351)
+[more...](https://github.com/JimChenWYU/TimSDK/blob/master/src/Support/Collection.php#L351)
