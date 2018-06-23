@@ -12,3 +12,7 @@ phpunit.xml
 .phplint-cache
 
 composer.lock
+
+# js for cz-cli
+node_modules
+package-lock.json
