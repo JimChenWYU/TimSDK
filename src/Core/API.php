@@ -14,6 +14,7 @@ interface API
 
     // 账号管理
     const ACCOUNT_IMPORT = 'v4/im_open_login_svc/account_import';
+    const MUTI_ACCOUNT_IMPORT = 'v4/im_open_login_svc/multiaccount_import';
     const REGISTER_ACCOUNT_V1 = 'v4/registration_service/register_account_v1';
     const KICK = 'v4/im_open_login_svc/kick';
 
