@@ -146,7 +146,7 @@ class IMCloud extends BaseIMCloud
     {
         $this->initializeQuery();
 
-        Log::debug('Is need refresh: ', $this->needRefresh);
+        Log::debug('Is need refresh: ' . ($this->needRefresh ? 'true' : 'false'));
 
         if ($this->needRefresh) {
             $this->needRefresh = false;
