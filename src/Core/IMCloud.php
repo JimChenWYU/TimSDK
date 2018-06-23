@@ -146,10 +146,14 @@ class IMCloud extends BaseIMCloud
     {
         $this->initializeQuery();
 
+        Log::debug('Is need refresh: ', $this->needRefresh);
+
         if ($this->needRefresh) {
             $this->needRefresh = false;
             $this->query->setAll($this->getLatestConfigParameters());
         }
+
+        Log::debug('Request query: ', $this->query->toArray());
 
         if (count($fields) == 1 && $fields[0] === '*') {
             return $this->query->toArray();
