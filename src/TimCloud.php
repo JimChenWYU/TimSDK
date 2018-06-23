@@ -123,6 +123,22 @@ class TimCloud extends ServiceContainer
         return static::VERSION;
     }
 
+    /**
+     * Call request method
+     *
+     * @param $method
+     * @param $arguments
+     * @return mixed
+     */
+    public function __call($method, $arguments)
+    {
+        $method = ltrim($method, 'request');
+        $uri = Str::upper(Str::snake($method));
+        array_unshift($arguments, $uri);
+
+        return call_user_func_array([$this, 'request'], $arguments);
+    }
+
     protected function setConfig($key, $value)
     {
         if (!empty($value)) {
