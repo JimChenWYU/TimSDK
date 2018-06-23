@@ -17,6 +17,7 @@ use TimSDK\Container\ServiceContainer;
  * Class TimCloud
  * @package TimSDK
  * @property \TimSDK\Core\IMCloud $im
+ * @property \TimSDK\Core\ApiAlias $apiAlias
  */
 class TimCloud extends ServiceContainer
 {
@@ -28,6 +29,7 @@ class TimCloud extends ServiceContainer
     const VERSION = '0.1.2';
 
     protected $providers = [
+        \TimSDK\Core\ServiceProviders\ApiAliasServiceProvider::class,
         \TimSDK\Core\ServiceProviders\IMCloudServiceProvider::class,
     ];
 
@@ -108,7 +110,7 @@ class TimCloud extends ServiceContainer
      */
     public function request($uri, $body = '', $options = [])
     {
-        return $this['im']->handle($uri, $body, $options);
+        return $this['im']->handle($this['apiAlias'][$uri], $body, $options);
     }
 
     /**
