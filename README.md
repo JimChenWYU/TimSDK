@@ -14,7 +14,7 @@
 </p> 
 
 <p align="center">
-IM Sdk for Tencent Instant Messaging
+IM Sdk for Tencent Instant Messaging.
 </p>
 
 ## Requirement
