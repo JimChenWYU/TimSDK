@@ -249,6 +249,9 @@ public_key_xxxxxx
             'identifier'  => phpunit_env('identifier', 'common_user'),
             'private_key' => phpunit_env('private_key', 'openssl_private_key'),
             'public_key'  => phpunit_env('public_key', 'openssl_public_key'),
+            'log' => [
+                'cli_on' => false
+            ]
         ], array_merge([
             'TLSSig' => function () {
                 $m = Mockery::mock('TLSSig');
