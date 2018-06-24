@@ -1,3 +1,22 @@
+# TimSDK
+
+<p align="center">
+
+[![Build Status](https://www.travis-ci.org/JimChenWYU/TimSDK.svg?branch=master)](https://www.travis-ci.org/JimChenWYU/TimSDK)
+[![Latest Stable Version](https://poser.pugx.org/jimchen/tim-sdk/v/stable)](https://packagist.org/packages/jimchen/tim-sdk)
+[![Latest Unstable Version](https://poser.pugx.org/jimchen/tim-sdk/v/unstable)](https://packagist.org/packages/jimchen/tim-sdk)
+[![Build Status](https://scrutinizer-ci.com/g/JimChenWYU/TimSDK/badges/build.png?b=master)](https://scrutinizer-ci.com/g/JimChenWYU/TimSDK/build-status/master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/JimChenWYU/TimSDK/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/JimChenWYU/TimSDK/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/JimChenWYU/TimSDK/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/JimChenWYU/TimSDK/?branch=master)
+[![Total Downloads](https://poser.pugx.org/jimchen/tim-sdk/downloads)](https://packagist.org/packages/jimchen/tim-sdk)
+[![License](https://poser.pugx.org/jimchen/tim-sdk/license)](https://packagist.org/packages/jimchen/tim-sdk)
+
+</p> 
+
+<p align="center">
+IM Sdk for Tencent Instant Messaging
+</p>
+
 ## Requirement
 
 1. PHP >= 5.5.9
