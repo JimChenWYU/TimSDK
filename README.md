@@ -1,4 +1,8 @@
+<p align="center">
+
 # TimSDK
+
+</p>
 
 <p align="center">
 
