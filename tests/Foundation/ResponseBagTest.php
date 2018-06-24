@@ -9,6 +9,7 @@
 namespace TimSDK\Tests\Foundation;
 
 use TimSDK\Foundation\ResponseBag;
+use TimSDK\Support\Collection;
 use TimSDK\Tests\TestCase;
 
 class ResponseBagTest extends TestCase
@@ -37,6 +38,27 @@ class ResponseBagTest extends TestCase
         $bag = new ResponseBag(null, null);
         $this->assertSame([], $bag->getContents()->all());
         $this->assertSame([], $bag->getHeaders()->all());
+    }
+
+    public function testResponseStatusCode()
+    {
+        $response = new ResponseBag([], []);
+        $this->assertSame(200, $response->getStatusCode());
+
+        $response = new ResponseBag([], [], 400);
+        $this->assertSame(400, $response->getStatusCode());
+    }
+
+    public function testGetCollectionItems()
+    {
+        $m = \Mockery::mock(ResponseBag::class, [
+            ['foo' => 'bar'],
+            ['foo' => 'bar'],
+        ])->shouldAllowMockingProtectedMethods()->shouldDeferMissing();
+
+        $this->assertEquals(new Collection(['foo' => 'bar']), $m->getCollectionItems(['foo' => 'bar']));
+        $this->assertEquals(new Collection(['foo' => 'bar']), $m->getCollectionItems(new Collection(['foo' => 'bar'])));
+        $this->assertEquals(new Collection(['foo' => 'bar']), $m->getCollectionItems('{"foo":"bar"}'));
     }
 }
 
