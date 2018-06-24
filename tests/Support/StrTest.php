@@ -43,4 +43,20 @@ class StrTest extends TestCase
         $this->assertSame('foo_bar', Str::snake('FooBar'));
         $this->assertSame('foo-bar', Str::snake('fooBar', '-'));
     }
+
+    public function testCamel()
+    {
+        $this->assertSame('laravelPHPFramework', Str::camel('Laravel_p_h_p_framework'));
+        $this->assertSame('laravelPhpFramework', Str::camel('Laravel_php_framework'));
+        $this->assertSame('laravelPhPFramework', Str::camel('Laravel-phP-framework'));
+        $this->assertSame('laravelPhpFramework', Str::camel('Laravel  -_-  php   -_-   framework   '));
+    }
+
+    public function testStudly()
+    {
+        $this->assertSame('LaravelPHPFramework', Str::studly('laravel_p_h_p_framework'));
+        $this->assertSame('LaravelPhpFramework', Str::studly('laravel_php_framework'));
+        $this->assertSame('LaravelPhPFramework', Str::studly('laravel-phP-framework'));
+        $this->assertSame('LaravelPhpFramework', Str::studly('laravel  -_-  php   -_-   framework   '));
+    }
 }
