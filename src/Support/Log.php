@@ -37,6 +37,6 @@ class Log
      */
     public static function __callStatic($method, $arguments)
     {
-        return forward_static_call_array([timsdk_app('log'), $method], $arguments);
+        return forward_static_call_array([\TimSDK\app('log'), $method], $arguments);
     }
 }
