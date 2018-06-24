@@ -1,0 +1,61 @@
+#!/usr/bin/env php
+<?php
+
+require dirname(__DIR__) . '/vendor/autoload.php';
+
+use TimSDK\Core\API;
+use TimSDK\TimCloud;
+use TimSDK\Support\Str;
+use Barryvdh\Reflection\DocBlock;
+use Barryvdh\Reflection\DocBlock\Context;
+use Barryvdh\Reflection\DocBlock\Serializer as DocBlockSerializer;
+
+$class = TimCloud::class;
+$reflection  = new ReflectionClass($class);
+$filename = $reflection->getFileName();
+$namespace = $reflection->getNamespaceName();
+$classname = $reflection->getShortName();
+$originalDoc = $reflection->getDocComment();
+
+$phpdoc = new DocBlock($reflection, new Context($namespace));
+$properties = [];
+$methods = [];
+
+if (!$phpdoc->getText()) {
+    $phpdoc->setText($class);
+}
+
+foreach ($phpdoc->getTags() as $tag) {
+    $name = $tag->getName();
+    if ($name == "property" || $name == "property-read" || $name == "property-write") {
+        $properties[] = $tag->getVariableName();
+    } elseif ($name == "method") {
+        $methods[] = $tag->getMethodName();
+    }
+}
+
+$reflectionApi = new \ReflectionClass(API::class);
+foreach ($reflectionApi->getConstants() as $key => $constant) {
+    if ($constant === API::BASE_URL) {
+        continue;
+    }
+
+    $arguments = '$body = \'\', $option = []';
+    $method = [
+        'name' => 'request' . ucfirst(Str::camel(Str::lower($key))),
+        'type' => '\\' . \TimSDK\Foundation\ResponseBag::class,
+    ];
+
+    $tag = DocBlock\Tag::createInstance("@method {$method['type']} {$method['name']}({$arguments})", $phpdoc);
+    if (!in_array($method['name'], $methods)) {
+        $phpdoc->appendTag($tag);
+    }
+}
+
+$serializer = new DocBlockSerializer();
+$docComment = $serializer->getDocComment($phpdoc);
+
+$contents = file_get_contents($filename);
+$contents = str_replace($originalDoc, $docComment, $contents);
+
+file_put_contents($filename, $contents);
