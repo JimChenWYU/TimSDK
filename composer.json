@@ -27,7 +27,7 @@
             "TimSDK\\": "src/"
         },
         "files": [
-            "src/Support/Helpers.php"
+            "src/helpers_include.php"
         ]
     },
     "autoload-dev": {

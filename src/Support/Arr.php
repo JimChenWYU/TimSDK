@@ -109,7 +109,7 @@ class Arr
 
         foreach (explode('.', $key) as $segment) {
             if (!is_array($array) || !array_key_exists($segment, $array)) {
-                return timsdk_value($default);
+                return \TimSDK\value($default);
             }
             $array = $array[$segment];
         }

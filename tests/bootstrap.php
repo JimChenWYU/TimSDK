@@ -11,17 +11,3 @@ function phpunit_env($name, $default = null)
 
     return $value !== '0' && empty($value) ? $default : $value;
 }
-
-if (!function_exists('dd')) {
-    function dd()
-    {
-        call_user_func_array('timsdk_dd', func_get_args());
-    }
-}
-
-if (!function_exists('d')) {
-    function d()
-    {
-        call_user_func_array('timsdk_d', func_get_args());
-    }
-}

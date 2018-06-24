@@ -1,5 +1,7 @@
 <?php
 
+namespace TimSDK;
+
 use TimSDK\Container\ServiceContainer;
 use TimSDK\Support\Dumper;
 
@@ -9,7 +11,7 @@ use TimSDK\Support\Dumper;
  * @param  mixed  $value
  * @return mixed
  */
-function timsdk_value($value)
+function value($value)
 {
     return $value instanceof \Closure ? $value() : $value;
 }
@@ -20,7 +22,7 @@ function timsdk_value($value)
  * @param string $abstract
  * @return mixed
  */
-function timsdk_app($abstract = null)
+function app($abstract = null)
 {
     if (is_null($abstract)) {
         return ServiceContainer::getInstance();
@@ -32,7 +34,7 @@ function timsdk_app($abstract = null)
 /**
  * Dump the passed variables and end the script.
  */
-function timsdk_dd()
+function dd()
 {
     foreach (func_get_args() as $arg) {
         (new Dumper)->dump($arg);
@@ -41,7 +43,10 @@ function timsdk_dd()
     die(1);
 }
 
-function timsdk_d()
+/**
+ * Dump the passed variables and end the script.
+ */
+function d()
 {
     foreach (func_get_args() as $arg) {
         (new Dumper)->dump($arg);
