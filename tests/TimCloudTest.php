@@ -196,8 +196,13 @@ public_key_xxxxxx
             return $m;
         });
 
-        $c = $t->request(API::DIRTY_WORDS_GET);
-        $this->assertSame('OK', $c->getContent('ActionStatus'));
+        $c1 = $t->request(API::DIRTY_WORDS_GET);
+        $this->assertSame('OK', $c1->getContent('ActionStatus'));
+
+        $c2 = $t->requestDirtyWordsAdd([
+            'DirtyWordsList' => ['foo', 'bar']
+        ]);
+        $this->assertSame('OK', $c2->getContent('ActionStatus'));
     }
 
     /**
@@ -226,6 +231,15 @@ public_key_xxxxxx
         ]);
 
         $t->request(API::DIRTY_WORDS_GET);
+    }
+
+    public function testGetApiAlias()
+    {
+        $cloud = $this->timCloud();
+
+        $this->assertSame('foo', $cloud['apiAlias']['foo']);
+        $this->assertSame(API::BASE_URL, $cloud['apiAlias']['BASE_URL']);
+
     }
 
     public function timCloud($prepends = [])
