@@ -18,9 +18,10 @@
         <whitelist>
             <directory suffix=".php">src/</directory>
             <exclude>
-                <directory suffix="ServiceProvider.php">./src/Foundation/ServiceProviders</directory>
                 <directory suffix="Exception.php">./src/Core</directory>
                 <directory>./src/Support</directory>
+                <directory>./src/Foundation/ServiceProviders</directory>
+                <directory>./src/Core/ServiceProviders</directory>
             </exclude>
         </whitelist>
     </filter>
