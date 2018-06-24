@@ -1,6 +1,4 @@
-<p align="center">
-<h1>TimSDK</h1>
-</p>
+<h1 style="text-align: center;">TimSDK</h1>
 
 <p align="center">
 <a href="https://www.travis-ci.org/JimChenWYU/TimSDK" rel="nofollow"><img src="https://camo.githubusercontent.com/63c6940ce8f382f537b25800d5026c491b57dd3d/68747470733a2f2f7777772e7472617669732d63692e6f72672f4a696d4368656e5759552f54696d53444b2e7376673f6272616e63683d6d6173746572" alt="Build Status" data-canonical-src="https://www.travis-ci.org/JimChenWYU/TimSDK.svg?branch=master" style="max-width:100%;"></a>
