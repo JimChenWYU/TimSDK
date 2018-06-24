@@ -183,7 +183,7 @@ class ServiceContainer extends Container implements ContainerContract
      */
     public function version()
     {
-        throw new \InvalidArgumentException('Unknow version');
+        throw new \InvalidArgumentException('Unknow version.');
     }
 
     /**

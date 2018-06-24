@@ -75,6 +75,17 @@ class ServiceContainerTest extends TestCase
         $this->assertSame(PROJECT_ROOT, $app->basePath());
         $this->assertSame(PROJECT_ROOT . DIRECTORY_SEPARATOR . 'Cert', $app->basePath('Cert'));
     }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage Unknow version.
+     */
+    public function testGetVersion()
+    {
+        $app = new ServiceContainer();
+
+        $app->version();
+    }
 }
 
 class DummyContainerForProviderTest extends ServiceContainer
