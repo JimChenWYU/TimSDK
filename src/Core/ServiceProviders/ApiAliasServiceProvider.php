@@ -24,7 +24,7 @@ class ApiAliasServiceProvider extends ServiceProvider
      */
     public function register(Container $pimple)
     {
-        $pimple['apiAlias'] = function ($pimple) {
+        $pimple['apiAlias'] = function () {
             return new ApiAlias();
         };
     }
