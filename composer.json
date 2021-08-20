@@ -26,19 +26,11 @@
     "autoload": {
         "psr-4": {
             "TimSDK\\": "src/"
-        },
-        "files": [
-            "src/helpers_include.php"
-        ]
+        }
     },
     "autoload-dev": {
         "psr-4": {
             "TimSDK\\Tests\\": "tests/"
         }
-    },
-    "scripts": {
-        "post-install-cmd": [
-            "@php -r \"file_exists('phpunit.xml') || copy('phpunit.xml.dist', 'phpunit.xml');\""
-        ]
     }
 }
