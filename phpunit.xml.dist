@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <phpunit backupGlobals="false"
          backupStaticAttributes="false"
          bootstrap="tests/bootstrap.php"
@@ -7,8 +7,7 @@
          convertNoticesToExceptions="true"
          convertWarningsToExceptions="true"
          processIsolation="false"
-         stopOnFailure="false"
-         syntaxCheck="false">
+         stopOnFailure="false">
     <testsuites>
         <testsuite name="Application Test Suite">
             <directory>./tests/</directory>
@@ -17,19 +16,6 @@
     <filter>
         <whitelist>
             <directory suffix=".php">src/</directory>
-            <exclude>
-                <directory suffix="Exception.php">./src/Core</directory>
-                <directory>./src/Support</directory>
-                <directory>./src/Foundation/ServiceProviders</directory>
-                <directory>./src/Core/ServiceProviders</directory>
-            </exclude>
         </whitelist>
     </filter>
-    <php>
-        <const name="PHPUNIT_RUNNING" value="true" />
-        <const name="APP_ID" value="" />
-        <const name="IDENTIFIER" value="" />
-        <const name="PRIVATE_KEY" value="" />
-        <const name="PUBLIC_KEY" value="" />
-    </php>
 </phpunit>

@@ -1,18 +1,10 @@
 # Created by .ignore support plugin (hsz.mobi)
 .idea
-
-/vendor/*
-
-.phpstorm.meta.php
-
-phpunit.xml
-
-.php_cs.cache
-
-.phplint-cache
-
+*.DS_Store
+/vendor
+/coverage
+sftp-config.json
 composer.lock
-
-# js for cz-cli
-node_modules
-package-lock.json
+.subsplit
+.php-cs-fixer.cache
+.phpunit.result.cache
