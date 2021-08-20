@@ -3,20 +3,10 @@
 namespace TimSDK\Tests\Account;
 
 use TimSDK\Account\Client;
-use TimSDK\Application;
 use TimSDK\Tests\TestCase;
 
 class ClientTest extends TestCase
 {
-	protected function app()
-	{
-		return new Application([
-			'app_id' => 'app_id-1',
-			'key' => 'key-1',
-			'identifier' => 'admin-1',
-		]);
-	}
-
 	public function testImport()
 	{
 		$client = $this->mockApiClient(Client::class, ['import'], $this->app())->makePartial();

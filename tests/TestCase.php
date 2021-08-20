@@ -8,10 +8,20 @@
 namespace TimSDK\Tests;
 
 use PHPUnit\Framework\TestCase as BaseTestCase;
+use TimSDK\Application;
 use TimSDK\Kernel\ServiceContainer;
 
 class TestCase extends BaseTestCase
 {
+	protected function app()
+	{
+		return new Application([
+			'app_id' => 'app_id-1',
+			'key' => 'key-1',
+			'identifier' => 'admin-1',
+		]);
+	}
+
 	/**
 	 * Create API Client mock object.
 	 *
