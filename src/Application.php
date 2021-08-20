@@ -10,6 +10,7 @@ use TimSDK\Kernel\ServiceContainer;
  * @property \TimSDK\Account\Client $account
  * @property \TimSDK\Openim\Client  $openim
  * @property \TimSDK\MemberPush\Client $member_push
+ * @property \TimSDK\Profile\Client $profile
  */
 class Application extends ServiceContainer
 {
@@ -17,5 +18,6 @@ class Application extends ServiceContainer
 		Account\ServiceProvider::class,
 		Openim\ServiceProvider::class,
 		MemberPush\ServiceProvider::class,
+		Profile\ServiceProvider::class,
 	];
 }
