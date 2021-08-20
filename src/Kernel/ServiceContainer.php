@@ -4,6 +4,14 @@ namespace TimSDK\Kernel;
 
 use Pimple\Container;
 
+/**
+ * @property \TimSDK\Kernel\Config $config
+ * @property \TimSDK\Kernel\Log\LogManager $log
+ * @property \TimSDK\Kernel\Log\LogManager $logger
+ * @property \GuzzleHttp\Client $http_client
+ * @property \Symfony\Component\HttpFoundation\Request $request
+ * @property \TimSDK\Kernel\Usersig $usersig
+ */
 class ServiceContainer extends Container
 {
 	/**
@@ -76,6 +84,7 @@ class ServiceContainer extends Container
 			Providers\LogServiceProvider::class,
 			Providers\RequestServiceProvider::class,
 			Providers\HttpClientServiceProvider::class,
+			Providers\UsersigServiceProvider::class,
 		], $this->providers);
 	}
 

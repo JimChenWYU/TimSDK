@@ -8,7 +8,7 @@ use TimSDK\Kernel\Exceptions\RuntimeException;
 use TimSDK\Kernel\Support\TLSSigAPIv2;
 use TimSDK\Kernel\Traits\InteractsWithCache;
 
-abstract class Usersig implements UsersigInterface
+class Usersig implements UsersigInterface
 {
 	use InteractsWithCache;
 
@@ -114,5 +114,11 @@ abstract class Usersig implements UsersigInterface
 	 *
 	 * @return array
 	 */
-	abstract protected function getCredentials(): array;
+	protected function getCredentials(): array
+	{
+		return [
+			'app_id' => $this->app['config']->get('app_id'),
+			'key'    => $this->app['config']->get('key'),
+		];
+	}
 }

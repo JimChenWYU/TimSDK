@@ -90,9 +90,30 @@ class BaseClient
 			$this->registerHttpMiddlewares();
 		}
 
-		$response = $this->performRequest($url, $method, $options);
+		$response = $this->performRequest($url, $method, $this->castRequestQuery($options));
 
 		return $returnRaw ? $response : $this->castResponseToType($response, 'collection');
+	}
+
+	/**
+	 * @param array $options
+	 * @return array
+	 * @throws Exceptions\InvalidArgumentException
+	 * @throws Exceptions\RuntimeException
+	 * @throws \Psr\SimpleCache\InvalidArgumentException
+	 */
+	protected function castRequestQuery(array $options)
+	{
+		$options['query'] = array_merge([
+			'ver'         => 'v4',
+			'identifier'  => $this->app['config']->get('identifier'),
+			'sdkappid'    => $this->app['config']->get('app_id'),
+			'usersig'     => $this->app['usersig']->getUsersig(),
+			'random'      => random_int(0, 4294967295),
+			'contenttype' => 'json',
+		], $options['query']);
+
+		return $options;
 	}
 
 	/**
