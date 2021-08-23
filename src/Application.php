@@ -11,6 +11,7 @@ use TimSDK\Kernel\ServiceContainer;
  * @property \TimSDK\Openim\Client  $openim
  * @property \TimSDK\MemberPush\Client $member_push
  * @property \TimSDK\Profile\Client $profile
+ * @property \TimSDK\Sns\Client     $sns
  */
 class Application extends ServiceContainer
 {
@@ -19,5 +20,6 @@ class Application extends ServiceContainer
 		Openim\ServiceProvider::class,
 		MemberPush\ServiceProvider::class,
 		Profile\ServiceProvider::class,
+		Sns\ServiceProvider::class,
 	];
 }
