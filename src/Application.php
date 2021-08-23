@@ -13,6 +13,7 @@ use TimSDK\Kernel\ServiceContainer;
  * @property \TimSDK\Profile\Client $profile
  * @property \TimSDK\Sns\Client     $sns
  * @property \TimSDK\Group\Client   $group
+ * @property \TimSDK\Overall\Client $overall
  */
 class Application extends ServiceContainer
 {
@@ -23,5 +24,6 @@ class Application extends ServiceContainer
 		Profile\ServiceProvider::class,
 		Sns\ServiceProvider::class,
 		Group\ServiceProvider::class,
+		Overall\ServiceProvider::class,
 	];
 }
