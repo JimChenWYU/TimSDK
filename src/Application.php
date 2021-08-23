@@ -12,6 +12,7 @@ use TimSDK\Kernel\ServiceContainer;
  * @property \TimSDK\MemberPush\Client $member_push
  * @property \TimSDK\Profile\Client $profile
  * @property \TimSDK\Sns\Client     $sns
+ * @property \TimSDK\Group\Client   $group
  */
 class Application extends ServiceContainer
 {
@@ -21,5 +22,6 @@ class Application extends ServiceContainer
 		MemberPush\ServiceProvider::class,
 		Profile\ServiceProvider::class,
 		Sns\ServiceProvider::class,
+		Group\ServiceProvider::class,
 	];
 }
