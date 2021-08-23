@@ -67,9 +67,9 @@ class ClientTest extends TestCase
 		]));
 	}
 
-	public function testGet()
+	public function testCheckAccount()
 	{
-		$client = $this->mockApiClient(Client::class, ['getAccounts'], $this->app())->makePartial();
+		$client = $this->mockApiClient(Client::class, ['checkAccount'], $this->app())->makePartial();
 		$client->expects()->httpPostJson(
 			'v4/im_open_login_svc/account_check',
 			[
@@ -83,7 +83,7 @@ class ClientTest extends TestCase
 				'command'     => 'account_check',
 			]
 		)->andReturn('mock-result');
-		$this->assertSame('mock-result', $client->getAccounts([
+		$this->assertSame('mock-result', $client->checkAccount([
 			['UserID' => 'user-1'],
 			['UserID' => 'user-2'],
 		]));

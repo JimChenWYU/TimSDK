@@ -92,7 +92,7 @@ class Client extends BaseClient
 	 * @throws \GuzzleHttp\Exception\GuzzleException
 	 * @throws \TimSDK\Kernel\Exceptions\InvalidConfigException
 	 */
-	public function getAccounts(array $checkItem)
+	public function checkAccount(array $checkItem)
 	{
 		return $this->httpPostJson(
 			'v4/im_open_login_svc/account_check',
