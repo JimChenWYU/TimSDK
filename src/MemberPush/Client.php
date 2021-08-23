@@ -87,17 +87,17 @@ class Client extends BaseClient
 	 * 本功能仅针对旗舰版客户开放申请（如您降级为专业版将无法使用）。
 	 * @see https://cloud.tencent.com/document/product/269/45937
 	 *
-	 * @param string[] $accounts
+	 * @param string[] $toAccount
 	 * @return array|object|\Psr\Http\Message\ResponseInterface|string|\TimSDK\Kernel\Support\Collection
 	 * @throws \GuzzleHttp\Exception\GuzzleException
 	 * @throws \TimSDK\Kernel\Exceptions\InvalidConfigException
 	 */
-	public function getUserAttr(array $accounts)
+	public function getUserAttr(array $toAccount)
 	{
 		return $this->httpPostJson(
 			'v4/all_member_push/im_get_attr',
 			[
-				'To_Account' => $accounts
+				'To_Account' => $toAccount
 			],
 			[
 				'servicename' => 'all_member_push',
@@ -156,17 +156,17 @@ class Client extends BaseClient
 	 * 获取用户标签
 	 * @see https://cloud.tencent.com/document/product/269/45940
 	 *
-	 * @param string[] $accounts
+	 * @param string[] $toAccount
 	 * @return array|object|\Psr\Http\Message\ResponseInterface|string|\TimSDK\Kernel\Support\Collection
 	 * @throws \GuzzleHttp\Exception\GuzzleException
 	 * @throws \TimSDK\Kernel\Exceptions\InvalidConfigException
 	 */
-	public function getTag(array $accounts)
+	public function getTag(array $toAccount)
 	{
 		return $this->httpPostJson(
 			'v4/all_member_push/im_get_tag',
 			[
-				'To_Account' => $accounts,
+				'To_Account' => $toAccount,
 			],
 			[
 				'servicename' => 'all_member_push',
@@ -179,17 +179,17 @@ class Client extends BaseClient
 	 * 添加用户标签
 	 * @see https://cloud.tencent.com/document/product/269/45941
 	 *
-	 * @param UserTag[] $tags
+	 * @param UserTag[] $userTags
 	 * @return array|object|\Psr\Http\Message\ResponseInterface|string|\TimSDK\Kernel\Support\Collection
 	 * @throws \GuzzleHttp\Exception\GuzzleException
 	 * @throws \TimSDK\Kernel\Exceptions\InvalidConfigException
 	 */
-	public function addTag(array $tags)
+	public function addTag(array $userTags)
 	{
 		return $this->httpPostJson(
 			'v4/all_member_push/im_add_tag',
 			[
-				'UserTags' => $tags,
+				'UserTags' => $userTags,
 			],
 			[
 				'servicename' => 'all_member_push',
@@ -202,17 +202,17 @@ class Client extends BaseClient
 	 * 删除用户标签
 	 * @see https://cloud.tencent.com/document/product/269/45942
 	 *
-	 * @param UserTag[] $tags
+	 * @param UserTag[] $userTags
 	 * @return array|object|\Psr\Http\Message\ResponseInterface|string|\TimSDK\Kernel\Support\Collection
 	 * @throws \GuzzleHttp\Exception\GuzzleException
 	 * @throws \TimSDK\Kernel\Exceptions\InvalidConfigException
 	 */
-	public function removeTag(array $tags)
+	public function removeTag(array $userTags)
 	{
 		return $this->httpPostJson(
 			'v4/all_member_push/im_remove_tag',
 			[
-				'UserTags' => $tags,
+				'UserTags' => $userTags,
 			],
 			[
 				'servicename' => 'all_member_push',
@@ -225,17 +225,17 @@ class Client extends BaseClient
 	 * 删除用户所有标签
 	 * @see https://cloud.tencent.com/document/product/269/45943
 	 *
-	 * @param string[] $accounts
+	 * @param string[] $toAccount
 	 * @return array|object|\Psr\Http\Message\ResponseInterface|string|\TimSDK\Kernel\Support\Collection
 	 * @throws \GuzzleHttp\Exception\GuzzleException
 	 * @throws \TimSDK\Kernel\Exceptions\InvalidConfigException
 	 */
-	public function removeAllTags(array $accounts)
+	public function removeAllTags(array $toAccount)
 	{
 		return $this->httpPostJson(
 			'v4/all_member_push/im_remove_all_tags',
 			[
-				'To_Account' => $accounts,
+				'To_Account' => $toAccount,
 			],
 			[
 				'servicename' => 'all_member_push',

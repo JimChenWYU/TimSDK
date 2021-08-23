@@ -504,7 +504,7 @@ class Client extends BaseClient
 	 * @throws \GuzzleHttp\Exception\GuzzleException
 	 * @throws \TimSDK\Kernel\Exceptions\InvalidConfigException
 	 */
-	public function importGroup(string $type, string $name, string $ownerAccount = '', string $groupId = '', ?GroupInfo $info = null, array $appDefinedData = [], int $createTime = 0)
+	public function importGroup(string $type, string $name, string $ownerAccount = '', string $groupId = '', ?GroupInfo $info = null, array $appDefinedData = [], ?\DateTime $createTime = null)
 	{
 		return $this->httpPostJson(
 			'v4/group_open_http_svc/import_group',
@@ -515,7 +515,7 @@ class Client extends BaseClient
 				'GroupId' => $groupId,
 				'AppDefinedData' => $appDefinedData,
 			], $info ? $info->jsonSerialize() : [], $createTime ? [
-				'CreateTime' => $createTime,
+				'CreateTime' => $createTime->getTimestamp(),
 			] : []),
 			[
 				'servicename' => 'group_open_http_svc',

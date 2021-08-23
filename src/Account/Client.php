@@ -64,17 +64,17 @@ class Client extends BaseClient
 	 * 删除帐号
 	 * @see https://cloud.tencent.com/document/product/269/36443
 	 *
-	 * @param object[] $accounts
+	 * @param object[] $deleteItem
 	 * @return array|object|\Psr\Http\Message\ResponseInterface|string|\TimSDK\Kernel\Support\Collection
 	 * @throws \GuzzleHttp\Exception\GuzzleException
 	 * @throws \TimSDK\Kernel\Exceptions\InvalidConfigException
 	 */
-	public function delete(array $accounts)
+	public function delete(array $deleteItem)
 	{
 		return $this->httpPostJson(
 			'v4/im_open_login_svc/account_delete',
 			[
-				'DeleteItem' => $accounts
+				'DeleteItem' => $deleteItem
 			],
 			[
 				'servicename' => 'im_open_login_svc',
@@ -87,17 +87,17 @@ class Client extends BaseClient
 	 * 查询帐号
 	 * @see https://cloud.tencent.com/document/product/269/38417
 	 *
-	 * @param object[] $accounts
+	 * @param object[] $checkItem
 	 * @return array|object|\Psr\Http\Message\ResponseInterface|string|\TimSDK\Kernel\Support\Collection
 	 * @throws \GuzzleHttp\Exception\GuzzleException
 	 * @throws \TimSDK\Kernel\Exceptions\InvalidConfigException
 	 */
-	public function getAccounts(array $accounts)
+	public function getAccounts(array $checkItem)
 	{
 		return $this->httpPostJson(
 			'v4/im_open_login_svc/account_check',
 			[
-				'CheckItem' => $accounts
+				'CheckItem' => $checkItem
 			],
 			[
 				'servicename' => 'im_open_login_svc',
@@ -133,17 +133,17 @@ class Client extends BaseClient
 	 * 查询帐号在线状态
 	 * @see https://cloud.tencent.com/document/product/269/2566
 	 *
-	 * @param string[] $accounts
+	 * @param string[] $toAccount
 	 * @return array|object|\Psr\Http\Message\ResponseInterface|string|\TimSDK\Kernel\Support\Collection
 	 * @throws \GuzzleHttp\Exception\GuzzleException
 	 * @throws \TimSDK\Kernel\Exceptions\InvalidConfigException
 	 */
-	public function queryState(array $accounts)
+	public function queryState(array $toAccount)
 	{
 		return $this->httpPostJson(
 			'v4/openim/querystate',
 			[
-				'To_Account' => $accounts,
+				'To_Account' => $toAccount,
 			],
 			[
 				'servicename' => 'openim',

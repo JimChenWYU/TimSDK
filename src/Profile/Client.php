@@ -10,19 +10,19 @@ class Client extends BaseClient
 	 * 设置资料
 	 * @see https://cloud.tencent.com/document/product/269/1640
 	 *
-	 * @param string $account
-	 * @param Profile[]  $profileItems
+	 * @param string    $fromAccount
+	 * @param Profile[] $profileItem
 	 * @return array|object|\Psr\Http\Message\ResponseInterface|string|\TimSDK\Kernel\Support\Collection
 	 * @throws \GuzzleHttp\Exception\GuzzleException
 	 * @throws \TimSDK\Kernel\Exceptions\InvalidConfigException
 	 */
-	public function setPortrait(string $account, array $profileItems)
+	public function setPortrait(string $fromAccount, array $profileItem)
 	{
 		return $this->httpPostJson(
 			'v4/profile/portrait_set',
 			[
-				'From_Account' => $account,
-				'ProfileItem' => $profileItems
+				'From_Account' => $fromAccount,
+				'ProfileItem' => $profileItem
 			],
 			[
 				'servicename' => 'profile',
@@ -35,19 +35,19 @@ class Client extends BaseClient
 	 * 拉取资料
 	 * @see https://cloud.tencent.com/document/product/269/1639
 	 *
-	 * @param string[] $accounts
-	 * @param string[] $tags
+	 * @param string[] $toAccount
+	 * @param string[] $tagList
 	 * @return array|object|\Psr\Http\Message\ResponseInterface|string|\TimSDK\Kernel\Support\Collection
 	 * @throws \GuzzleHttp\Exception\GuzzleException
 	 * @throws \TimSDK\Kernel\Exceptions\InvalidConfigException
 	 */
-	public function getPortrait(array $accounts, array $tags)
+	public function getPortrait(array $toAccount, array $tagList)
 	{
 		return $this->httpPostJson(
 			'v4/profile/portrait_get',
 			[
-				'To_Account' => $accounts,
-				'TagList'    => $tags
+				'To_Account' => $toAccount,
+				'TagList'    => $tagList
 			],
 			[
 				'servicename' => 'profile',

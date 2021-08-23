@@ -183,17 +183,17 @@ class Client extends BaseClient
 	 * 查询单聊未读消息计数
 	 * @see https://cloud.tencent.com/document/product/269/56043
 	 *
-	 * @param string $account
+	 * @param string $toAccount
 	 * @return array|object|\Psr\Http\Message\ResponseInterface|string|\TimSDK\Kernel\Support\Collection
 	 * @throws \GuzzleHttp\Exception\GuzzleException
 	 * @throws \TimSDK\Kernel\Exceptions\InvalidConfigException
 	 */
-	public function getUnreadMsgNum(string $account)
+	public function getUnreadMsgNum(string $toAccount)
 	{
 		return $this->httpPostJson(
 			'v4/openim/get_c2c_unread_msg_num',
 			[
-				'To_Account' => $account
+				'To_Account' => $toAccount
 			],
 			[
 				'servicename' => 'openim',

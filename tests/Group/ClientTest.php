@@ -592,6 +592,7 @@ class ClientTest extends TestCase
 
 	public function testImportGroup()
 	{
+		$now = new \DateTime();
 		$client = $this->mockApiClient(Client::class, ['importGroup'], $this->app())->makePartial();
 		$client->expects()->httpPostJson(
 			'v4/group_open_http_svc/import_group',
@@ -605,7 +606,7 @@ class ClientTest extends TestCase
 				'FaceUrl' => 'http://this.is.face.url',
 				'MaxMemberCount' => 500,
 				'ApplyJoinOption' => 'FreeAccess',
-				'CreateTime' => 12345678,
+				'CreateTime' => $now->getTimestamp(),
 				'AppDefinedData' => [
 					[
 						'Key' => 'GroupTestData1',
@@ -644,7 +645,7 @@ class ClientTest extends TestCase
 					'Value' => 'abc' . "\0" . '',
 				],
 			],
-			12345678
+			$now
 		));
 	}
 

@@ -10,19 +10,19 @@ class Client extends BaseClient
 	 * 添加好友
 	 * @see https://cloud.tencent.com/document/product/269/1643
 	 *
-	 * @param string $account
-	 * @param Friend[]  $friends
+	 * @param string   $fromAccount
+	 * @param Friend[] $addFriendItem
 	 * @return array|object|\Psr\Http\Message\ResponseInterface|string|\TimSDK\Kernel\Support\Collection
 	 * @throws \GuzzleHttp\Exception\GuzzleException
 	 * @throws \TimSDK\Kernel\Exceptions\InvalidConfigException
 	 */
-	public function addFriend(string $account, array $friends)
+	public function addFriend(string $fromAccount, array $addFriendItem)
 	{
 		return $this->httpPostJson(
 			'v4/sns/friend_add',
 			[
-				'From_Account' => $account,
-				'AddFriendItem'    => $friends
+				'From_Account' => $fromAccount,
+				'AddFriendItem'    => $addFriendItem
 			],
 			[
 				'servicename' => 'sns',
@@ -35,19 +35,19 @@ class Client extends BaseClient
 	 * 导入好友
 	 * @see https://cloud.tencent.com/document/product/269/8301
 	 *
-	 * @param string $account
-	 * @param Friend[]  $friends
+	 * @param string   $fromAccount
+	 * @param Friend[] $addFriendItem
 	 * @return array|object|\Psr\Http\Message\ResponseInterface|string|\TimSDK\Kernel\Support\Collection
 	 * @throws \GuzzleHttp\Exception\GuzzleException
 	 * @throws \TimSDK\Kernel\Exceptions\InvalidConfigException
 	 */
-	public function importFriend(string $account, array $friends)
+	public function importFriend(string $fromAccount, array $addFriendItem)
 	{
 		return $this->httpPostJson(
 			'v4/sns/friend_import',
 			[
-				'From_Account' => $account,
-				'AddFriendItem'    => $friends
+				'From_Account' => $fromAccount,
+				'AddFriendItem'    => $addFriendItem
 			],
 			[
 				'servicename' => 'sns',
@@ -57,19 +57,19 @@ class Client extends BaseClient
 	}
 
 	/**
-	 * @param string $account
-	 * @param UpdateFriend[]  $friends
+	 * @param string         $fromAccount
+	 * @param UpdateFriend[] $updateItem
 	 * @return array|object|\Psr\Http\Message\ResponseInterface|string|\TimSDK\Kernel\Support\Collection
 	 * @throws \GuzzleHttp\Exception\GuzzleException
 	 * @throws \TimSDK\Kernel\Exceptions\InvalidConfigException
 	 */
-	public function updateFriend(string $account, array $friends)
+	public function updateFriend(string $fromAccount, array $updateItem)
 	{
 		return $this->httpPostJson(
 			'v4/sns/friend_update',
 			[
-				'From_Account' => $account,
-				'UpdateItem'    => $friends
+				'From_Account' => $fromAccount,
+				'UpdateItem'    => $updateItem
 			],
 			[
 				'servicename' => 'sns',
@@ -105,6 +105,15 @@ class Client extends BaseClient
 		);
 	}
 
+	/**
+	 * 删除所有好友
+	 * @see https://cloud.tencent.com/document/product/269/1645
+	 *
+	 * @param string $fromAccount
+	 * @return array|object|\Psr\Http\Message\ResponseInterface|string|\TimSDK\Kernel\Support\Collection
+	 * @throws \GuzzleHttp\Exception\GuzzleException
+	 * @throws \TimSDK\Kernel\Exceptions\InvalidConfigException
+	 */
 	public function deleteAllFriend(string $fromAccount)
 	{
 		return $this->httpPostJson(
@@ -123,20 +132,20 @@ class Client extends BaseClient
 	 * 校验好友
 	 * @see https://cloud.tencent.com/document/product/269/1646
 	 *
-	 * @param string $fromAccount
-	 * @param string[]  $toAccounts
-	 * @param bool   $both
+	 * @param string   $fromAccount
+	 * @param string[] $toAccount
+	 * @param bool     $both
 	 * @return array|object|\Psr\Http\Message\ResponseInterface|string|\TimSDK\Kernel\Support\Collection
 	 * @throws \GuzzleHttp\Exception\GuzzleException
 	 * @throws \TimSDK\Kernel\Exceptions\InvalidConfigException
 	 */
-	public function checkFriend(string $fromAccount, array $toAccounts, bool $both = true)
+	public function checkFriend(string $fromAccount, array $toAccount, bool $both = true)
 	{
 		return $this->httpPostJson(
 			'v4/sns/friend_check',
 			[
 				'From_Account' => $fromAccount,
-				'To_Account'   => $toAccounts,
+				'To_Account'   => $toAccount,
 				'CheckType'    => $both ? 'CheckResult_Type_Both' : 'CheckResult_Type_Single',
 			],
 			[
@@ -176,20 +185,20 @@ class Client extends BaseClient
 	}
 
 	/**
-	 * @param string $fromAccount
-	 * @param string[] $toAccounts
-	 * @param string[]  $tagList
+	 * @param string   $fromAccount
+	 * @param string[] $toAccount
+	 * @param string[] $tagList
 	 * @return array|object|\Psr\Http\Message\ResponseInterface|string|\TimSDK\Kernel\Support\Collection
 	 * @throws \GuzzleHttp\Exception\GuzzleException
 	 * @throws \TimSDK\Kernel\Exceptions\InvalidConfigException
 	 */
-	public function getFriendList(string $fromAccount, array $toAccounts, array $tagList)
+	public function getFriendList(string $fromAccount, array $toAccount, array $tagList)
 	{
 		return $this->httpPostJson(
 			'v4/sns/friend_get_list',
 			[
 				'From_Account' => $fromAccount,
-				'To_Account'   => $toAccounts,
+				'To_Account'   => $toAccount,
 				'TagList'      => $tagList,
 			],
 			[
@@ -203,19 +212,19 @@ class Client extends BaseClient
 	 * 添加黑名单
 	 * @see https://cloud.tencent.com/document/product/269/3718
 	 *
-	 * @param string $fromAccount
-	 * @param string[]  $toAccounts
+	 * @param string   $fromAccount
+	 * @param string[] $toAccount
 	 * @return array|object|\Psr\Http\Message\ResponseInterface|string|\TimSDK\Kernel\Support\Collection
 	 * @throws \GuzzleHttp\Exception\GuzzleException
 	 * @throws \TimSDK\Kernel\Exceptions\InvalidConfigException
 	 */
-	public function addBlacklist(string $fromAccount, array $toAccounts)
+	public function addBlacklist(string $fromAccount, array $toAccount)
 	{
 		return $this->httpPostJson(
 			'v4/sns/black_list_add',
 			[
 				'From_Account' => $fromAccount,
-				'To_Account'   => $toAccounts,
+				'To_Account'   => $toAccount,
 			],
 			[
 				'servicename' => 'sns',
@@ -228,19 +237,19 @@ class Client extends BaseClient
 	 * 删除黑名单
 	 * @see https://cloud.tencent.com/document/product/269/3719
 	 *
-	 * @param string $fromAccount
-	 * @param string[]  $toAccounts
+	 * @param string   $fromAccount
+	 * @param string[] $toAccount
 	 * @return array|object|\Psr\Http\Message\ResponseInterface|string|\TimSDK\Kernel\Support\Collection
 	 * @throws \GuzzleHttp\Exception\GuzzleException
 	 * @throws \TimSDK\Kernel\Exceptions\InvalidConfigException
 	 */
-	public function deleteBlacklist(string $fromAccount, array $toAccounts)
+	public function deleteBlacklist(string $fromAccount, array $toAccount)
 	{
 		return $this->httpPostJson(
 			'v4/sns/black_list_delete',
 			[
 				'From_Account' => $fromAccount,
-				'To_Account'   => $toAccounts,
+				'To_Account'   => $toAccount,
 			],
 			[
 				'servicename' => 'sns',
@@ -282,20 +291,20 @@ class Client extends BaseClient
 	 * 校验黑名单
 	 * @see https://cloud.tencent.com/document/product/269/3725
 	 *
-	 * @param string $fromAccount
-	 * @param string[]  $toAccounts
-	 * @param bool   $both
+	 * @param string   $fromAccount
+	 * @param string[] $toAccount
+	 * @param bool     $both
 	 * @return array|object|\Psr\Http\Message\ResponseInterface|string|\TimSDK\Kernel\Support\Collection
 	 * @throws \GuzzleHttp\Exception\GuzzleException
 	 * @throws \TimSDK\Kernel\Exceptions\InvalidConfigException
 	 */
-	public function checkBlacklist(string $fromAccount, array $toAccounts, bool $both = true)
+	public function checkBlacklist(string $fromAccount, array $toAccount, bool $both = true)
 	{
 		return $this->httpPostJson(
 			'v4/sns/black_list_check',
 			[
 				'From_Account' => $fromAccount,
-				'To_Account'   => $toAccounts,
+				'To_Account'   => $toAccount,
 				'CheckType'    => $both ? 'BlackCheckResult_Type_Both' : 'BlackCheckResult_Type_Single',
 			],
 			[
@@ -309,21 +318,21 @@ class Client extends BaseClient
 	 * 添加分组
 	 * @see https://cloud.tencent.com/document/product/269/10107
 	 *
-	 * @param string $fromAccount
-	 * @param string[]  $groupNames
-	 * @param string[]  $toAccounts
+	 * @param string   $fromAccount
+	 * @param string[] $groupNames
+	 * @param string[] $toAccount
 	 * @return array|object|\Psr\Http\Message\ResponseInterface|string|\TimSDK\Kernel\Support\Collection
 	 * @throws \GuzzleHttp\Exception\GuzzleException
 	 * @throws \TimSDK\Kernel\Exceptions\InvalidConfigException
 	 */
-	public function addGroup(string $fromAccount, array $groupNames, array $toAccounts = [])
+	public function addGroup(string $fromAccount, array $groupNames, array $toAccount = [])
 	{
 		return $this->httpPostJson(
 			'v4/sns/group_add',
 			[
 				'From_Account' => $fromAccount,
 				'GroupName'    => $groupNames,
-				'To_Account'   => $toAccounts,
+				'To_Account'   => $toAccount,
 			],
 			[
 				'servicename' => 'sns',
