@@ -14,6 +14,7 @@ use TimSDK\Kernel\ServiceContainer;
  * @property \TimSDK\Sns\Client     $sns
  * @property \TimSDK\Group\Client   $group
  * @property \TimSDK\Overall\Client $overall
+ * @property \TimSDK\Operate\Client $operate
  */
 class Application extends ServiceContainer
 {
@@ -25,5 +26,6 @@ class Application extends ServiceContainer
 		Sns\ServiceProvider::class,
 		Group\ServiceProvider::class,
 		Overall\ServiceProvider::class,
+		Operate\ServiceProvider::class,
 	];
 }
