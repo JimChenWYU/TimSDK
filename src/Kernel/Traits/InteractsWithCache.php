@@ -8,6 +8,7 @@ use Symfony\Component\Cache\Adapter\FilesystemAdapter;
 use Symfony\Component\Cache\Psr16Cache;
 use TimSDK\Kernel\Exceptions\InvalidArgumentException;
 use TimSDK\Kernel\ServiceContainer;
+use Symfony\Component\Cache\Simple\FilesystemCache;
 
 trait InteractsWithCache
 {
