@@ -36,8 +36,7 @@ use TimSDK;
 $options = [
   'app_id'      => '14000xxxx',
   'identifier'  => 'admin',
-  'private_key' => 'Your private key',
-  'public_key'  => 'Your public key',
+  'key' => 'Your key',
   'http'        => [
 	'timeout'  => 30,
   ],
