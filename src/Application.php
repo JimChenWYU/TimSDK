@@ -2,6 +2,8 @@
 
 namespace TimSDK;
 
+use Closure;
+use TimSDK\Notify;
 use TimSDK\Kernel\ServiceContainer;
 
 /**
@@ -28,4 +30,17 @@ class Application extends ServiceContainer
 		Overall\ServiceProvider::class,
 		Operate\ServiceProvider::class,
 	];
+
+	/**
+	 * 第三方回调
+	 * @see https://cloud.tencent.com/document/product/269/1522
+	 *
+	 * @param \Closure $closure
+	 * @return false|mixed
+	 * @throws \TimSDK\Kernel\Exceptions\Exception
+	 */
+	public function handleNotify(Closure $closure)
+	{
+		return (new Notify\Message($this))->handle($closure);
+	}
 }
