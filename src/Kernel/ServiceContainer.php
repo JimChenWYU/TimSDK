@@ -8,13 +8,21 @@ use Pimple\Container;
  * @property \TimSDK\Kernel\Config $config
  * @property \TimSDK\Kernel\Log\LogManager $log
  * @property \TimSDK\Kernel\Log\LogManager $logger
- * @property \GuzzleHttp\Client $http_client
+ * @property \Psr\Http\Client\ClientInterface $http_client
+ * @property \Psr\Http\Message\RequestInterface $http_client_request
  * @property \Symfony\Component\HttpFoundation\Request $request
- * @property \TimSDK\Kernel\Usersig $usersig
+ * @property \TimSDK\Kernel\Contracts\UsersigInterface $usersig
  * @property \Symfony\Component\EventDispatcher\EventDispatcher $events
  */
 class ServiceContainer extends Container
 {
+	/**
+	 * The current globally available container (if any).
+	 *
+	 * @var static
+	 */
+	protected static $instance;
+
     /**
      * @var string
      */
@@ -46,12 +54,22 @@ class ServiceContainer extends Container
 
         $this->id = $id;
 
+	    static::setInstance($this);
+
         $this->registerProviders($this->getProviders());
 
 	    $this->events->dispatch(new Events\ApplicationInitialized($this));
     }
 
-    /**
+	/**
+	 * __destruct
+	 */
+	public function __destruct()
+	{
+		static::setInstance(null);
+	}
+
+	/**
      * @return string
      */
     public function getId()
@@ -147,4 +165,29 @@ class ServiceContainer extends Container
             parent::register(new $provider());
         }
     }
+
+	/**
+	 * Get the globally available instance of the container.
+	 *
+	 * @return static
+	 */
+	public static function getInstance()
+	{
+		if (is_null(static::$instance)) {
+			static::$instance = new static;
+		}
+
+		return static::$instance;
+	}
+
+	/**
+	 * Set the shared instance of the container.
+	 *
+	 * @param  \Pimple\Container|null  $container
+	 * @return \Pimple\Container|static
+	 */
+	public static function setInstance(Container $container = null)
+	{
+		return static::$instance = $container;
+	}
 }

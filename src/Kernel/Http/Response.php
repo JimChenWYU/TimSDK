@@ -2,11 +2,11 @@
 
 namespace TimSDK\Kernel\Http;
 
-use GuzzleHttp\Psr7\Response as GuzzleResponse;
+use Nyholm\Psr7\Response as Psr7Response;
 use Psr\Http\Message\ResponseInterface;
 use TimSDK\Kernel\Support\Collection;
 
-class Response extends GuzzleResponse
+class Response extends Psr7Response
 {
     /**
      * @return string

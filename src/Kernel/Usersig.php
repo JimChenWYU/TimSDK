@@ -6,11 +6,11 @@ use TimSDK\Kernel\Contracts\UsersigInterface;
 use TimSDK\Kernel\Exceptions\InvalidArgumentException;
 use TimSDK\Kernel\Exceptions\RuntimeException;
 use TimSDK\Kernel\Support\TLSSigAPIv2;
-use TimSDK\Kernel\Traits\InteractsWithCache;
+use TimSDK\Kernel\Traits\InteractWithCache;
 
 class Usersig implements UsersigInterface
 {
-    use InteractsWithCache;
+    use InteractWithCache;
 
     /**
      * @var \TimSDK\Kernel\ServiceContainer

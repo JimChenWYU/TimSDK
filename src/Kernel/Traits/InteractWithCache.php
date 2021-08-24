@@ -10,7 +10,7 @@ use TimSDK\Kernel\Exceptions\InvalidArgumentException;
 use TimSDK\Kernel\ServiceContainer;
 use Symfony\Component\Cache\Simple\FilesystemCache;
 
-trait InteractsWithCache
+trait InteractWithCache
 {
     /**
      * @var \Psr\SimpleCache\CacheInterface
