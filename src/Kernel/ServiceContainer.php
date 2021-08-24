@@ -11,6 +11,7 @@ use Pimple\Container;
  * @property \GuzzleHttp\Client $http_client
  * @property \Symfony\Component\HttpFoundation\Request $request
  * @property \TimSDK\Kernel\Usersig $usersig
+ * @property \Symfony\Component\EventDispatcher\EventDispatcher $events
  */
 class ServiceContainer extends Container
 {
@@ -46,6 +47,8 @@ class ServiceContainer extends Container
         $this->id = $id;
 
         $this->registerProviders($this->getProviders());
+
+	    $this->events->dispatch(new Events\ApplicationInitialized($this));
     }
 
     /**
@@ -85,6 +88,7 @@ class ServiceContainer extends Container
             Providers\RequestServiceProvider::class,
             Providers\HttpClientServiceProvider::class,
             Providers\UsersigServiceProvider::class,
+	        Providers\EventDispatcherServiceProvider::class,
         ], $this->providers);
     }
 

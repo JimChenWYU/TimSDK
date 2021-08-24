@@ -92,6 +92,8 @@ class BaseClient
 
         $response = $this->performRequest($url, $method, $this->castRequestQuery($options));
 
+	    $this->app->events->dispatch(new Events\HttpResponseCreated($response));
+
         return $returnRaw ? $response : $this->castResponseToType($response, 'collection');
     }
 
