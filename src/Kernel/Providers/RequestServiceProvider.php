@@ -8,10 +8,10 @@ use Symfony\Component\HttpFoundation\Request;
 
 class RequestServiceProvider implements ServiceProviderInterface
 {
-	public function register(Container $pimple)
-	{
-		!isset($pimple['request']) && $pimple['request'] = function () {
-			return Request::createFromGlobals();
-		};
-	}
+    public function register(Container $pimple)
+    {
+        !isset($pimple['request']) && $pimple['request'] = function () {
+            return Request::createFromGlobals();
+        };
+    }
 }

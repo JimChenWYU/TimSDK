@@ -7,10 +7,10 @@ use Pimple\ServiceProviderInterface;
 
 class ServiceProvider implements ServiceProviderInterface
 {
-	public function register(Container $pimple)
-	{
-		!isset($pimple['member_push']) && $pimple['member_push'] = function ($app) {
-			return new Client($app);
-		};
-	}
+    public function register(Container $pimple)
+    {
+        !isset($pimple['member_push']) && $pimple['member_push'] = function ($app) {
+            return new Client($app);
+        };
+    }
 }
