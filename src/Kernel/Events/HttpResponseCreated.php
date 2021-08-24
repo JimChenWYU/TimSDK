@@ -6,13 +6,13 @@ use Psr\Http\Message\ResponseInterface;
 
 class HttpResponseCreated
 {
-	/**
-	 * @var \Psr\Http\Message\ResponseInterface
-	 */
-	public $response;
+    /**
+     * @var \Psr\Http\Message\ResponseInterface
+     */
+    public $response;
 
-	public function __construct(ResponseInterface $response)
-	{
-		$this->response = $response;
-	}
+    public function __construct(ResponseInterface $response)
+    {
+        $this->response = $response;
+    }
 }

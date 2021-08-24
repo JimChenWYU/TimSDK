@@ -10,7 +10,7 @@ class UsersigServiceProvider implements ServiceProviderInterface
 {
     public function register(Container $pimple)
     {
-	    $pimple['usersig'] ?? $pimple['usersig'] = function ($app) {
+        $pimple['usersig'] ?? $pimple['usersig'] = function ($app) {
             return new Usersig($app);
         };
     }

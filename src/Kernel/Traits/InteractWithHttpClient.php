@@ -65,7 +65,7 @@ trait InteractWithHttpClient
             if (property_exists($this, 'app') && $this->app['http_client']) {
                 $this->httpClient = $this->app['http_client'];
             } else {
-            	$this->httpClient = ServiceContainer::getInstance()->http_client;
+                $this->httpClient = ServiceContainer::getInstance()->http_client;
             }
         }
 
@@ -93,19 +93,19 @@ trait InteractWithHttpClient
             $options['base_uri'] = $this->baseUri;
         }
 
-	    $headers = $options['headers'] ?? [];
-	    $body = $options['body'] ?? null;
-	    $version = $options['version'] ?? '1.1';
+        $headers = $options['headers'] ?? [];
+        $body = $options['body'] ?? null;
+        $version = $options['version'] ?? '1.1';
         $response = $this->getHttpClient()->sendRequest(new Psr7\Request($method, $url, $headers, $body, $version));
         $response->getBody()->rewind();
 
         return $response;
     }
 
-	/**
-	 * @param array $options
-	 * @return array
-	 */
+    /**
+     * @param array $options
+     * @return array
+     */
     protected function fixJsonIssue(array $options): array
     {
         if (isset($options['json']) && is_array($options['json'])) {
@@ -117,9 +117,9 @@ trait InteractWithHttpClient
                 $options['body'] = json_encode($options['json'], JSON_UNESCAPED_UNICODE);
             }
 
-	        if (\JSON_ERROR_NONE !== \json_last_error()) {
-		        throw new InvalidArgumentException('json_encode error: ' . \json_last_error_msg());
-	        }
+            if (\JSON_ERROR_NONE !== \json_last_error()) {
+                throw new InvalidArgumentException('json_encode error: ' . \json_last_error_msg());
+            }
 
             unset($options['json']);
         }

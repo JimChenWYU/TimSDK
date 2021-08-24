@@ -6,13 +6,13 @@ use TimSDK\Kernel\ServiceContainer;
 
 class ApplicationInitialized
 {
-	/**
-	 * @var \TimSDK\Kernel\ServiceContainer
-	 */
-	public $app;
+    /**
+     * @var \TimSDK\Kernel\ServiceContainer
+     */
+    public $app;
 
-	public function __construct(ServiceContainer $app)
-	{
-		$this->app = $app;
-	}
+    public function __construct(ServiceContainer $app)
+    {
+        $this->app = $app;
+    }
 }

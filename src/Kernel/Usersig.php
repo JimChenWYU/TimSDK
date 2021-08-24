@@ -53,7 +53,7 @@ class Usersig implements UsersigInterface
 
         $this->setUsersig($usersig, $expire);
 
-	    $this->app->events->dispatch(new Events\UsersigRefreshed($this));
+        $this->app->events->dispatch(new Events\UsersigRefreshed($this));
 
         return $usersig;
     }

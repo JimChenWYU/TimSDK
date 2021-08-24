@@ -16,12 +16,12 @@ use Pimple\Container;
  */
 class ServiceContainer extends Container
 {
-	/**
-	 * The current globally available container (if any).
-	 *
-	 * @var static
-	 */
-	protected static $instance;
+    /**
+     * The current globally available container (if any).
+     *
+     * @var static
+     */
+    protected static $instance;
 
     /**
      * @var string
@@ -54,22 +54,22 @@ class ServiceContainer extends Container
 
         $this->id = $id;
 
-	    static::setInstance($this);
+        static::setInstance($this);
 
         $this->registerProviders($this->getProviders());
 
-	    $this->events->dispatch(new Events\ApplicationInitialized($this));
+        $this->events->dispatch(new Events\ApplicationInitialized($this));
     }
 
-	/**
-	 * __destruct
-	 */
-	public function __destruct()
-	{
-		static::setInstance(null);
-	}
+    /**
+     * __destruct
+     */
+    public function __destruct()
+    {
+        static::setInstance(null);
+    }
 
-	/**
+    /**
      * @return string
      */
     public function getId()
@@ -106,7 +106,7 @@ class ServiceContainer extends Container
             Providers\RequestServiceProvider::class,
             Providers\HttpClientServiceProvider::class,
             Providers\UsersigServiceProvider::class,
-	        Providers\EventDispatcherServiceProvider::class,
+            Providers\EventDispatcherServiceProvider::class,
         ], $this->providers);
     }
 
@@ -166,28 +166,28 @@ class ServiceContainer extends Container
         }
     }
 
-	/**
-	 * Get the globally available instance of the container.
-	 *
-	 * @return static
-	 */
-	public static function getInstance()
-	{
-		if (is_null(static::$instance)) {
-			static::$instance = new static;
-		}
+    /**
+     * Get the globally available instance of the container.
+     *
+     * @return static
+     */
+    public static function getInstance()
+    {
+        if (is_null(static::$instance)) {
+            static::$instance = new static();
+        }
 
-		return static::$instance;
-	}
+        return static::$instance;
+    }
 
-	/**
-	 * Set the shared instance of the container.
-	 *
-	 * @param  \Pimple\Container|null  $container
-	 * @return \Pimple\Container|static
-	 */
-	public static function setInstance(Container $container = null)
-	{
-		return static::$instance = $container;
-	}
+    /**
+     * Set the shared instance of the container.
+     *
+     * @param  \Pimple\Container|null  $container
+     * @return \Pimple\Container|static
+     */
+    public static function setInstance(Container $container = null)
+    {
+        return static::$instance = $container;
+    }
 }
