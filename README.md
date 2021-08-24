@@ -17,14 +17,14 @@ IM Sdk for Tencent Instant Messaging.
 
 ## Requirement
 
-1. PHP >= 5.5.9
+1. PHP >= 7.2
 2. **[Composer](https://getcomposer.org/)**
-3. Openssl Extension
+3. Openssl Extension, Curl Extension
 
 ## Installation
 
 ```bash
-$ composer require jimchen/tim-sdk -vvv
+$ composer require "jimchen/tim-sdk:^2.0"
 ```
 
 ## Usage
@@ -32,7 +32,6 @@ Basic Usage:
 
 ```php
 use TimSDK;
-use TimSDK\Core\API;
 
 $options = [
   'app_id'      => '14000xxxx',
@@ -40,39 +39,16 @@ $options = [
   'private_key' => 'Your private key',
   'public_key'  => 'Your public key',
   'http'        => [
-	'timeout'  => 5,
-	'base_uri' => 'Your base url',
+	'timeout'  => 30,
   ],
 ];
-
-$app = new TimCloud($options);
-
-/**
- * Call api uri
- */
-$response = $app->request(API::DIRTY_WORDS_GET);
-
-/**
- * or call api alias
- */
-$response = $app->request('DIRTY_WORDS_GET');
-
-/**
- * or call a magic function
- */
-$response = $app->requestDirtyWordsGet();
-
-var_dump($response);
+$app = new TimSDK\Application($options);
+$collect = $app->account->import('identifier', 'nickname', 'faceUrl');
 ```
-
-more [API Constants](https://github.com/JimChenWYU/TimSDK/blob/master/src/Core/API.php)
-
-more details focus on this [demo](https://github.com/JimChenWYU/TimSDK-example)
 
 ## Documentation
 
-1. [Configuration Parameters](https://github.com/JimChenWYU/TimSDK/tree/master/docs/config.md)
-2. [TimCloud](https://github.com/JimChenWYU/TimSDK/tree/master/docs/tim-cloud.md)
+- [Tencent Tim](https://cloud.tencent.com/document/product/269/1519)
 
 ## License
 
