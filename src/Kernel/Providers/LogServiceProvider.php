@@ -10,7 +10,7 @@ class LogServiceProvider implements ServiceProviderInterface
 {
     public function register(Container $pimple)
     {
-        !isset($pimple['log']) && $pimple['log'] = function ($app) {
+	    $pimple['log'] ?? $pimple['log'] = function ($app) {
             $config = $this->formatLogConfig($app);
 
             if (!empty($config)) {
