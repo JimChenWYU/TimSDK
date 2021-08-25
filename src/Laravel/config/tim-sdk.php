@@ -1,12 +1,12 @@
 <?php
 
 return [
-	// 应用id
-	'app_id'     => env('TIM_APP_ID'),
-	// 应用秘钥
-	'key'        => env('TIM_KEY'),
-	// 默认管理员账号
-	'identifier' => 'administrator',
+    // 应用id
+    'app_id' => env('TIM_APP_ID'),
+    // 应用秘钥
+    'key' => env('TIM_KEY'),
+    // 默认管理员账号
+    'identifier' => 'administrator',
 
 //	http 客户端配置
 //	'http'       => [
