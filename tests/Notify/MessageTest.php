@@ -47,7 +47,7 @@ class MessageTest extends TestCase
             return false;
         });
         $this->assertSame([
-            'ActionStatus' => 'OK',
+            'ActionStatus' => 'FAIL',
             'ErrorCode' => 1,
             'ErrorInfo' => '',
         ], json_decode($response->getContent(), true));
@@ -56,7 +56,7 @@ class MessageTest extends TestCase
         $response = $notify->handle(function () {
         });
         $this->assertSame([
-            'ActionStatus' => 'OK',
+            'ActionStatus' => 'FAIL',
             'ErrorCode' => 1,
             'ErrorInfo' => '',
         ], json_decode($response->getContent(), true));
@@ -65,7 +65,7 @@ class MessageTest extends TestCase
             $fail('fails.', 10001);
         });
         $this->assertSame([
-            'ActionStatus' => 'OK',
+            'ActionStatus' => 'FAIL',
             'ErrorCode' => 10001,
             'ErrorInfo' => 'fails.',
         ], json_decode($response->getContent(), true));
