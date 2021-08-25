@@ -11,6 +11,7 @@ namespace TimSDK\Tests;
 use PHPUnit\Framework\TestCase as BaseTestCase;
 use TimSDK\Application;
 use TimSDK\Kernel\ServiceContainer;
+use TimSDK\Kernel\UserSig;
 
 class TestCase extends BaseTestCase
 {
@@ -40,7 +41,8 @@ class TestCase extends BaseTestCase
 
         $client = \Mockery::mock(
             $name."[{$methods}]",
-            [ $app ?? \Mockery::mock(ServiceContainer::class), ]
+            [ $app ?? \Mockery::mock(ServiceContainer::class),
+	            \Mockery::mock(UserSig::class), ]
         )->shouldAllowMockingProtectedMethods();
         $client->allows()->registerHttpMiddlewares()->andReturnNull();
 
