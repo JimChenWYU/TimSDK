@@ -8,6 +8,7 @@ use TimSDK\Kernel\ServiceContainer;
 /**
  * Class Application
  *
+ * @property \TimSDK\Auth\UserSig   $user_sig
  * @property \TimSDK\Account\Client $account
  * @property \TimSDK\Openim\Client  $openim
  * @property \TimSDK\MemberPush\Client $member_push
@@ -20,6 +21,7 @@ use TimSDK\Kernel\ServiceContainer;
 class Application extends ServiceContainer
 {
     protected $providers = [
+    	Auth\ServiceProvider::class,
         Account\ServiceProvider::class,
         Openim\ServiceProvider::class,
         MemberPush\ServiceProvider::class,

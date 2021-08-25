@@ -3,6 +3,7 @@
 namespace TimSDK\Kernel;
 
 use Psr\Http\Message\ResponseInterface;
+use TimSDK\Kernel\Contracts\UserSigInterface;
 use TimSDK\Kernel\Exceptions\InvalidConfigException;
 use TimSDK\Kernel\Support\Collection;
 use TimSDK\Kernel\Traits\InteractWithHttpClient;
@@ -14,23 +15,29 @@ class BaseClient
     }
 
     /**
-     * @var ServiceContainer
+     * @var \TimSDK\Kernel\ServiceContainer
      */
     protected $app;
+
+	/**
+	 * @var \TimSDK\Kernel\Contracts\UserSigInterface
+	 */
+	protected $userSig;
 
     /**
      * @var string
      */
     protected $baseUri;
 
-    /**
-     * BaseClient constructor.
-     *
-     * @param ServiceContainer $app
-     */
-    public function __construct(ServiceContainer $app)
+	/**
+	 * BaseClient constructor.
+	 * @param ServiceContainer      $app
+	 * @param UserSigInterface|null $userSig
+	 */
+    public function __construct(ServiceContainer $app, UserSigInterface $userSig = null)
     {
         $this->app = $app;
+	    $this->userSig = $userSig ?? $this->app['user_sig'];
     }
 
     /**
@@ -88,7 +95,9 @@ class BaseClient
         $options['query'] = array_merge([
             'ver' => 'v4',
             'identifier' => $this->app->config->get('app_id'),
-            'usersig' => $this->app->usersig->getUsersig(),
+            'usersig' => $this->userSig->getUserSig(
+            	$this->app->config->get('identifier', 'administrator')
+            ),
             'random' => random_int(0, 4294967295),
             'contenttype' => 'json',
         ], $options['query']);

@@ -5,13 +5,12 @@ namespace TimSDK\Kernel;
 use Pimple\Container;
 
 /**
- * @property \TimSDK\Kernel\Config $config
- * @property \TimSDK\Kernel\Log\LogManager $log
- * @property \TimSDK\Kernel\Log\LogManager $logger
- * @property \Psr\Http\Client\ClientInterface $http_client
- * @property \Psr\Http\Message\RequestInterface $http_client_request
- * @property \Symfony\Component\HttpFoundation\Request $request
- * @property \TimSDK\Kernel\Contracts\UsersigInterface $usersig
+ * @property \TimSDK\Kernel\Config                              $config
+ * @property \TimSDK\Kernel\Log\LogManager                      $log
+ * @property \TimSDK\Kernel\Log\LogManager                      $logger
+ * @property \Psr\Http\Client\ClientInterface                   $http_client
+ * @property \Psr\Http\Message\RequestInterface                 $http_client_request
+ * @property \Symfony\Component\HttpFoundation\Request          $request
  * @property \Symfony\Component\EventDispatcher\EventDispatcher $events
  */
 class ServiceContainer extends Container
@@ -97,7 +96,6 @@ class ServiceContainer extends Container
             Providers\LogServiceProvider::class,
             Providers\RequestServiceProvider::class,
             Providers\HttpClientServiceProvider::class,
-            Providers\UsersigServiceProvider::class,
 	        Providers\EventDispatcherServiceProvider::class,
         ], $this->providers);
     }

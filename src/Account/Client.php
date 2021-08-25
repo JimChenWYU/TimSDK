@@ -87,7 +87,7 @@ class Client extends BaseClient
      * 查询帐号
      * @see https://cloud.tencent.com/document/product/269/38417
      *
-     * @param object[] $checkItem
+     * @param array[] $checkItem
      * @return array|object|\Psr\Http\Message\ResponseInterface|string|\TimSDK\Kernel\Support\Collection
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \TimSDK\Kernel\Exceptions\InvalidConfigException

@@ -14,13 +14,7 @@ class ApplicationTest extends TestCase
             'identifier' => 'admin-1',
         ]);
 
-		$this->assertInstanceOf(\TimSDK\Kernel\Config::class, $app->config);
-		$this->assertInstanceOf(\TimSDK\Kernel\Log\LogManager::class, $app->log);
-		$this->assertInstanceOf(\TimSDK\Kernel\Log\LogManager::class, $app->logger);
-		$this->assertSame($app->log, $app->logger);
-		$this->assertInstanceOf(\GuzzleHttp\Client::class, $app->http_client);
-		$this->assertInstanceOf(\Symfony\Component\HttpFoundation\Request::class, $app->request);
-		$this->assertInstanceOf(\TimSDK\Kernel\Usersig::class, $app->usersig);
+		$this->assertInstanceOf(\TimSDK\Auth\UserSig::class, $app->user_sig);
 
 		$this->assertInstanceOf(\TimSDK\Account\Client::class, $app->account);
 		$this->assertInstanceOf(\TimSDK\Openim\Client::class, $app->openim);
