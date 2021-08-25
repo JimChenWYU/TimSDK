@@ -8,6 +8,9 @@ use TimSDK\Kernel\Exceptions\Exception;
 
 class Message
 {
+	public const OK = 'OK';
+	public const FAIL = 'FAIL';
+
     /**
      * @var \TimSDK\Application
      */
@@ -120,7 +123,7 @@ class Message
     public function toResponse(): Response
     {
         $base = [
-            'ActionStatus' => 'OK',
+            'ActionStatus' => $this->errCode === 0 ? static::OK : static::FAIL,
             'ErrorCode' => $this->errCode,
             'ErrorInfo' => $this->fail,
         ];
