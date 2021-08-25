@@ -17,7 +17,6 @@ abstract class UserSig implements UserSigInterface
      */
     protected $app;
 
-
     /**
      * @var string
      */
