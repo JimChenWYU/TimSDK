@@ -48,7 +48,7 @@ class LogServiceProvider implements ServiceProviderInterface
                 'channels' => [
                     'single' => [
                         'driver' => 'single',
-                        'path' => $app['config']->get('log.file') ?: sys_get_temp_dir() . '/logs/volcengine.log',
+                        'path' => $app['config']->get('log.file') ?: sys_get_temp_dir() . '/logs/tim-sdk.log',
                         'level' => $app['config']->get('log.level', 'debug'),
                     ],
                 ],
