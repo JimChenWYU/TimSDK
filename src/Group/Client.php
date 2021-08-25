@@ -119,10 +119,13 @@ class Client extends BaseClient
     }
 
     /**
+     * 修改群基础资料
+     * @see https://cloud.tencent.com/document/product/269/1620
+     *
      * @param string                       $groupId
      * @param string                       $name
      * @param bool                         $shutUpAllMember
-     * @param array[]                      $appDefinedData
+     * @param KVItem[]                     $appDefinedData
      * @param \TimSDK\Group\GroupInfo|null $info
      * @return \TimSDK\Kernel\Support\Collection
      * @throws \GuzzleHttp\Exception\GuzzleException
@@ -156,7 +159,7 @@ class Client extends BaseClient
      * @see https://cloud.tencent.com/document/product/269/1621
      *
      * @param string $groupId
-     * @param array  $memberList
+     * @param Member[] $memberList
      * @param bool   $silence
      * @return \TimSDK\Kernel\Support\Collection
      * @throws \GuzzleHttp\Exception\GuzzleException
@@ -183,7 +186,7 @@ class Client extends BaseClient
      * @see https://cloud.tencent.com/document/product/269/1622
      *
      * @param string $groupId
-     * @param array  $memberToDelAccount
+     * @param string[] $memberToDelAccount
      * @param bool   $silence
      * @return \TimSDK\Kernel\Support\Collection
      * @throws \GuzzleHttp\Exception\GuzzleException
@@ -215,7 +218,7 @@ class Client extends BaseClient
      * @param string $msgFlag
      * @param string $nameCard
      * @param int    $shutUpTime
-     * @param array  $appMemberDefinedData
+     * @param KVItem[] $appMemberDefinedData
      * @return \TimSDK\Kernel\Support\Collection
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \TimSDK\Kernel\Exceptions\InvalidConfigException
@@ -324,20 +327,20 @@ class Client extends BaseClient
      * 批量禁言和取消禁言
      * @see https://cloud.tencent.com/document/product/269/2925
      *
-     * @param string $groupId
-     * @param array  $membersAccounts
-     * @param int    $shutUpTime
+     * @param string   $groupId
+     * @param string[] $membersAccount
+     * @param int      $shutUpTime
      * @return \TimSDK\Kernel\Support\Collection
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \TimSDK\Kernel\Exceptions\InvalidConfigException
      */
-    public function forbidSendMsg(string $groupId, array $membersAccounts, int $shutUpTime)
+    public function forbidSendMsg(string $groupId, array $membersAccount, int $shutUpTime)
     {
         return $this->httpPostJson(
             'v4/group_open_http_svc/forbid_send_msg',
             [
                 'GroupId' => $groupId,
-                'Members_Account' => $membersAccounts,
+                'Members_Account' => $membersAccount,
                 'ShutUpTime' => $shutUpTime
             ],
             [
@@ -469,7 +472,7 @@ class Client extends BaseClient
      * @see https://cloud.tencent.com/document/product/269/12341
      *
      * @param string $groupId
-     * @param array  $msgSeqList
+     * @param MsgSeq[] $msgSeqList
      * @return \TimSDK\Kernel\Support\Collection
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \TimSDK\Kernel\Exceptions\InvalidConfigException
@@ -498,7 +501,7 @@ class Client extends BaseClient
      * @param string                       $ownerAccount
      * @param string                       $groupId
      * @param \TimSDK\Group\GroupInfo|null $info
-     * @param array                        $appDefinedData
+     * @param KVItem[]                     $appDefinedData
      * @param int                          $createTime
      * @return \TimSDK\Kernel\Support\Collection
      * @throws \GuzzleHttp\Exception\GuzzleException

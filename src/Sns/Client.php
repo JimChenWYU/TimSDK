@@ -373,7 +373,7 @@ class Client extends BaseClient
      * @param string $fromAccount
      * @param int    $lastSequence
      * @param string $needFriend
-     * @param array  $groupName
+     * @param string[] $groupName
      * @return \TimSDK\Kernel\Support\Collection
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \TimSDK\Kernel\Exceptions\InvalidConfigException
