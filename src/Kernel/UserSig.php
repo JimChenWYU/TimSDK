@@ -17,10 +17,10 @@ abstract class UserSig implements UserSigInterface
      */
     protected $app;
 
-	/**
-	 * @var string
-	 */
-	protected $sigKey = 'user_sig';
+    /**
+     * @var string
+     */
+    protected $sigKey = 'user_sig';
 
     /**
      * @var string
@@ -88,8 +88,8 @@ abstract class UserSig implements UserSigInterface
     public function setUserSig(string $identifier, string $userSig, int $expire): UserSigInterface
     {
         $this->getCache()->set($this->getCacheKey($identifier), [
-	        $this->sigKey => $userSig,
-	        'expires_in' => $expire,
+            $this->sigKey => $userSig,
+            'expires_in' => $expire,
         ], $expire);
 
         if (!$this->getCache()->has($this->getCacheKey($identifier))) {
@@ -109,11 +109,11 @@ abstract class UserSig implements UserSigInterface
     protected function requestUsersig(string $identifier, array $credentials, int $expire)
     {
         return [
-        	$this->sigKey => (new TLSSigAPIv2($credentials['app_id'], $credentials['key']))->genUserSig(
-		        $identifier,
-		        $expire
-	        ),
-	        'expires_in' => $expire,
+            $this->sigKey => (new TLSSigAPIv2($credentials['app_id'], $credentials['key']))->genUserSig(
+                $identifier,
+                $expire
+            ),
+            'expires_in' => $expire,
         ];
     }
 

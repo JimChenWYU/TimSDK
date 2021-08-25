@@ -106,12 +106,12 @@ class BaseClient
         return $options;
     }
 
-	/**
-	 * @param string $identifier
-	 * @return string
-	 */
-	protected function getUserSigString(string $identifier): string
-	{
-		return Arr::get($this->userSig->getUserSig($identifier), 'user_sig', '');
+    /**
+     * @param string $identifier
+     * @return string
+     */
+    protected function getUserSigString(string $identifier): string
+    {
+        return Arr::get($this->userSig->getUserSig($identifier), 'user_sig', '');
     }
 }
