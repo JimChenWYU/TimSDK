@@ -8,8 +8,8 @@ use TimSDK\Kernel\Exceptions\Exception;
 
 class Message
 {
-	public const OK = 'OK';
-	public const FAIL = 'FAIL';
+    public const OK = 'OK';
+    public const FAIL = 'FAIL';
 
     /**
      * @var \TimSDK\Application

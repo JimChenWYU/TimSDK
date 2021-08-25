@@ -6,13 +6,13 @@ use TimSDK\Kernel\UserSig;
 
 class UsersigRefreshed
 {
-	/**
-	 * @var \TimSDK\Kernel\UserSig
-	 */
-	public $usersig;
+    /**
+     * @var \TimSDK\Kernel\UserSig
+     */
+    public $usersig;
 
-	public function __construct(UserSig $usersig)
-	{
-		$this->usersig = $usersig;
-	}
+    public function __construct(UserSig $usersig)
+    {
+        $this->usersig = $usersig;
+    }
 }

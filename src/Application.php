@@ -21,7 +21,7 @@ use TimSDK\Kernel\ServiceContainer;
 class Application extends ServiceContainer
 {
     protected $providers = [
-    	Auth\ServiceProvider::class,
+        Auth\ServiceProvider::class,
         Account\ServiceProvider::class,
         Openim\ServiceProvider::class,
         MemberPush\ServiceProvider::class,
@@ -32,15 +32,15 @@ class Application extends ServiceContainer
         Operate\ServiceProvider::class,
     ];
 
-	/**
-	 * @var mixed
-	 */
+    /**
+     * @var mixed
+     */
     protected $defaultConfig = [
-	    // http://docs.guzzlephp.org/en/stable/request-options.html
-	    'http' => [
-		    'timeout' => 30.0,
-		    'base_uri' => 'https://console.tim.qq.com/',
-	    ],
+        // http://docs.guzzlephp.org/en/stable/request-options.html
+        'http' => [
+            'timeout' => 30.0,
+            'base_uri' => 'https://console.tim.qq.com/',
+        ],
     ];
 
     /**

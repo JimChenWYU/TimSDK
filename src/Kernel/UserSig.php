@@ -71,15 +71,15 @@ abstract class UserSig implements UserSigInterface
         return $this;
     }
 
-	/**
-	 * @param string $identifier
-	 * @param string $userSig
-	 * @param int    $expire
-	 * @return UserSigInterface
-	 * @throws InvalidArgumentException
-	 * @throws RuntimeException
-	 * @throws \Psr\SimpleCache\InvalidArgumentException
-	 */
+    /**
+     * @param string $identifier
+     * @param string $userSig
+     * @param int    $expire
+     * @return UserSigInterface
+     * @throws InvalidArgumentException
+     * @throws RuntimeException
+     * @throws \Psr\SimpleCache\InvalidArgumentException
+     */
     public function setUserSig(string $identifier, string $userSig, int $expire): UserSigInterface
     {
         $this->getCache()->set($this->getCacheKey($identifier), $userSig, $expire);
@@ -91,17 +91,17 @@ abstract class UserSig implements UserSigInterface
         return $this;
     }
 
-	/**
-	 * @param string $identifier
-	 * @param array  $credentials
-	 * @param int    $expire
-	 * @return string
-	 * @throws \Exception
-	 */
+    /**
+     * @param string $identifier
+     * @param array  $credentials
+     * @param int    $expire
+     * @return string
+     * @throws \Exception
+     */
     protected function requestUsersig(string $identifier, array $credentials, int $expire)
     {
         return (new TLSSigAPIv2($credentials['app_id'], $credentials['key']))->genUserSig(
-	        $identifier,
+            $identifier,
             $expire
         );
     }
@@ -112,7 +112,7 @@ abstract class UserSig implements UserSigInterface
     protected function getCacheKey(string $identifier)
     {
         return $this->cachePrefix.md5(json_encode(array_merge($this->getCredentials(), [
-        	'identifier' => $identifier,
+            'identifier' => $identifier,
         ])));
     }
 

@@ -19,25 +19,25 @@ class BaseClient
      */
     protected $app;
 
-	/**
-	 * @var \TimSDK\Kernel\Contracts\UserSigInterface
-	 */
-	protected $userSig;
+    /**
+     * @var \TimSDK\Kernel\Contracts\UserSigInterface
+     */
+    protected $userSig;
 
     /**
      * @var string
      */
     protected $baseUri;
 
-	/**
-	 * BaseClient constructor.
-	 * @param ServiceContainer      $app
-	 * @param UserSigInterface|null $userSig
-	 */
+    /**
+     * BaseClient constructor.
+     * @param ServiceContainer      $app
+     * @param UserSigInterface|null $userSig
+     */
     public function __construct(ServiceContainer $app, UserSigInterface $userSig = null)
     {
         $this->app = $app;
-	    $this->userSig = $userSig ?? $this->app['user_sig'];
+        $this->userSig = $userSig ?? $this->app['user_sig'];
     }
 
     /**
@@ -92,7 +92,7 @@ class BaseClient
      */
     protected function castRequestQuery(array $options)
     {
-    	$identifier = $this->app->config->get('identifier', 'administrator');
+        $identifier = $this->app->config->get('identifier', 'administrator');
         $options['query'] = array_merge([
             'ver' => 'v4',
             'sdkappid' => $this->app->config->get('app_id'),
