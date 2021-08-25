@@ -20,10 +20,10 @@ class ServiceProvider extends LaravelServiceProvider
 
         $this->app->singleton(TimSDK::class, function () {
             return tap(new TimSDK(config('tim-sdk')), function (TimSDK $tim) {
-            	// 默认使用 Laravel 缓存系统 （已实现 PSR16 规范）
-	            $tim->rebind('cache', $this->app['cache.store']);
-	            // 默认使用 Laravel Request (使用symfony/http-foundation)
-	            $tim->rebind('request', $this->app['request']);
+                // 默认使用 Laravel 缓存系统 （已实现 PSR16 规范）
+                $tim->rebind('cache', $this->app['cache.store']);
+                // 默认使用 Laravel Request (使用symfony/http-foundation)
+                $tim->rebind('request', $this->app['request']);
             });
         });
 
