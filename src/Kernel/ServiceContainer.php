@@ -82,15 +82,7 @@ class ServiceContainer extends Container
      */
     public function getConfig()
     {
-        $base = [
-            // http://docs.guzzlephp.org/en/stable/request-options.html
-            'http' => [
-                'timeout' => 30.0,
-                'base_uri' => 'https://console.tim.qq.com/',
-            ],
-        ];
-
-        return array_replace_recursive($base, $this->defaultConfig, $this->userConfig);
+        return array_replace_recursive($this->defaultConfig, $this->userConfig);
     }
 
     /**

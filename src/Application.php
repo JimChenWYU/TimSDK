@@ -30,6 +30,17 @@ class Application extends ServiceContainer
         Operate\ServiceProvider::class,
     ];
 
+	/**
+	 * @var mixed
+	 */
+    protected $defaultConfig = [
+	    // http://docs.guzzlephp.org/en/stable/request-options.html
+	    'http' => [
+		    'timeout' => 30.0,
+		    'base_uri' => 'https://console.tim.qq.com/',
+	    ],
+    ];
+
     /**
      * 第三方回调
      * @see https://cloud.tencent.com/document/product/269/1522
