@@ -92,12 +92,12 @@ class BaseClient
      */
     protected function castRequestQuery(array $options)
     {
+    	$identifier = $this->app->config->get('identifier', 'administrator');
         $options['query'] = array_merge([
             'ver' => 'v4',
-            'identifier' => $this->app->config->get('app_id'),
-            'usersig' => $this->userSig->getUserSig(
-            	$this->app->config->get('identifier', 'administrator')
-            ),
+            'sdkappid' => $this->app->config->get('app_id'),
+            'identifier' => $identifier,
+            'usersig' => $this->userSig->getUserSig($identifier),
             'random' => random_int(0, 4294967295),
             'contenttype' => 'json',
         ], $options['query']);

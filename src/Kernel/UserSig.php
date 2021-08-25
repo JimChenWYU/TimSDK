@@ -48,7 +48,7 @@ abstract class UserSig implements UserSigInterface
             return $result;
         }
 
-        $usersig = $this->requestUsersig($this->getCredentials(), $expire);
+        $usersig = $this->requestUsersig($identifier, $this->getCredentials(), $expire);
 
         $this->setUserSig($identifier, $usersig, $expire);
 
@@ -91,15 +91,17 @@ abstract class UserSig implements UserSigInterface
         return $this;
     }
 
-    /**
-     * @param array $credentials
-     * @return string
-     * @throws \Exception
-     */
-    protected function requestUsersig(array $credentials, int $expire)
+	/**
+	 * @param string $identifier
+	 * @param array  $credentials
+	 * @param int    $expire
+	 * @return string
+	 * @throws \Exception
+	 */
+    protected function requestUsersig(string $identifier, array $credentials, int $expire)
     {
         return (new TLSSigAPIv2($credentials['app_id'], $credentials['key']))->genUserSig(
-            $credentials['user_id'],
+	        $identifier,
             $expire
         );
     }
