@@ -43,7 +43,7 @@ class HttpClientServiceProvider implements ServiceProviderInterface
 		$this->pushMiddleware($this->retryMiddleware($app), 'retry');
 
 		return new Client(array_merge($app['config']->get('http', []), [
-			'handler' => $this->getHandlerStack()
+			'handler' => $this->getHandlerStack($app)
 		]));
 	}
 
@@ -142,30 +142,20 @@ class HttpClientServiceProvider implements ServiceProviderInterface
 	/**
 	 * Build a handler stack.
 	 */
-	protected function getHandlerStack(): HandlerStack
+	protected function getHandlerStack($app): HandlerStack
 	{
-		$handlerStack = HandlerStack::create($this->getGuzzleHandler());
+		if (isset($app['guzzle_handler'])) {
+			$handler = $app->raw('guzzle_handler');
+			$handler = is_string($app['guzzle_handler']) ? new $handler() : $handler;
+		} else {
+			$handler = Utils::chooseHandler();
+		}
+		$handlerStack = HandlerStack::create($handler);
 
 		foreach ($this->middlewares as $name => $middleware) {
 			$handlerStack->push($middleware, $name);
 		}
 
 		return $handlerStack;
-	}
-
-	/**
-	 * Get guzzle handler.
-	 *
-	 * @return callable
-	 */
-	protected function getGuzzleHandler()
-	{
-		if (property_exists($this, 'app') && isset($this->app['guzzle_handler'])) {
-			return is_string($handler = $this->app->raw('guzzle_handler'))
-				? new $handler()
-				: $handler;
-		}
-
-		return Utils::chooseHandler();
 	}
 }

@@ -47,19 +47,6 @@ class BaseClient
     }
 
     /**
-     * POST request.
-     *
-     * @return ResponseInterface|Collection|array|object|string
-     *
-     * @throws InvalidConfigException
-     * @throws \GuzzleHttp\Exception\GuzzleException
-     */
-    public function httpPost(string $url, array $data = [])
-    {
-        return $this->request($url, 'POST', ['form_params' => $data]);
-    }
-
-    /**
      * JSON request.
      *
      * @return ResponseInterface|Collection|array|object|string
@@ -100,9 +87,8 @@ class BaseClient
     {
         $options['query'] = array_merge([
             'ver' => 'v4',
-            'identifier' => $this->app['config']->get('identifier'),
-            'sdkappid' => $this->app['config']->get('app_id'),
-            'usersig' => $this->app['usersig']->getUsersig(),
+            'identifier' => $this->app->config->get('app_id'),
+            'usersig' => $this->app->usersig->getUsersig(),
             'random' => random_int(0, 4294967295),
             'contenttype' => 'json',
         ], $options['query']);
