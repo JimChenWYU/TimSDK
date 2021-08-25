@@ -64,7 +64,7 @@ class Client extends BaseClient
      * 删除帐号
      * @see https://cloud.tencent.com/document/product/269/36443
      *
-     * @param object[] $deleteItem
+     * @param AccountItem[] $deleteItem
      * @return \TimSDK\Kernel\Support\Collection
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \TimSDK\Kernel\Exceptions\InvalidConfigException
@@ -87,7 +87,7 @@ class Client extends BaseClient
      * 查询帐号
      * @see https://cloud.tencent.com/document/product/269/38417
      *
-     * @param array[] $checkItem
+     * @param AccountItem[] $checkItem
      * @return \TimSDK\Kernel\Support\Collection
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \TimSDK\Kernel\Exceptions\InvalidConfigException
