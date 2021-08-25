@@ -52,7 +52,7 @@ abstract class UserSig implements UserSigInterface
 
         $this->setUserSig($identifier, $usersig, $expire);
 
-	    $this->app->events->dispatch(new Events\UsersigRefreshed($this));
+        $this->app->events->dispatch(new Events\UsersigRefreshed($this));
 
         return $usersig;
     }
