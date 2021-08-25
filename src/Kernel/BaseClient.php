@@ -8,12 +8,14 @@ use TimSDK\Kernel\Exceptions\InvalidConfigException;
 use TimSDK\Kernel\Support\Arr;
 use TimSDK\Kernel\Support\Collection;
 use TimSDK\Kernel\Traits\InteractWithHttpClient;
+use TimSDK\Kernel\Traits\InteractWithIdentifier;
 
 class BaseClient
 {
     use InteractWithHttpClient {
         request as performRequest;
     }
+    use InteractWithIdentifier;
 
     /**
      * @var \TimSDK\Kernel\ServiceContainer
@@ -93,7 +95,7 @@ class BaseClient
      */
     protected function castRequestQuery(array $options)
     {
-        $identifier = $this->app->config->get('identifier', 'administrator');
+        $identifier = $this->getIdentifier();
         $options['query'] = array_merge([
             'ver' => 'v4',
             'sdkappid' => $this->app->config->get('app_id'),
