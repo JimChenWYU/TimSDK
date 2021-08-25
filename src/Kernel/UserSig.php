@@ -17,6 +17,11 @@ abstract class UserSig implements UserSigInterface
      */
     protected $app;
 
+	/**
+	 * @var string
+	 */
+	protected $sigKey = 'user_sig';
+
     /**
      * @var string
      */
@@ -34,12 +39,12 @@ abstract class UserSig implements UserSigInterface
 
     /**
      * @param bool $refresh
-     * @return string
+     * @return array
      * @throws InvalidArgumentException
      * @throws RuntimeException
      * @throws \Psr\SimpleCache\InvalidArgumentException
      */
-    public function getUserSig(string $identifier, bool $refresh = false, int $expire = 86400 * 180): string
+    public function getUserSig(string $identifier, bool $refresh = false, int $expire = 86400 * 180): array
     {
         $cacheKey = $this->getCacheKey($identifier);
         $cache = $this->getCache();
@@ -48,13 +53,13 @@ abstract class UserSig implements UserSigInterface
             return $result;
         }
 
-        $usersig = $this->requestUsersig($identifier, $this->getCredentials(), $expire);
+        $userSig = $this->requestUsersig($identifier, $this->getCredentials(), $expire);
 
-        $this->setUserSig($identifier, $usersig, $expire);
+        $this->setUserSig($identifier, $userSig[$this->sigKey], $userSig['expires_in']);
 
-        $this->app->events->dispatch(new Events\UsersigRefreshed($this));
+        $this->app->events->dispatch(new Events\UserSigRefreshed($this));
 
-        return $usersig;
+        return $userSig;
     }
 
     /**
@@ -82,7 +87,10 @@ abstract class UserSig implements UserSigInterface
      */
     public function setUserSig(string $identifier, string $userSig, int $expire): UserSigInterface
     {
-        $this->getCache()->set($this->getCacheKey($identifier), $userSig, $expire);
+        $this->getCache()->set($this->getCacheKey($identifier), [
+	        $this->sigKey => $userSig,
+	        'expires_in' => $expire,
+        ], $expire);
 
         if (!$this->getCache()->has($this->getCacheKey($identifier))) {
             throw new RuntimeException('Failed to cache usersig.');
@@ -95,15 +103,18 @@ abstract class UserSig implements UserSigInterface
      * @param string $identifier
      * @param array  $credentials
      * @param int    $expire
-     * @return string
+     * @return array
      * @throws \Exception
      */
     protected function requestUsersig(string $identifier, array $credentials, int $expire)
     {
-        return (new TLSSigAPIv2($credentials['app_id'], $credentials['key']))->genUserSig(
-            $identifier,
-            $expire
-        );
+        return [
+        	$this->sigKey => (new TLSSigAPIv2($credentials['app_id'], $credentials['key']))->genUserSig(
+		        $identifier,
+		        $expire
+	        ),
+	        'expires_in' => $expire,
+        ];
     }
 
     /**

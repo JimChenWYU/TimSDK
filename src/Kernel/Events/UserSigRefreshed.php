@@ -4,15 +4,15 @@ namespace TimSDK\Kernel\Events;
 
 use TimSDK\Kernel\UserSig;
 
-class UsersigRefreshed
+class UserSigRefreshed
 {
     /**
      * @var \TimSDK\Kernel\UserSig
      */
-    public $usersig;
+    public $userSig;
 
-    public function __construct(UserSig $usersig)
+    public function __construct(UserSig $userSig)
     {
-        $this->usersig = $usersig;
+        $this->userSig = $userSig;
     }
 }

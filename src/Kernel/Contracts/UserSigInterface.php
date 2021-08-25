@@ -7,7 +7,7 @@ interface UserSigInterface
     /**
      * @return string
      */
-    public function getUserSig(string $identifier): string;
+    public function getUserSig(string $identifier): array;
 
     /**
      * @return UserSigInterface
