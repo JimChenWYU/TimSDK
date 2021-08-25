@@ -82,20 +82,20 @@ class Client extends BaseClient
      * 删除好友
      * @see https://cloud.tencent.com/document/product/269/1644
      *
-     * @param string $fromAccount
-     * @param string[]  $toAccounts
-     * @param bool   $both
+     * @param string   $fromAccount
+     * @param string[] $toAccount
+     * @param bool     $both
      * @return \TimSDK\Kernel\Support\Collection
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \TimSDK\Kernel\Exceptions\InvalidConfigException
      */
-    public function deleteFriend(string $fromAccount, array $toAccounts, bool $both = true)
+    public function deleteFriend(string $fromAccount, array $toAccount, bool $both = true)
     {
         return $this->httpPostJson(
             'v4/sns/friend_delete',
             [
                 'From_Account' => $fromAccount,
-                'To_Account' => $toAccounts,
+                'To_Account' => $toAccount,
                 'DeleteType' => $both ? 'Delete_Type_Both' : 'Delete_Type_Single'
             ],
             [
