@@ -15,7 +15,7 @@ class Client extends BaseClient
      * @param string $identifier
      * @param string $nick
      * @param string $faceUrl
-     * @return array|object|\Psr\Http\Message\ResponseInterface|string|\TimSDK\Kernel\Support\Collection
+     * @return \TimSDK\Kernel\Support\Collection
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \TimSDK\Kernel\Exceptions\InvalidConfigException
      */
@@ -42,7 +42,7 @@ class Client extends BaseClient
      * @see https://cloud.tencent.com/document/product/269/4919
      *
      * @param string[] $accounts
-     * @return array|object|\Psr\Http\Message\ResponseInterface|string|\TimSDK\Kernel\Support\Collection
+     * @return \TimSDK\Kernel\Support\Collection
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \TimSDK\Kernel\Exceptions\InvalidConfigException
      */
@@ -65,7 +65,7 @@ class Client extends BaseClient
      * @see https://cloud.tencent.com/document/product/269/36443
      *
      * @param object[] $deleteItem
-     * @return array|object|\Psr\Http\Message\ResponseInterface|string|\TimSDK\Kernel\Support\Collection
+     * @return \TimSDK\Kernel\Support\Collection
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \TimSDK\Kernel\Exceptions\InvalidConfigException
      */
@@ -88,7 +88,7 @@ class Client extends BaseClient
      * @see https://cloud.tencent.com/document/product/269/38417
      *
      * @param array[] $checkItem
-     * @return array|object|\Psr\Http\Message\ResponseInterface|string|\TimSDK\Kernel\Support\Collection
+     * @return \TimSDK\Kernel\Support\Collection
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \TimSDK\Kernel\Exceptions\InvalidConfigException
      */
@@ -111,7 +111,7 @@ class Client extends BaseClient
      * @see https://cloud.tencent.com/document/product/269/3853
      *
      * @param string $identifier
-     * @return array|object|\Psr\Http\Message\ResponseInterface|string|\TimSDK\Kernel\Support\Collection
+     * @return \TimSDK\Kernel\Support\Collection
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \TimSDK\Kernel\Exceptions\InvalidConfigException
      */
@@ -134,7 +134,7 @@ class Client extends BaseClient
      * @see https://cloud.tencent.com/document/product/269/2566
      *
      * @param string[] $toAccount
-     * @return array|object|\Psr\Http\Message\ResponseInterface|string|\TimSDK\Kernel\Support\Collection
+     * @return \TimSDK\Kernel\Support\Collection
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \TimSDK\Kernel\Exceptions\InvalidConfigException
      */

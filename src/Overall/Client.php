@@ -13,7 +13,7 @@ class Client extends BaseClient
      * @param string $setAccount
      * @param int    $c2CmsgNospeakingTime
      * @param int    $groupmsgNospeakingTime
-     * @return array|object|\Psr\Http\Message\ResponseInterface|string|\TimSDK\Kernel\Support\Collection
+     * @return \TimSDK\Kernel\Support\Collection
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \TimSDK\Kernel\Exceptions\InvalidConfigException
      */
@@ -40,7 +40,7 @@ class Client extends BaseClient
      * @see https://cloud.tencent.com/document/product/269/4229
      *
      * @param string $getAccount
-     * @return array|object|\Psr\Http\Message\ResponseInterface|string|\TimSDK\Kernel\Support\Collection
+     * @return \TimSDK\Kernel\Support\Collection
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \TimSDK\Kernel\Exceptions\InvalidConfigException
      */

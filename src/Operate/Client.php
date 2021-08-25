@@ -11,7 +11,7 @@ class Client extends BaseClient
      * @see https://cloud.tencent.com/document/product/269/4193
      *
      * @param string[] $requestField
-     * @return array|object|\Psr\Http\Message\ResponseInterface|string|\TimSDK\Kernel\Support\Collection
+     * @return \TimSDK\Kernel\Support\Collection
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \TimSDK\Kernel\Exceptions\InvalidConfigException
      */
@@ -35,7 +35,7 @@ class Client extends BaseClient
      *
      * @param string $chatType
      * @param string $msgTime
-     * @return array|object|\Psr\Http\Message\ResponseInterface|string|\TimSDK\Kernel\Support\Collection
+     * @return \TimSDK\Kernel\Support\Collection
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \TimSDK\Kernel\Exceptions\InvalidConfigException
      */
@@ -58,7 +58,7 @@ class Client extends BaseClient
      * 获取服务器 IP 地址
      * @see https://cloud.tencent.com/document/product/269/45438
      *
-     * @return array|object|\Psr\Http\Message\ResponseInterface|string|\TimSDK\Kernel\Support\Collection
+     * @return \TimSDK\Kernel\Support\Collection
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \TimSDK\Kernel\Exceptions\InvalidConfigException
      */

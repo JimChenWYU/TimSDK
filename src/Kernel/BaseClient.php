@@ -43,7 +43,7 @@ class BaseClient
     /**
      * GET request.
      *
-     * @return ResponseInterface|Collection|array|object|string
+     * @return Collection
      *
      * @throws InvalidConfigException
      * @throws \GuzzleHttp\Exception\GuzzleException
@@ -56,7 +56,7 @@ class BaseClient
     /**
      * JSON request.
      *
-     * @return ResponseInterface|Collection|array|object|string
+     * @return Collection
      *
      * @throws InvalidConfigException
      * @throws \GuzzleHttp\Exception\GuzzleException
@@ -69,7 +69,7 @@ class BaseClient
     /**
      * @param bool $returnRaw
      *
-     * @return ResponseInterface|Collection|array|object|string
+     * @return ResponseInterface|Collection
      *
      * @throws InvalidConfigException
      * @throws \GuzzleHttp\Exception\GuzzleException

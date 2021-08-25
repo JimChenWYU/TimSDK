@@ -14,7 +14,7 @@ class Client extends BaseClient
      * @param int    $next
      * @param int    $limit
      * @param string $groupType
-     * @return array|object|\Psr\Http\Message\ResponseInterface|string|\TimSDK\Kernel\Support\Collection
+     * @return \TimSDK\Kernel\Support\Collection
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \TimSDK\Kernel\Exceptions\InvalidConfigException
      */
@@ -42,7 +42,7 @@ class Client extends BaseClient
      * @param string                       $type
      * @param string                       $name
      * @param \TimSDK\Group\GroupInfo|null $info
-     * @return array|object|\Psr\Http\Message\ResponseInterface|string|\TimSDK\Kernel\Support\Collection
+     * @return \TimSDK\Kernel\Support\Collection
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \TimSDK\Kernel\Exceptions\InvalidConfigException
      */
@@ -68,7 +68,7 @@ class Client extends BaseClient
      *
      * @param string[]                              $groupIdList
      * @param \TimSDK\Group\GroupInfoResponseFilter $filter
-     * @return array|object|\Psr\Http\Message\ResponseInterface|string|\TimSDK\Kernel\Support\Collection
+     * @return \TimSDK\Kernel\Support\Collection
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \TimSDK\Kernel\Exceptions\InvalidConfigException
      */
@@ -95,7 +95,7 @@ class Client extends BaseClient
      * @param string $groupId
      * @param int    $offset
      * @param int    $limit
-     * @return array|object|\Psr\Http\Message\ResponseInterface|string|\TimSDK\Kernel\Support\Collection
+     * @return \TimSDK\Kernel\Support\Collection
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \TimSDK\Kernel\Exceptions\InvalidConfigException
      */
@@ -124,7 +124,7 @@ class Client extends BaseClient
      * @param bool                         $shutUpAllMember
      * @param array[]                      $appDefinedData
      * @param \TimSDK\Group\GroupInfo|null $info
-     * @return array|object|\Psr\Http\Message\ResponseInterface|string|\TimSDK\Kernel\Support\Collection
+     * @return \TimSDK\Kernel\Support\Collection
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \TimSDK\Kernel\Exceptions\InvalidConfigException
      */
@@ -158,7 +158,7 @@ class Client extends BaseClient
      * @param string $groupId
      * @param array  $memberList
      * @param bool   $silence
-     * @return array|object|\Psr\Http\Message\ResponseInterface|string|\TimSDK\Kernel\Support\Collection
+     * @return \TimSDK\Kernel\Support\Collection
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \TimSDK\Kernel\Exceptions\InvalidConfigException
      */
@@ -185,7 +185,7 @@ class Client extends BaseClient
      * @param string $groupId
      * @param array  $memberToDelAccount
      * @param bool   $silence
-     * @return array|object|\Psr\Http\Message\ResponseInterface|string|\TimSDK\Kernel\Support\Collection
+     * @return \TimSDK\Kernel\Support\Collection
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \TimSDK\Kernel\Exceptions\InvalidConfigException
      */
@@ -216,7 +216,7 @@ class Client extends BaseClient
      * @param string $nameCard
      * @param int    $shutUpTime
      * @param array  $appMemberDefinedData
-     * @return array|object|\Psr\Http\Message\ResponseInterface|string|\TimSDK\Kernel\Support\Collection
+     * @return \TimSDK\Kernel\Support\Collection
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \TimSDK\Kernel\Exceptions\InvalidConfigException
      */
@@ -245,7 +245,7 @@ class Client extends BaseClient
      * @see https://cloud.tencent.com/document/product/269/1624
      *
      * @param string $groupId
-     * @return array|object|\Psr\Http\Message\ResponseInterface|string|\TimSDK\Kernel\Support\Collection
+     * @return \TimSDK\Kernel\Support\Collection
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \TimSDK\Kernel\Exceptions\InvalidConfigException
      */
@@ -274,7 +274,7 @@ class Client extends BaseClient
      * @param \TimSDK\Group\JoinedGroupResponseFilter|null $filter
      * @param int                                          $offset
      * @param int                                          $limit
-     * @return array|object|\Psr\Http\Message\ResponseInterface|string|\TimSDK\Kernel\Support\Collection
+     * @return \TimSDK\Kernel\Support\Collection
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \TimSDK\Kernel\Exceptions\InvalidConfigException
      */
@@ -301,7 +301,7 @@ class Client extends BaseClient
     /**
      * @param string $groupId
      * @param string[] $userAccount
-     * @return array|object|\Psr\Http\Message\ResponseInterface|string|\TimSDK\Kernel\Support\Collection
+     * @return \TimSDK\Kernel\Support\Collection
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \TimSDK\Kernel\Exceptions\InvalidConfigException
      */
@@ -327,7 +327,7 @@ class Client extends BaseClient
      * @param string $groupId
      * @param array  $membersAccounts
      * @param int    $shutUpTime
-     * @return array|object|\Psr\Http\Message\ResponseInterface|string|\TimSDK\Kernel\Support\Collection
+     * @return \TimSDK\Kernel\Support\Collection
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \TimSDK\Kernel\Exceptions\InvalidConfigException
      */
@@ -352,7 +352,7 @@ class Client extends BaseClient
      * @see https://cloud.tencent.com/document/product/269/2925
      *
      * @param string $groupId
-     * @return array|object|\Psr\Http\Message\ResponseInterface|string|\TimSDK\Kernel\Support\Collection
+     * @return \TimSDK\Kernel\Support\Collection
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \TimSDK\Kernel\Exceptions\InvalidConfigException
      */
@@ -384,7 +384,7 @@ class Client extends BaseClient
      * @param int                                            $onlineOnlyFlag
      * @param string[]                                       $sendMsgControl
      * @param string                                         $cloudCustomData
-     * @return array|object|\Psr\Http\Message\ResponseInterface|string|\TimSDK\Kernel\Support\Collection
+     * @return \TimSDK\Kernel\Support\Collection
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \TimSDK\Kernel\Exceptions\InvalidConfigException
      */
@@ -419,7 +419,7 @@ class Client extends BaseClient
      * @param string $groupId
      * @param string $content
      * @param string[] $toMembersAccount
-     * @return array|object|\Psr\Http\Message\ResponseInterface|string|\TimSDK\Kernel\Support\Collection
+     * @return \TimSDK\Kernel\Support\Collection
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \TimSDK\Kernel\Exceptions\InvalidConfigException
      */
@@ -445,7 +445,7 @@ class Client extends BaseClient
      *
      * @param string $groupId
      * @param string $newOwnerAccount
-     * @return array|object|\Psr\Http\Message\ResponseInterface|string|\TimSDK\Kernel\Support\Collection
+     * @return \TimSDK\Kernel\Support\Collection
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \TimSDK\Kernel\Exceptions\InvalidConfigException
      */
@@ -470,7 +470,7 @@ class Client extends BaseClient
      *
      * @param string $groupId
      * @param array  $msgSeqList
-     * @return array|object|\Psr\Http\Message\ResponseInterface|string|\TimSDK\Kernel\Support\Collection
+     * @return \TimSDK\Kernel\Support\Collection
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \TimSDK\Kernel\Exceptions\InvalidConfigException
      */
@@ -500,7 +500,7 @@ class Client extends BaseClient
      * @param \TimSDK\Group\GroupInfo|null $info
      * @param array                        $appDefinedData
      * @param int                          $createTime
-     * @return array|object|\Psr\Http\Message\ResponseInterface|string|\TimSDK\Kernel\Support\Collection
+     * @return \TimSDK\Kernel\Support\Collection
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \TimSDK\Kernel\Exceptions\InvalidConfigException
      */
@@ -530,7 +530,7 @@ class Client extends BaseClient
      *
      * @param string $groupId
      * @param \TimSDK\Group\Message[] $msgList
-     * @return array|object|\Psr\Http\Message\ResponseInterface|string|\TimSDK\Kernel\Support\Collection
+     * @return \TimSDK\Kernel\Support\Collection
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \TimSDK\Kernel\Exceptions\InvalidConfigException
      */
@@ -555,7 +555,7 @@ class Client extends BaseClient
      *
      * @param string $groupId
      * @param \TimSDK\Group\Member[] $memberList
-     * @return array|object|\Psr\Http\Message\ResponseInterface|string|\TimSDK\Kernel\Support\Collection
+     * @return \TimSDK\Kernel\Support\Collection
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \TimSDK\Kernel\Exceptions\InvalidConfigException
      */
@@ -581,7 +581,7 @@ class Client extends BaseClient
      * @param string $groupId
      * @param string $memberAccount
      * @param int    $unreadMsgNum
-     * @return array|object|\Psr\Http\Message\ResponseInterface|string|\TimSDK\Kernel\Support\Collection
+     * @return \TimSDK\Kernel\Support\Collection
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \TimSDK\Kernel\Exceptions\InvalidConfigException
      */
@@ -607,7 +607,7 @@ class Client extends BaseClient
      *
      * @param string $groupId
      * @param string $senderAccount
-     * @return array|object|\Psr\Http\Message\ResponseInterface|string|\TimSDK\Kernel\Support\Collection
+     * @return \TimSDK\Kernel\Support\Collection
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \TimSDK\Kernel\Exceptions\InvalidConfigException
      */
@@ -633,7 +633,7 @@ class Client extends BaseClient
      * @param string $groupId
      * @param int    $reqMsgNumber
      * @param int    $reqMsgSeq
-     * @return array|object|\Psr\Http\Message\ResponseInterface|string|\TimSDK\Kernel\Support\Collection
+     * @return \TimSDK\Kernel\Support\Collection
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \TimSDK\Kernel\Exceptions\InvalidConfigException
      */
@@ -659,7 +659,7 @@ class Client extends BaseClient
      * @see https://cloud.tencent.com/document/product/269/49180
      *
      * @param string $groupId
-     * @return array|object|\Psr\Http\Message\ResponseInterface|string|\TimSDK\Kernel\Support\Collection
+     * @return \TimSDK\Kernel\Support\Collection
      * @throws \GuzzleHttp\Exception\GuzzleException
      * @throws \TimSDK\Kernel\Exceptions\InvalidConfigException
      */
