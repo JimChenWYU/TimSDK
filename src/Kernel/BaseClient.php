@@ -5,7 +5,6 @@ namespace TimSDK\Kernel;
 use Psr\Http\Message\ResponseInterface;
 use TimSDK\Kernel\Contracts\UserSigInterface;
 use TimSDK\Kernel\Exceptions\InvalidConfigException;
-use TimSDK\Kernel\Support\Arr;
 use TimSDK\Kernel\Support\Collection;
 use TimSDK\Kernel\Traits\InteractWithHttpClient;
 use TimSDK\Kernel\Traits\InteractWithIdentifier;
@@ -100,20 +99,11 @@ class BaseClient
             'ver' => 'v4',
             'sdkappid' => $this->app->config->get('app_id'),
             'identifier' => $identifier,
-            'usersig' => $this->getUserSigString($identifier),
+            'usersig' => $this->userSig->getUserSig($identifier)['user_sig'],
             'random' => random_int(0, 4294967295),
             'contenttype' => 'json',
         ], $options['query']);
 
         return $options;
-    }
-
-    /**
-     * @param string $identifier
-     * @return string
-     */
-    protected function getUserSigString(string $identifier): string
-    {
-        return Arr::get($this->userSig->getUserSig($identifier), 'user_sig', '');
     }
 }
