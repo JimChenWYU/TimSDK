@@ -18,7 +18,7 @@ class HttpClientServiceProvider implements ServiceProviderInterface
     {
         $pimple['http_client'] ?? $pimple['http_client'] = function ($app) {
             return new Client(array_merge($app['config']->get('http', []), [
-	            'handler' => $this->getHandlerStack($app)
+                'handler' => $this->getHandlerStack($app)
             ]));
         };
     }
@@ -35,8 +35,8 @@ class HttpClientServiceProvider implements ServiceProviderInterface
             $handler = Utils::chooseHandler();
         }
         $handlerStack = HandlerStack::create($handler);
-	    $handlerStack->push(GuzzleMiddleware::retry($app['config']->get('http.max_retries', 1), $app['config']->get('http.retry_delay', 500)), 'retry');
-	    $handlerStack->push(GuzzleMiddleware::log($app['logger'], $app['config']['http.log_template']), 'log');
+        $handlerStack->push(GuzzleMiddleware::retry($app['config']->get('http.max_retries', 1), $app['config']->get('http.retry_delay', 500)), 'retry');
+        $handlerStack->push(GuzzleMiddleware::log($app['logger'], $app['config']['http.log_template']), 'log');
 
         return $handlerStack;
     }
