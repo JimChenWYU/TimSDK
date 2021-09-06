@@ -3,7 +3,7 @@
 namespace TimSDK\Kernel\Traits;
 
 use InvalidArgumentException;
-use Nyholm\Psr7;
+use GuzzleHttp\Psr7;
 use Psr\Http\Client\ClientInterface;
 use Psr\Http\Message\ResponseInterface;
 use TimSDK\Kernel\ServiceContainer;

@@ -2,7 +2,7 @@
 
 namespace TimSDK\Kernel\Http;
 
-use Nyholm\Psr7\Response as Psr7Response;
+use GuzzleHttp\Psr7\Response as Psr7Response;
 use Psr\Http\Message\ResponseInterface;
 use TimSDK\Kernel\Support\Collection;
 
