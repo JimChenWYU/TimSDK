@@ -2,7 +2,7 @@
 
 namespace Kernel\Traits;
 
-use Nyholm\Psr7;
+use GuzzleHttp\Psr7;
 use Psr\Http\Client\ClientInterface;
 use TimSDK\Kernel\Http\Client;
 use TimSDK\Kernel\Http\Response;
