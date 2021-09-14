@@ -141,13 +141,13 @@ class Client extends BaseClient
     public function queryState(array $toAccount)
     {
         return $this->httpPostJson(
-            'v4/openim/querystate',
+            'v4/openim/query_online_status',
             [
                 'To_Account' => $toAccount,
             ],
             [
                 'servicename' => 'openim',
-                'command' => 'querystate',
+                'command' => 'query_online_status',
             ]
         );
     }
