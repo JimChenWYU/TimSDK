@@ -109,13 +109,13 @@ class ClientTest extends TestCase
     {
         $client = $this->mockApiClient(Client::class, ['queryState'], $this->app())->makePartial();
         $client->expects()->httpPostJson(
-            'v4/openim/querystate',
+            'v4/openim/query_online_status',
             [
                 'To_Account' => ['user-1', 'user-2']
             ],
             [
                 'servicename' => 'openim',
-                'command' => 'querystate',
+                'command' => 'query_online_status',
             ]
         )->andReturn('mock-result');
         $this->assertSame('mock-result', $client->queryState(['user-1', 'user-2']));
