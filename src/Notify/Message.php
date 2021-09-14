@@ -130,7 +130,7 @@ class Message
 
         $attributes = array_merge($base, $this->attributes);
 
-        return new JsonResponse(json_encode($attributes));
+        return new JsonResponse($attributes);
     }
 
     /**
