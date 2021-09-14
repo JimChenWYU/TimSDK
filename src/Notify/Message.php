@@ -120,7 +120,7 @@ class Message
     /**
      * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
-    public function toResponse(): JsonResponse
+    public function toResponse()
     {
         $base = [
             'ActionStatus' => $this->errCode === 0 ? static::OK : static::FAIL,
