@@ -3,7 +3,7 @@
 namespace TimSDK\Notify;
 
 use Closure;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use TimSDK\Kernel\Exceptions\Exception;
 
 class Message
@@ -105,7 +105,7 @@ class Message
 
     /**
      * @param \Closure $closure
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
      * @throws \TimSDK\Kernel\Exceptions\Exception
      */
     public function handle(Closure $closure)
@@ -118,9 +118,9 @@ class Message
     }
 
     /**
-     * @return \Symfony\Component\HttpFoundation\Response
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
-    public function toResponse(): Response
+    public function toResponse(): JsonResponse
     {
         $base = [
             'ActionStatus' => $this->errCode === 0 ? static::OK : static::FAIL,
@@ -130,7 +130,7 @@ class Message
 
         $attributes = array_merge($base, $this->attributes);
 
-        return new Response(json_encode($attributes));
+        return new JsonResponse(json_encode($attributes));
     }
 
     /**
